@@ -1,0 +1,2596 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class ZlpgValue implements Serializable {
+    /**
+     * zlpg_value.id (主键)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Integer id;
+
+    /**
+     * zlpg_value.hunitid (医院id)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Integer hunitid;
+
+    /**
+     * zlpg_value.PState (评估表状态 0没填表 1已提交)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Integer pstate;
+
+    /**
+     * zlpg_value.PUTime (提交时间)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Date putime;
+
+    /**
+     * zlpg_value.SR_C_HOSPL (0否 1是)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCHospl;
+
+    /**
+     * zlpg_value.SR_C_NEU
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCNeu;
+
+    /**
+     * zlpg_value.SR_C_BED20
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCBed20;
+
+    /**
+     * zlpg_value.SR_C_EM
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCEm;
+
+    /**
+     * zlpg_value.SR_C_LAB
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCLab;
+
+    /**
+     * zlpg_value.SR_C_RAD
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCRad;
+
+    /**
+     * zlpg_value.SR_C_STROU
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCStrou;
+
+    /**
+     * zlpg_value.SR_C_STROPRE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srCStropre;
+
+    /**
+     * zlpg_value.SR_B_NEUD
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srBNeud;
+
+    /**
+     * zlpg_value.SR_B_STROU7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srBStrou7d;
+
+    /**
+     * zlpg_value.SR_B_GREENC
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srBGreenc;
+
+    /**
+     * zlpg_value.SR_B_NICU
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srBNicu;
+
+    /**
+     * zlpg_value.SR_B_NOR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srBNor;
+
+    /**
+     * zlpg_value.SR_B_NIOR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srBNior;
+
+    /**
+     * zlpg_value.SR_B_NCI80
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srBNci80;
+
+    /**
+     * zlpg_value.SR_A_HOSP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srAHosp;
+
+    /**
+     * zlpg_value.SR_A_BED40
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srABed40;
+
+    /**
+     * zlpg_value.SR_A_GREENC7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srAGreenc7d;
+
+    /**
+     * zlpg_value.SR_A_NICU7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srANicu7d;
+
+    /**
+     * zlpg_value.SR_A_NIOR7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srANior7d;
+
+    /**
+     * zlpg_value.SR_A_NOR7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srANor7d;
+
+    /**
+     * zlpg_value.SR_A_NCI90
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean srANci90;
+
+    /**
+     * zlpg_value.ER_C_CT
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCCt;
+
+    /**
+     * zlpg_value.ER_C_CT_PIROR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCCtPiror;
+
+    /**
+     * zlpg_value.ER_C_CT_45R
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCCt45r;
+
+    /**
+     * zlpg_value.ER_C_CT_LB7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCCtLb7d;
+
+    /**
+     * zlpg_value.ER_C_CT_LB45R
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCCtLb45r;
+
+    /**
+     * zlpg_value.ER_C_ECG7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCEcg7d;
+
+    /**
+     * zlpg_value.ER_C_CT_X7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCCtX7d;
+
+    /**
+     * zlpg_value.ER_C_UECG
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCUecg;
+
+    /**
+     * zlpg_value.ER_C_CEDOP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCCedop;
+
+    /**
+     * zlpg_value.ER_C_TDOP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erCTdop;
+
+    /**
+     * zlpg_value.ER_B_TEECG
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erBTeecg;
+
+    /**
+     * zlpg_value.ER_B_CTA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erBCta;
+
+    /**
+     * zlpg_value.ER_B_MRI
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erBMri;
+
+    /**
+     * zlpg_value.ER_B_DSA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erBDsa;
+
+    /**
+     * zlpg_value.ER_A_CTA7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erACta7d;
+
+    /**
+     * zlpg_value.ER_A_MRI7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erAMri7d;
+
+    /**
+     * zlpg_value.ER_A_DSA7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erADsa7d;
+
+    /**
+     * zlpg_value.ER_A_SPECT7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erASpect7d;
+
+    /**
+     * zlpg_value.ER_A_PCTA7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean erAPcta7d;
+
+    /**
+     * zlpg_value.HR_C_SG
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSg;
+
+    /**
+     * zlpg_value.HR_C_SG_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSgA;
+
+    /**
+     * zlpg_value.HR_C_SG_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSgB;
+
+    /**
+     * zlpg_value.HR_C_SG_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSgC;
+
+    /**
+     * zlpg_value.HR_C_SG_d
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSgD;
+
+    /**
+     * zlpg_value.HR_C_SCD
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCScd;
+
+    /**
+     * zlpg_value.HR_C_SCD_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCScdA;
+
+    /**
+     * zlpg_value.HR_C_SCD_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCScdB;
+
+    /**
+     * zlpg_value.HR_C_SCD_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCScdC;
+
+    /**
+     * zlpg_value.HR_C_SCD_d
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCScdD;
+
+    /**
+     * zlpg_value.HR_C_EP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCEp;
+
+    /**
+     * zlpg_value.HR_C_EP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCEpA;
+
+    /**
+     * zlpg_value.HR_C_EP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCEpB;
+
+    /**
+     * zlpg_value.HR_C_EP_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCEpC;
+
+    /**
+     * zlpg_value.HR_C_NP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCNp;
+
+    /**
+     * zlpg_value.HR_C_NP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCNpA;
+
+    /**
+     * zlpg_value.HR_C_NP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCNpB;
+
+    /**
+     * zlpg_value.HR_C_DR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCDr;
+
+    /**
+     * zlpg_value.HR_C_DR_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCDrA;
+
+    /**
+     * zlpg_value.HR_C_DR_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCDrB;
+
+    /**
+     * zlpg_value.HR_C_RaP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCRap;
+
+    /**
+     * zlpg_value.HR_C_RaP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCRapA;
+
+    /**
+     * zlpg_value.HR_C_RaP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCRapB;
+
+    /**
+     * zlpg_value.HR_C_SN
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSn;
+
+    /**
+     * zlpg_value.HR_C_SN_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSnA;
+
+    /**
+     * zlpg_value.HR_C_SN_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSnB;
+
+    /**
+     * zlpg_value.HR_C_SN_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCSnC;
+
+    /**
+     * zlpg_value.HR_C_ReP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCRep;
+
+    /**
+     * zlpg_value.HR_C_ReP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCRepA;
+
+    /**
+     * zlpg_value.HR_C_ReP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCRepB;
+
+    /**
+     * zlpg_value.HR_C_ReP_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCRepC;
+
+    /**
+     * zlpg_value.HR_C_UP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCUp;
+
+    /**
+     * zlpg_value.HR_C_MQIS
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrCMqis;
+
+    /**
+     * zlpg_value.HR_B_NSP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNsp;
+
+    /**
+     * zlpg_value.HR_B_NSP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspA;
+
+    /**
+     * zlpg_value.HR_B_NSP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspB;
+
+    /**
+     * zlpg_value.HR_B_NSP_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspC;
+
+    /**
+     * zlpg_value.HR_B_NSP_d
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspD;
+
+    /**
+     * zlpg_value.HR_B_NSP_e
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspE;
+
+    /**
+     * zlpg_value.HR_B_NSP_f
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspF;
+
+    /**
+     * zlpg_value.HR_B_NSP_g
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspG;
+
+    /**
+     * zlpg_value.HR_B_NSP_h
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspH;
+
+    /**
+     * zlpg_value.HR_B_NSP_i
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspI;
+
+    /**
+     * zlpg_value.HR_B_NSP_j
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBNspJ;
+
+    /**
+     * zlpg_value.HR_B_Phy
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBPhy;
+
+    /**
+     * zlpg_value.HR_B_MQIS
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBMqis;
+
+    /**
+     * zlpg_value.HR_B_SV
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrBSv;
+
+    /**
+     * zlpg_value.HR_A_NIP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANip;
+
+    /**
+     * zlpg_value.HR_A_NIP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANipA;
+
+    /**
+     * zlpg_value.HR_A_NIP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANipB;
+
+    /**
+     * zlpg_value.HR_A_NIP_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANipC;
+
+    /**
+     * zlpg_value.HR_A_NIP_d
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANipD;
+
+    /**
+     * zlpg_value.HR_A_NIP_e
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANipE;
+
+    /**
+     * zlpg_value.HR_A_NIP_f
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANipF;
+
+    /**
+     * zlpg_value.HR_A_CEA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrACea;
+
+    /**
+     * zlpg_value.HR_A_NICUPhy
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANicuphy;
+
+    /**
+     * zlpg_value.HR_A_NICUPhy7D
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANicuphy7d;
+
+    /**
+     * zlpg_value.HR_A_NICUH
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrANicuh;
+
+    /**
+     * zlpg_value.HR_A_MP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrAMp;
+
+    /**
+     * zlpg_value.HR_A_CLNRE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean hrAClnre;
+
+    /**
+     * zlpg_value.TT_C_EPA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCEpa;
+
+    /**
+     * zlpg_value.TT_C_DT
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCDt;
+
+    /**
+     * zlpg_value.TT_C_PSC
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCPsc;
+
+    /**
+     * zlpg_value.TT_C_PSC_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCPscA;
+
+    /**
+     * zlpg_value.TT_C_PSC_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCPscB;
+
+    /**
+     * zlpg_value.TT_C_PSC_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCPscC;
+
+    /**
+     * zlpg_value.TT_C_PSC_d
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCPscD;
+
+    /**
+     * zlpg_value.TT_C_PSC_e
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCPscE;
+
+    /**
+     * zlpg_value.TT_C_PSC_f
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCPscF;
+
+    /**
+     * zlpg_value.TT_C_EVT
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCEvt;
+
+    /**
+     * zlpg_value.TT_C_HTR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCHtr;
+
+    /**
+     * zlpg_value.TT_C_ACO
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttCAco;
+
+    /**
+     * zlpg_value.TT_A_IAT_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttAIatA;
+
+    /**
+     * zlpg_value.TT_A_IAT_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttAIatB;
+
+    /**
+     * zlpg_value.TT_A_IAT_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttAIatC;
+
+    /**
+     * zlpg_value.TT_A_DPC
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttADpc;
+
+    /**
+     * zlpg_value.TT_A_HMR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttAHmr;
+
+    /**
+     * zlpg_value.TT_A_VD
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttAVd;
+
+    /**
+     * zlpg_value.TT_A_ACO
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttAAco;
+
+    /**
+     * zlpg_value.TT_A_CEA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ttACea;
+
+    /**
+     * zlpg_value.NT_C_PP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ntCPp;
+
+    /**
+     * zlpg_value.NT_C_PF
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ntCPf;
+
+    /**
+     * zlpg_value.NT_C_ADL
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ntCAdl;
+
+    /**
+     * zlpg_value.NT_C_LE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ntCLe;
+
+    /**
+     * zlpg_value.NT_C_TD
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ntCTd;
+
+    /**
+     * zlpg_value.NT_C_IN
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ntCIn;
+
+    /**
+     * zlpg_value.NT_C_HE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean ntCHe;
+
+    /**
+     * zlpg_value.SP_C_SCE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean spCSce;
+
+    /**
+     * zlpg_value.SP_C_ATP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean spCAtp;
+
+    /**
+     * zlpg_value.SP_C_AFATP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean spCAfatp;
+
+    /**
+     * zlpg_value.SP_C_RFH
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean spCRfh;
+
+    /**
+     * zlpg_value.SP_C_HGF
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean spCHgf;
+
+    /**
+     * zlpg_value.SP_C_RFD
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean spCRfd;
+
+    /**
+     * zlpg_value.SP_C_HCRF
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean spCHcrf;
+
+    /**
+     * zlpg_value.RT_C_RTA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCRta;
+
+    /**
+     * zlpg_value.RT_C_EA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCEa;
+
+    /**
+     * zlpg_value.RT_C_MJC
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCMjc;
+
+    /**
+     * zlpg_value.RT_C_TG
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCTg;
+
+    /**
+     * zlpg_value.RT_C_AE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCAe;
+
+    /**
+     * zlpg_value.RT_C_SS
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCSs;
+
+    /**
+     * zlpg_value.RT_C_LT
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCLt;
+
+    /**
+     * zlpg_value.RT_C_CA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCCa;
+
+    /**
+     * zlpg_value.RT_C_RI
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCRi;
+
+    /**
+     * zlpg_value.RT_C_RP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean rtCRp;
+
+    /**
+     * zlpg_value.MF_C_VS
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean mfCVs;
+
+    /**
+     * zlpg_value.MF_C_NIHSS
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean mfCNihss;
+
+    /**
+     * zlpg_value.MF_C_FP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean mfCFp;
+
+    /**
+     * zlpg_value.MF_A_IT
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean mfAIt;
+
+    /**
+     * zlpg_value.TSR_C_CE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean tsrCCe;
+
+    /**
+     * zlpg_value.TSR_A_CR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean tsrACr;
+
+    /**
+     * zlpg_value.TSR_A_CE
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean tsrACe;
+
+    /**
+     * zlpg_value.TSR_A_AF
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean tsrAAf;
+
+    /**
+     * zlpg_value.TSR_A_EL
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean tsrAEl;
+
+    /**
+     * zlpg_value.QA_A_CP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaACp;
+
+    /**
+     * zlpg_value.QA_A_CP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaACpA;
+
+    /**
+     * zlpg_value.QA_A_CP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaACpB;
+
+    /**
+     * zlpg_value.QA_A_CP_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaACpC;
+
+    /**
+     * zlpg_value.QA_A_CP_d
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaACpD;
+
+    /**
+     * zlpg_value.QA_A_CP_e
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaACpE;
+
+    /**
+     * zlpg_value.QA_A_CP_f
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaACpF;
+
+    /**
+     * zlpg_value.QA_A_INR
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean qaAInr;
+
+    /**
+     * zlpg_value.OM_C_MC
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCMc;
+
+    /**
+     * zlpg_value.OM_C_CT
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCCt;
+
+    /**
+     * zlpg_value.OM_C_SU
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCSu;
+
+    /**
+     * zlpg_value.OM_C_PA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCPa;
+
+    /**
+     * zlpg_value.OM_C_STP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCStp;
+
+    /**
+     * zlpg_value.OM_C_SPG
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCSpg;
+
+    /**
+     * zlpg_value.OM_C_DT
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCDt;
+
+    /**
+     * zlpg_value.OM_C_CSC
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omCCsc;
+
+    /**
+     * zlpg_value.OM_A_ASU
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAAsu;
+
+    /**
+     * zlpg_value.OM_A_PA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAPa;
+
+    /**
+     * zlpg_value.OM_A_DP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omADp;
+
+    /**
+     * zlpg_value.OM_A_PDCA
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAPdca;
+
+    /**
+     * zlpg_value.OM_A_PCP
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAPcp;
+
+    /**
+     * zlpg_value.OM_A_PCP_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAPcpA;
+
+    /**
+     * zlpg_value.OM_A_PCP_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAPcpB;
+
+    /**
+     * zlpg_value.OM_A_PCP_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAPcpC;
+
+    /**
+     * zlpg_value.OM_A_EDT_a
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAEdtA;
+
+    /**
+     * zlpg_value.OM_A_EDT_b
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAEdtB;
+
+    /**
+     * zlpg_value.OM_A_EDT_c
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Boolean omAEdtC;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getHunitid() {
+        return hunitid;
+    }
+
+    public void setHunitid(Integer hunitid) {
+        this.hunitid = hunitid;
+    }
+
+    public Integer getPstate() {
+        return pstate;
+    }
+
+    public void setPstate(Integer pstate) {
+        this.pstate = pstate;
+    }
+
+    public Date getPutime() {
+        return putime;
+    }
+
+    public void setPutime(Date putime) {
+        this.putime = putime;
+    }
+
+    public Boolean getSrCHospl() {
+        return srCHospl;
+    }
+
+    public void setSrCHospl(Boolean srCHospl) {
+        this.srCHospl = srCHospl;
+    }
+
+    public Boolean getSrCNeu() {
+        return srCNeu;
+    }
+
+    public void setSrCNeu(Boolean srCNeu) {
+        this.srCNeu = srCNeu;
+    }
+
+    public Boolean getSrCBed20() {
+        return srCBed20;
+    }
+
+    public void setSrCBed20(Boolean srCBed20) {
+        this.srCBed20 = srCBed20;
+    }
+
+    public Boolean getSrCEm() {
+        return srCEm;
+    }
+
+    public void setSrCEm(Boolean srCEm) {
+        this.srCEm = srCEm;
+    }
+
+    public Boolean getSrCLab() {
+        return srCLab;
+    }
+
+    public void setSrCLab(Boolean srCLab) {
+        this.srCLab = srCLab;
+    }
+
+    public Boolean getSrCRad() {
+        return srCRad;
+    }
+
+    public void setSrCRad(Boolean srCRad) {
+        this.srCRad = srCRad;
+    }
+
+    public Boolean getSrCStrou() {
+        return srCStrou;
+    }
+
+    public void setSrCStrou(Boolean srCStrou) {
+        this.srCStrou = srCStrou;
+    }
+
+    public Boolean getSrCStropre() {
+        return srCStropre;
+    }
+
+    public void setSrCStropre(Boolean srCStropre) {
+        this.srCStropre = srCStropre;
+    }
+
+    public Boolean getSrBNeud() {
+        return srBNeud;
+    }
+
+    public void setSrBNeud(Boolean srBNeud) {
+        this.srBNeud = srBNeud;
+    }
+
+    public Boolean getSrBStrou7d() {
+        return srBStrou7d;
+    }
+
+    public void setSrBStrou7d(Boolean srBStrou7d) {
+        this.srBStrou7d = srBStrou7d;
+    }
+
+    public Boolean getSrBGreenc() {
+        return srBGreenc;
+    }
+
+    public void setSrBGreenc(Boolean srBGreenc) {
+        this.srBGreenc = srBGreenc;
+    }
+
+    public Boolean getSrBNicu() {
+        return srBNicu;
+    }
+
+    public void setSrBNicu(Boolean srBNicu) {
+        this.srBNicu = srBNicu;
+    }
+
+    public Boolean getSrBNor() {
+        return srBNor;
+    }
+
+    public void setSrBNor(Boolean srBNor) {
+        this.srBNor = srBNor;
+    }
+
+    public Boolean getSrBNior() {
+        return srBNior;
+    }
+
+    public void setSrBNior(Boolean srBNior) {
+        this.srBNior = srBNior;
+    }
+
+    public Boolean getSrBNci80() {
+        return srBNci80;
+    }
+
+    public void setSrBNci80(Boolean srBNci80) {
+        this.srBNci80 = srBNci80;
+    }
+
+    public Boolean getSrAHosp() {
+        return srAHosp;
+    }
+
+    public void setSrAHosp(Boolean srAHosp) {
+        this.srAHosp = srAHosp;
+    }
+
+    public Boolean getSrABed40() {
+        return srABed40;
+    }
+
+    public void setSrABed40(Boolean srABed40) {
+        this.srABed40 = srABed40;
+    }
+
+    public Boolean getSrAGreenc7d() {
+        return srAGreenc7d;
+    }
+
+    public void setSrAGreenc7d(Boolean srAGreenc7d) {
+        this.srAGreenc7d = srAGreenc7d;
+    }
+
+    public Boolean getSrANicu7d() {
+        return srANicu7d;
+    }
+
+    public void setSrANicu7d(Boolean srANicu7d) {
+        this.srANicu7d = srANicu7d;
+    }
+
+    public Boolean getSrANior7d() {
+        return srANior7d;
+    }
+
+    public void setSrANior7d(Boolean srANior7d) {
+        this.srANior7d = srANior7d;
+    }
+
+    public Boolean getSrANor7d() {
+        return srANor7d;
+    }
+
+    public void setSrANor7d(Boolean srANor7d) {
+        this.srANor7d = srANor7d;
+    }
+
+    public Boolean getSrANci90() {
+        return srANci90;
+    }
+
+    public void setSrANci90(Boolean srANci90) {
+        this.srANci90 = srANci90;
+    }
+
+    public Boolean getErCCt() {
+        return erCCt;
+    }
+
+    public void setErCCt(Boolean erCCt) {
+        this.erCCt = erCCt;
+    }
+
+    public Boolean getErCCtPiror() {
+        return erCCtPiror;
+    }
+
+    public void setErCCtPiror(Boolean erCCtPiror) {
+        this.erCCtPiror = erCCtPiror;
+    }
+
+    public Boolean getErCCt45r() {
+        return erCCt45r;
+    }
+
+    public void setErCCt45r(Boolean erCCt45r) {
+        this.erCCt45r = erCCt45r;
+    }
+
+    public Boolean getErCCtLb7d() {
+        return erCCtLb7d;
+    }
+
+    public void setErCCtLb7d(Boolean erCCtLb7d) {
+        this.erCCtLb7d = erCCtLb7d;
+    }
+
+    public Boolean getErCCtLb45r() {
+        return erCCtLb45r;
+    }
+
+    public void setErCCtLb45r(Boolean erCCtLb45r) {
+        this.erCCtLb45r = erCCtLb45r;
+    }
+
+    public Boolean getErCEcg7d() {
+        return erCEcg7d;
+    }
+
+    public void setErCEcg7d(Boolean erCEcg7d) {
+        this.erCEcg7d = erCEcg7d;
+    }
+
+    public Boolean getErCCtX7d() {
+        return erCCtX7d;
+    }
+
+    public void setErCCtX7d(Boolean erCCtX7d) {
+        this.erCCtX7d = erCCtX7d;
+    }
+
+    public Boolean getErCUecg() {
+        return erCUecg;
+    }
+
+    public void setErCUecg(Boolean erCUecg) {
+        this.erCUecg = erCUecg;
+    }
+
+    public Boolean getErCCedop() {
+        return erCCedop;
+    }
+
+    public void setErCCedop(Boolean erCCedop) {
+        this.erCCedop = erCCedop;
+    }
+
+    public Boolean getErCTdop() {
+        return erCTdop;
+    }
+
+    public void setErCTdop(Boolean erCTdop) {
+        this.erCTdop = erCTdop;
+    }
+
+    public Boolean getErBTeecg() {
+        return erBTeecg;
+    }
+
+    public void setErBTeecg(Boolean erBTeecg) {
+        this.erBTeecg = erBTeecg;
+    }
+
+    public Boolean getErBCta() {
+        return erBCta;
+    }
+
+    public void setErBCta(Boolean erBCta) {
+        this.erBCta = erBCta;
+    }
+
+    public Boolean getErBMri() {
+        return erBMri;
+    }
+
+    public void setErBMri(Boolean erBMri) {
+        this.erBMri = erBMri;
+    }
+
+    public Boolean getErBDsa() {
+        return erBDsa;
+    }
+
+    public void setErBDsa(Boolean erBDsa) {
+        this.erBDsa = erBDsa;
+    }
+
+    public Boolean getErACta7d() {
+        return erACta7d;
+    }
+
+    public void setErACta7d(Boolean erACta7d) {
+        this.erACta7d = erACta7d;
+    }
+
+    public Boolean getErAMri7d() {
+        return erAMri7d;
+    }
+
+    public void setErAMri7d(Boolean erAMri7d) {
+        this.erAMri7d = erAMri7d;
+    }
+
+    public Boolean getErADsa7d() {
+        return erADsa7d;
+    }
+
+    public void setErADsa7d(Boolean erADsa7d) {
+        this.erADsa7d = erADsa7d;
+    }
+
+    public Boolean getErASpect7d() {
+        return erASpect7d;
+    }
+
+    public void setErASpect7d(Boolean erASpect7d) {
+        this.erASpect7d = erASpect7d;
+    }
+
+    public Boolean getErAPcta7d() {
+        return erAPcta7d;
+    }
+
+    public void setErAPcta7d(Boolean erAPcta7d) {
+        this.erAPcta7d = erAPcta7d;
+    }
+
+    public Boolean getHrCSg() {
+        return hrCSg;
+    }
+
+    public void setHrCSg(Boolean hrCSg) {
+        this.hrCSg = hrCSg;
+    }
+
+    public Boolean getHrCSgA() {
+        return hrCSgA;
+    }
+
+    public void setHrCSgA(Boolean hrCSgA) {
+        this.hrCSgA = hrCSgA;
+    }
+
+    public Boolean getHrCSgB() {
+        return hrCSgB;
+    }
+
+    public void setHrCSgB(Boolean hrCSgB) {
+        this.hrCSgB = hrCSgB;
+    }
+
+    public Boolean getHrCSgC() {
+        return hrCSgC;
+    }
+
+    public void setHrCSgC(Boolean hrCSgC) {
+        this.hrCSgC = hrCSgC;
+    }
+
+    public Boolean getHrCSgD() {
+        return hrCSgD;
+    }
+
+    public void setHrCSgD(Boolean hrCSgD) {
+        this.hrCSgD = hrCSgD;
+    }
+
+    public Boolean getHrCScd() {
+        return hrCScd;
+    }
+
+    public void setHrCScd(Boolean hrCScd) {
+        this.hrCScd = hrCScd;
+    }
+
+    public Boolean getHrCScdA() {
+        return hrCScdA;
+    }
+
+    public void setHrCScdA(Boolean hrCScdA) {
+        this.hrCScdA = hrCScdA;
+    }
+
+    public Boolean getHrCScdB() {
+        return hrCScdB;
+    }
+
+    public void setHrCScdB(Boolean hrCScdB) {
+        this.hrCScdB = hrCScdB;
+    }
+
+    public Boolean getHrCScdC() {
+        return hrCScdC;
+    }
+
+    public void setHrCScdC(Boolean hrCScdC) {
+        this.hrCScdC = hrCScdC;
+    }
+
+    public Boolean getHrCScdD() {
+        return hrCScdD;
+    }
+
+    public void setHrCScdD(Boolean hrCScdD) {
+        this.hrCScdD = hrCScdD;
+    }
+
+    public Boolean getHrCEp() {
+        return hrCEp;
+    }
+
+    public void setHrCEp(Boolean hrCEp) {
+        this.hrCEp = hrCEp;
+    }
+
+    public Boolean getHrCEpA() {
+        return hrCEpA;
+    }
+
+    public void setHrCEpA(Boolean hrCEpA) {
+        this.hrCEpA = hrCEpA;
+    }
+
+    public Boolean getHrCEpB() {
+        return hrCEpB;
+    }
+
+    public void setHrCEpB(Boolean hrCEpB) {
+        this.hrCEpB = hrCEpB;
+    }
+
+    public Boolean getHrCEpC() {
+        return hrCEpC;
+    }
+
+    public void setHrCEpC(Boolean hrCEpC) {
+        this.hrCEpC = hrCEpC;
+    }
+
+    public Boolean getHrCNp() {
+        return hrCNp;
+    }
+
+    public void setHrCNp(Boolean hrCNp) {
+        this.hrCNp = hrCNp;
+    }
+
+    public Boolean getHrCNpA() {
+        return hrCNpA;
+    }
+
+    public void setHrCNpA(Boolean hrCNpA) {
+        this.hrCNpA = hrCNpA;
+    }
+
+    public Boolean getHrCNpB() {
+        return hrCNpB;
+    }
+
+    public void setHrCNpB(Boolean hrCNpB) {
+        this.hrCNpB = hrCNpB;
+    }
+
+    public Boolean getHrCDr() {
+        return hrCDr;
+    }
+
+    public void setHrCDr(Boolean hrCDr) {
+        this.hrCDr = hrCDr;
+    }
+
+    public Boolean getHrCDrA() {
+        return hrCDrA;
+    }
+
+    public void setHrCDrA(Boolean hrCDrA) {
+        this.hrCDrA = hrCDrA;
+    }
+
+    public Boolean getHrCDrB() {
+        return hrCDrB;
+    }
+
+    public void setHrCDrB(Boolean hrCDrB) {
+        this.hrCDrB = hrCDrB;
+    }
+
+    public Boolean getHrCRap() {
+        return hrCRap;
+    }
+
+    public void setHrCRap(Boolean hrCRap) {
+        this.hrCRap = hrCRap;
+    }
+
+    public Boolean getHrCRapA() {
+        return hrCRapA;
+    }
+
+    public void setHrCRapA(Boolean hrCRapA) {
+        this.hrCRapA = hrCRapA;
+    }
+
+    public Boolean getHrCRapB() {
+        return hrCRapB;
+    }
+
+    public void setHrCRapB(Boolean hrCRapB) {
+        this.hrCRapB = hrCRapB;
+    }
+
+    public Boolean getHrCSn() {
+        return hrCSn;
+    }
+
+    public void setHrCSn(Boolean hrCSn) {
+        this.hrCSn = hrCSn;
+    }
+
+    public Boolean getHrCSnA() {
+        return hrCSnA;
+    }
+
+    public void setHrCSnA(Boolean hrCSnA) {
+        this.hrCSnA = hrCSnA;
+    }
+
+    public Boolean getHrCSnB() {
+        return hrCSnB;
+    }
+
+    public void setHrCSnB(Boolean hrCSnB) {
+        this.hrCSnB = hrCSnB;
+    }
+
+    public Boolean getHrCSnC() {
+        return hrCSnC;
+    }
+
+    public void setHrCSnC(Boolean hrCSnC) {
+        this.hrCSnC = hrCSnC;
+    }
+
+    public Boolean getHrCRep() {
+        return hrCRep;
+    }
+
+    public void setHrCRep(Boolean hrCRep) {
+        this.hrCRep = hrCRep;
+    }
+
+    public Boolean getHrCRepA() {
+        return hrCRepA;
+    }
+
+    public void setHrCRepA(Boolean hrCRepA) {
+        this.hrCRepA = hrCRepA;
+    }
+
+    public Boolean getHrCRepB() {
+        return hrCRepB;
+    }
+
+    public void setHrCRepB(Boolean hrCRepB) {
+        this.hrCRepB = hrCRepB;
+    }
+
+    public Boolean getHrCRepC() {
+        return hrCRepC;
+    }
+
+    public void setHrCRepC(Boolean hrCRepC) {
+        this.hrCRepC = hrCRepC;
+    }
+
+    public Boolean getHrCUp() {
+        return hrCUp;
+    }
+
+    public void setHrCUp(Boolean hrCUp) {
+        this.hrCUp = hrCUp;
+    }
+
+    public Boolean getHrCMqis() {
+        return hrCMqis;
+    }
+
+    public void setHrCMqis(Boolean hrCMqis) {
+        this.hrCMqis = hrCMqis;
+    }
+
+    public Boolean getHrBNsp() {
+        return hrBNsp;
+    }
+
+    public void setHrBNsp(Boolean hrBNsp) {
+        this.hrBNsp = hrBNsp;
+    }
+
+    public Boolean getHrBNspA() {
+        return hrBNspA;
+    }
+
+    public void setHrBNspA(Boolean hrBNspA) {
+        this.hrBNspA = hrBNspA;
+    }
+
+    public Boolean getHrBNspB() {
+        return hrBNspB;
+    }
+
+    public void setHrBNspB(Boolean hrBNspB) {
+        this.hrBNspB = hrBNspB;
+    }
+
+    public Boolean getHrBNspC() {
+        return hrBNspC;
+    }
+
+    public void setHrBNspC(Boolean hrBNspC) {
+        this.hrBNspC = hrBNspC;
+    }
+
+    public Boolean getHrBNspD() {
+        return hrBNspD;
+    }
+
+    public void setHrBNspD(Boolean hrBNspD) {
+        this.hrBNspD = hrBNspD;
+    }
+
+    public Boolean getHrBNspE() {
+        return hrBNspE;
+    }
+
+    public void setHrBNspE(Boolean hrBNspE) {
+        this.hrBNspE = hrBNspE;
+    }
+
+    public Boolean getHrBNspF() {
+        return hrBNspF;
+    }
+
+    public void setHrBNspF(Boolean hrBNspF) {
+        this.hrBNspF = hrBNspF;
+    }
+
+    public Boolean getHrBNspG() {
+        return hrBNspG;
+    }
+
+    public void setHrBNspG(Boolean hrBNspG) {
+        this.hrBNspG = hrBNspG;
+    }
+
+    public Boolean getHrBNspH() {
+        return hrBNspH;
+    }
+
+    public void setHrBNspH(Boolean hrBNspH) {
+        this.hrBNspH = hrBNspH;
+    }
+
+    public Boolean getHrBNspI() {
+        return hrBNspI;
+    }
+
+    public void setHrBNspI(Boolean hrBNspI) {
+        this.hrBNspI = hrBNspI;
+    }
+
+    public Boolean getHrBNspJ() {
+        return hrBNspJ;
+    }
+
+    public void setHrBNspJ(Boolean hrBNspJ) {
+        this.hrBNspJ = hrBNspJ;
+    }
+
+    public Boolean getHrBPhy() {
+        return hrBPhy;
+    }
+
+    public void setHrBPhy(Boolean hrBPhy) {
+        this.hrBPhy = hrBPhy;
+    }
+
+    public Boolean getHrBMqis() {
+        return hrBMqis;
+    }
+
+    public void setHrBMqis(Boolean hrBMqis) {
+        this.hrBMqis = hrBMqis;
+    }
+
+    public Boolean getHrBSv() {
+        return hrBSv;
+    }
+
+    public void setHrBSv(Boolean hrBSv) {
+        this.hrBSv = hrBSv;
+    }
+
+    public Boolean getHrANip() {
+        return hrANip;
+    }
+
+    public void setHrANip(Boolean hrANip) {
+        this.hrANip = hrANip;
+    }
+
+    public Boolean getHrANipA() {
+        return hrANipA;
+    }
+
+    public void setHrANipA(Boolean hrANipA) {
+        this.hrANipA = hrANipA;
+    }
+
+    public Boolean getHrANipB() {
+        return hrANipB;
+    }
+
+    public void setHrANipB(Boolean hrANipB) {
+        this.hrANipB = hrANipB;
+    }
+
+    public Boolean getHrANipC() {
+        return hrANipC;
+    }
+
+    public void setHrANipC(Boolean hrANipC) {
+        this.hrANipC = hrANipC;
+    }
+
+    public Boolean getHrANipD() {
+        return hrANipD;
+    }
+
+    public void setHrANipD(Boolean hrANipD) {
+        this.hrANipD = hrANipD;
+    }
+
+    public Boolean getHrANipE() {
+        return hrANipE;
+    }
+
+    public void setHrANipE(Boolean hrANipE) {
+        this.hrANipE = hrANipE;
+    }
+
+    public Boolean getHrANipF() {
+        return hrANipF;
+    }
+
+    public void setHrANipF(Boolean hrANipF) {
+        this.hrANipF = hrANipF;
+    }
+
+    public Boolean getHrACea() {
+        return hrACea;
+    }
+
+    public void setHrACea(Boolean hrACea) {
+        this.hrACea = hrACea;
+    }
+
+    public Boolean getHrANicuphy() {
+        return hrANicuphy;
+    }
+
+    public void setHrANicuphy(Boolean hrANicuphy) {
+        this.hrANicuphy = hrANicuphy;
+    }
+
+    public Boolean getHrANicuphy7d() {
+        return hrANicuphy7d;
+    }
+
+    public void setHrANicuphy7d(Boolean hrANicuphy7d) {
+        this.hrANicuphy7d = hrANicuphy7d;
+    }
+
+    public Boolean getHrANicuh() {
+        return hrANicuh;
+    }
+
+    public void setHrANicuh(Boolean hrANicuh) {
+        this.hrANicuh = hrANicuh;
+    }
+
+    public Boolean getHrAMp() {
+        return hrAMp;
+    }
+
+    public void setHrAMp(Boolean hrAMp) {
+        this.hrAMp = hrAMp;
+    }
+
+    public Boolean getHrAClnre() {
+        return hrAClnre;
+    }
+
+    public void setHrAClnre(Boolean hrAClnre) {
+        this.hrAClnre = hrAClnre;
+    }
+
+    public Boolean getTtCEpa() {
+        return ttCEpa;
+    }
+
+    public void setTtCEpa(Boolean ttCEpa) {
+        this.ttCEpa = ttCEpa;
+    }
+
+    public Boolean getTtCDt() {
+        return ttCDt;
+    }
+
+    public void setTtCDt(Boolean ttCDt) {
+        this.ttCDt = ttCDt;
+    }
+
+    public Boolean getTtCPsc() {
+        return ttCPsc;
+    }
+
+    public void setTtCPsc(Boolean ttCPsc) {
+        this.ttCPsc = ttCPsc;
+    }
+
+    public Boolean getTtCPscA() {
+        return ttCPscA;
+    }
+
+    public void setTtCPscA(Boolean ttCPscA) {
+        this.ttCPscA = ttCPscA;
+    }
+
+    public Boolean getTtCPscB() {
+        return ttCPscB;
+    }
+
+    public void setTtCPscB(Boolean ttCPscB) {
+        this.ttCPscB = ttCPscB;
+    }
+
+    public Boolean getTtCPscC() {
+        return ttCPscC;
+    }
+
+    public void setTtCPscC(Boolean ttCPscC) {
+        this.ttCPscC = ttCPscC;
+    }
+
+    public Boolean getTtCPscD() {
+        return ttCPscD;
+    }
+
+    public void setTtCPscD(Boolean ttCPscD) {
+        this.ttCPscD = ttCPscD;
+    }
+
+    public Boolean getTtCPscE() {
+        return ttCPscE;
+    }
+
+    public void setTtCPscE(Boolean ttCPscE) {
+        this.ttCPscE = ttCPscE;
+    }
+
+    public Boolean getTtCPscF() {
+        return ttCPscF;
+    }
+
+    public void setTtCPscF(Boolean ttCPscF) {
+        this.ttCPscF = ttCPscF;
+    }
+
+    public Boolean getTtCEvt() {
+        return ttCEvt;
+    }
+
+    public void setTtCEvt(Boolean ttCEvt) {
+        this.ttCEvt = ttCEvt;
+    }
+
+    public Boolean getTtCHtr() {
+        return ttCHtr;
+    }
+
+    public void setTtCHtr(Boolean ttCHtr) {
+        this.ttCHtr = ttCHtr;
+    }
+
+    public Boolean getTtCAco() {
+        return ttCAco;
+    }
+
+    public void setTtCAco(Boolean ttCAco) {
+        this.ttCAco = ttCAco;
+    }
+
+    public Boolean getTtAIatA() {
+        return ttAIatA;
+    }
+
+    public void setTtAIatA(Boolean ttAIatA) {
+        this.ttAIatA = ttAIatA;
+    }
+
+    public Boolean getTtAIatB() {
+        return ttAIatB;
+    }
+
+    public void setTtAIatB(Boolean ttAIatB) {
+        this.ttAIatB = ttAIatB;
+    }
+
+    public Boolean getTtAIatC() {
+        return ttAIatC;
+    }
+
+    public void setTtAIatC(Boolean ttAIatC) {
+        this.ttAIatC = ttAIatC;
+    }
+
+    public Boolean getTtADpc() {
+        return ttADpc;
+    }
+
+    public void setTtADpc(Boolean ttADpc) {
+        this.ttADpc = ttADpc;
+    }
+
+    public Boolean getTtAHmr() {
+        return ttAHmr;
+    }
+
+    public void setTtAHmr(Boolean ttAHmr) {
+        this.ttAHmr = ttAHmr;
+    }
+
+    public Boolean getTtAVd() {
+        return ttAVd;
+    }
+
+    public void setTtAVd(Boolean ttAVd) {
+        this.ttAVd = ttAVd;
+    }
+
+    public Boolean getTtAAco() {
+        return ttAAco;
+    }
+
+    public void setTtAAco(Boolean ttAAco) {
+        this.ttAAco = ttAAco;
+    }
+
+    public Boolean getTtACea() {
+        return ttACea;
+    }
+
+    public void setTtACea(Boolean ttACea) {
+        this.ttACea = ttACea;
+    }
+
+    public Boolean getNtCPp() {
+        return ntCPp;
+    }
+
+    public void setNtCPp(Boolean ntCPp) {
+        this.ntCPp = ntCPp;
+    }
+
+    public Boolean getNtCPf() {
+        return ntCPf;
+    }
+
+    public void setNtCPf(Boolean ntCPf) {
+        this.ntCPf = ntCPf;
+    }
+
+    public Boolean getNtCAdl() {
+        return ntCAdl;
+    }
+
+    public void setNtCAdl(Boolean ntCAdl) {
+        this.ntCAdl = ntCAdl;
+    }
+
+    public Boolean getNtCLe() {
+        return ntCLe;
+    }
+
+    public void setNtCLe(Boolean ntCLe) {
+        this.ntCLe = ntCLe;
+    }
+
+    public Boolean getNtCTd() {
+        return ntCTd;
+    }
+
+    public void setNtCTd(Boolean ntCTd) {
+        this.ntCTd = ntCTd;
+    }
+
+    public Boolean getNtCIn() {
+        return ntCIn;
+    }
+
+    public void setNtCIn(Boolean ntCIn) {
+        this.ntCIn = ntCIn;
+    }
+
+    public Boolean getNtCHe() {
+        return ntCHe;
+    }
+
+    public void setNtCHe(Boolean ntCHe) {
+        this.ntCHe = ntCHe;
+    }
+
+    public Boolean getSpCSce() {
+        return spCSce;
+    }
+
+    public void setSpCSce(Boolean spCSce) {
+        this.spCSce = spCSce;
+    }
+
+    public Boolean getSpCAtp() {
+        return spCAtp;
+    }
+
+    public void setSpCAtp(Boolean spCAtp) {
+        this.spCAtp = spCAtp;
+    }
+
+    public Boolean getSpCAfatp() {
+        return spCAfatp;
+    }
+
+    public void setSpCAfatp(Boolean spCAfatp) {
+        this.spCAfatp = spCAfatp;
+    }
+
+    public Boolean getSpCRfh() {
+        return spCRfh;
+    }
+
+    public void setSpCRfh(Boolean spCRfh) {
+        this.spCRfh = spCRfh;
+    }
+
+    public Boolean getSpCHgf() {
+        return spCHgf;
+    }
+
+    public void setSpCHgf(Boolean spCHgf) {
+        this.spCHgf = spCHgf;
+    }
+
+    public Boolean getSpCRfd() {
+        return spCRfd;
+    }
+
+    public void setSpCRfd(Boolean spCRfd) {
+        this.spCRfd = spCRfd;
+    }
+
+    public Boolean getSpCHcrf() {
+        return spCHcrf;
+    }
+
+    public void setSpCHcrf(Boolean spCHcrf) {
+        this.spCHcrf = spCHcrf;
+    }
+
+    public Boolean getRtCRta() {
+        return rtCRta;
+    }
+
+    public void setRtCRta(Boolean rtCRta) {
+        this.rtCRta = rtCRta;
+    }
+
+    public Boolean getRtCEa() {
+        return rtCEa;
+    }
+
+    public void setRtCEa(Boolean rtCEa) {
+        this.rtCEa = rtCEa;
+    }
+
+    public Boolean getRtCMjc() {
+        return rtCMjc;
+    }
+
+    public void setRtCMjc(Boolean rtCMjc) {
+        this.rtCMjc = rtCMjc;
+    }
+
+    public Boolean getRtCTg() {
+        return rtCTg;
+    }
+
+    public void setRtCTg(Boolean rtCTg) {
+        this.rtCTg = rtCTg;
+    }
+
+    public Boolean getRtCAe() {
+        return rtCAe;
+    }
+
+    public void setRtCAe(Boolean rtCAe) {
+        this.rtCAe = rtCAe;
+    }
+
+    public Boolean getRtCSs() {
+        return rtCSs;
+    }
+
+    public void setRtCSs(Boolean rtCSs) {
+        this.rtCSs = rtCSs;
+    }
+
+    public Boolean getRtCLt() {
+        return rtCLt;
+    }
+
+    public void setRtCLt(Boolean rtCLt) {
+        this.rtCLt = rtCLt;
+    }
+
+    public Boolean getRtCCa() {
+        return rtCCa;
+    }
+
+    public void setRtCCa(Boolean rtCCa) {
+        this.rtCCa = rtCCa;
+    }
+
+    public Boolean getRtCRi() {
+        return rtCRi;
+    }
+
+    public void setRtCRi(Boolean rtCRi) {
+        this.rtCRi = rtCRi;
+    }
+
+    public Boolean getRtCRp() {
+        return rtCRp;
+    }
+
+    public void setRtCRp(Boolean rtCRp) {
+        this.rtCRp = rtCRp;
+    }
+
+    public Boolean getMfCVs() {
+        return mfCVs;
+    }
+
+    public void setMfCVs(Boolean mfCVs) {
+        this.mfCVs = mfCVs;
+    }
+
+    public Boolean getMfCNihss() {
+        return mfCNihss;
+    }
+
+    public void setMfCNihss(Boolean mfCNihss) {
+        this.mfCNihss = mfCNihss;
+    }
+
+    public Boolean getMfCFp() {
+        return mfCFp;
+    }
+
+    public void setMfCFp(Boolean mfCFp) {
+        this.mfCFp = mfCFp;
+    }
+
+    public Boolean getMfAIt() {
+        return mfAIt;
+    }
+
+    public void setMfAIt(Boolean mfAIt) {
+        this.mfAIt = mfAIt;
+    }
+
+    public Boolean getTsrCCe() {
+        return tsrCCe;
+    }
+
+    public void setTsrCCe(Boolean tsrCCe) {
+        this.tsrCCe = tsrCCe;
+    }
+
+    public Boolean getTsrACr() {
+        return tsrACr;
+    }
+
+    public void setTsrACr(Boolean tsrACr) {
+        this.tsrACr = tsrACr;
+    }
+
+    public Boolean getTsrACe() {
+        return tsrACe;
+    }
+
+    public void setTsrACe(Boolean tsrACe) {
+        this.tsrACe = tsrACe;
+    }
+
+    public Boolean getTsrAAf() {
+        return tsrAAf;
+    }
+
+    public void setTsrAAf(Boolean tsrAAf) {
+        this.tsrAAf = tsrAAf;
+    }
+
+    public Boolean getTsrAEl() {
+        return tsrAEl;
+    }
+
+    public void setTsrAEl(Boolean tsrAEl) {
+        this.tsrAEl = tsrAEl;
+    }
+
+    public Boolean getQaACp() {
+        return qaACp;
+    }
+
+    public void setQaACp(Boolean qaACp) {
+        this.qaACp = qaACp;
+    }
+
+    public Boolean getQaACpA() {
+        return qaACpA;
+    }
+
+    public void setQaACpA(Boolean qaACpA) {
+        this.qaACpA = qaACpA;
+    }
+
+    public Boolean getQaACpB() {
+        return qaACpB;
+    }
+
+    public void setQaACpB(Boolean qaACpB) {
+        this.qaACpB = qaACpB;
+    }
+
+    public Boolean getQaACpC() {
+        return qaACpC;
+    }
+
+    public void setQaACpC(Boolean qaACpC) {
+        this.qaACpC = qaACpC;
+    }
+
+    public Boolean getQaACpD() {
+        return qaACpD;
+    }
+
+    public void setQaACpD(Boolean qaACpD) {
+        this.qaACpD = qaACpD;
+    }
+
+    public Boolean getQaACpE() {
+        return qaACpE;
+    }
+
+    public void setQaACpE(Boolean qaACpE) {
+        this.qaACpE = qaACpE;
+    }
+
+    public Boolean getQaACpF() {
+        return qaACpF;
+    }
+
+    public void setQaACpF(Boolean qaACpF) {
+        this.qaACpF = qaACpF;
+    }
+
+    public Boolean getQaAInr() {
+        return qaAInr;
+    }
+
+    public void setQaAInr(Boolean qaAInr) {
+        this.qaAInr = qaAInr;
+    }
+
+    public Boolean getOmCMc() {
+        return omCMc;
+    }
+
+    public void setOmCMc(Boolean omCMc) {
+        this.omCMc = omCMc;
+    }
+
+    public Boolean getOmCCt() {
+        return omCCt;
+    }
+
+    public void setOmCCt(Boolean omCCt) {
+        this.omCCt = omCCt;
+    }
+
+    public Boolean getOmCSu() {
+        return omCSu;
+    }
+
+    public void setOmCSu(Boolean omCSu) {
+        this.omCSu = omCSu;
+    }
+
+    public Boolean getOmCPa() {
+        return omCPa;
+    }
+
+    public void setOmCPa(Boolean omCPa) {
+        this.omCPa = omCPa;
+    }
+
+    public Boolean getOmCStp() {
+        return omCStp;
+    }
+
+    public void setOmCStp(Boolean omCStp) {
+        this.omCStp = omCStp;
+    }
+
+    public Boolean getOmCSpg() {
+        return omCSpg;
+    }
+
+    public void setOmCSpg(Boolean omCSpg) {
+        this.omCSpg = omCSpg;
+    }
+
+    public Boolean getOmCDt() {
+        return omCDt;
+    }
+
+    public void setOmCDt(Boolean omCDt) {
+        this.omCDt = omCDt;
+    }
+
+    public Boolean getOmCCsc() {
+        return omCCsc;
+    }
+
+    public void setOmCCsc(Boolean omCCsc) {
+        this.omCCsc = omCCsc;
+    }
+
+    public Boolean getOmAAsu() {
+        return omAAsu;
+    }
+
+    public void setOmAAsu(Boolean omAAsu) {
+        this.omAAsu = omAAsu;
+    }
+
+    public Boolean getOmAPa() {
+        return omAPa;
+    }
+
+    public void setOmAPa(Boolean omAPa) {
+        this.omAPa = omAPa;
+    }
+
+    public Boolean getOmADp() {
+        return omADp;
+    }
+
+    public void setOmADp(Boolean omADp) {
+        this.omADp = omADp;
+    }
+
+    public Boolean getOmAPdca() {
+        return omAPdca;
+    }
+
+    public void setOmAPdca(Boolean omAPdca) {
+        this.omAPdca = omAPdca;
+    }
+
+    public Boolean getOmAPcp() {
+        return omAPcp;
+    }
+
+    public void setOmAPcp(Boolean omAPcp) {
+        this.omAPcp = omAPcp;
+    }
+
+    public Boolean getOmAPcpA() {
+        return omAPcpA;
+    }
+
+    public void setOmAPcpA(Boolean omAPcpA) {
+        this.omAPcpA = omAPcpA;
+    }
+
+    public Boolean getOmAPcpB() {
+        return omAPcpB;
+    }
+
+    public void setOmAPcpB(Boolean omAPcpB) {
+        this.omAPcpB = omAPcpB;
+    }
+
+    public Boolean getOmAPcpC() {
+        return omAPcpC;
+    }
+
+    public void setOmAPcpC(Boolean omAPcpC) {
+        this.omAPcpC = omAPcpC;
+    }
+
+    public Boolean getOmAEdtA() {
+        return omAEdtA;
+    }
+
+    public void setOmAEdtA(Boolean omAEdtA) {
+        this.omAEdtA = omAEdtA;
+    }
+
+    public Boolean getOmAEdtB() {
+        return omAEdtB;
+    }
+
+    public void setOmAEdtB(Boolean omAEdtB) {
+        this.omAEdtB = omAEdtB;
+    }
+
+    public Boolean getOmAEdtC() {
+        return omAEdtC;
+    }
+
+    public void setOmAEdtC(Boolean omAEdtC) {
+        this.omAEdtC = omAEdtC;
+    }
+}

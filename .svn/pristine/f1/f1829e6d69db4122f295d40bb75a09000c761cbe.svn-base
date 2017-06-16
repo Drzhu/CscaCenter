@@ -1,0 +1,7 @@
+jdbc_driverClassName=com.mysql.jdbc.Driver
+jdbc_url=jdbc:mysql://172.16.14.40:3306/zhu?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+jdbc_username=zhu
+jdbc_password=zhu
+#jdbc_url=jdbc:mysql://123.56.178.191:51350/csca_manage?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+#jdbc_username=csca_manage
+#jdbc_password=csca_manage

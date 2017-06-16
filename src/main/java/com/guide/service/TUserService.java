@@ -1,0 +1,14 @@
+package com.guide.service;
+
+import java.util.List;
+
+import com.guide.pojo.TUser;
+
+public interface TUserService {
+	int Validate_bk(String username);
+	
+	List<TUser> selectUserByPassword(String	username,String password);
+
+	List<TUser> selectZkUserByPassword(String username, String password);
+	
+}

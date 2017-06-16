@@ -1,0 +1,132 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maxinum-scale=1,user-scalable=no">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css"
+	href="../css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/chcss.css" />
+<title>录音</title>
+<style type="text/css">
+html, body {
+	height: 100%;
+}
+
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -60px;
+}
+
+#push, #footer {
+	height: 60px;
+}
+
+#footer {
+	background-color: #f5f5f5;
+	text-align: center;
+}
+
+@media ( max-width : 767px) {
+	#footer {
+		margin-left: -20px;
+		padding-left: 20px;
+	}
+}
+</style>
+
+</head>
+<body style="background-color: #f9f9f9; padding: 0;">
+	<div id="wrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="qcontainer">
+					
+						<div id="recorder-audio" class="control_panel idle">
+						
+							<button class="record_button" title="Record" id = "start_record" >
+								<img src="../WUI/qrecord/images/record.png" alt="开始录音">
+							</button>
+							
+							<button class="stop_recording_button"
+								onclick="FWRecorder.stopRecording('audio');"
+								title="Stop Recording">
+								<img src="../WUI/qrecord/images/stop.png" alt="停止录音">
+							</button>
+							<button class="play_button"
+								onclick="FWRecorder.playBack('audio');" title="Play">
+								<img src="../WUI/qrecord/images/play.png" alt="播放">
+							</button>
+							<button class="pause_playing_button"
+								onclick="FWRecorder.pausePlayBack('audio');"
+								title="Pause Playing">
+								<img src="../WUI/qrecord/images/pause.png" alt="暂停">
+							</button>
+							<button class="stop_playing_button"
+								onclick="FWRecorder.stopPlayBack();" title="Stop Playing">
+								<img src="../WUI/qrecord/images/stop.png" alt="停止">
+							</button>
+							<div class="level"></div>
+						</div>
+
+						<div class="details">
+							<button class="show_level" onclick="FWRecorder.observeLevel();">显示声波</button>
+							<button class="hide_level"
+								onclick="FWRecorder.stopObservingLevel();"
+								style="display: none;">隐藏声波</button>
+							<button class="show_settings" onclick="microphonePermission()">麦克风权限</button>
+							<span id="save_button" style="display: inline-block;"> <object
+									data="../WUI/qrecord/recorder.swf" name="recorderApp"
+									id="recorderApp" type="application/x-shockwave-flash"
+									height="24" width="24">
+									<param
+										value="upload_image=../WUI/qrecord/images/upload.png"
+										name="flashvars">
+								</object>
+							</span>
+							<div id="status">最后的录音事件：ready</div>
+							<div>
+								录音时长：<span id="duration"></span>
+							</div>
+							<div>
+								上传状态：<span id="upload_status"></span>
+							</div>
+							<input value="" id="qrecordId" type="hidden">
+						</div>
+
+						<!-- 这个form的action写上传路径 -->
+						<form id="uploadForm" name="uploadForm" action="upload1">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="push"></div>
+	</div>
+
+
+	<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../WUI/qrecord/js/swfobject.js"></script>
+	<script type="text/javascript" src="../WUI/qrecord/js/recorder.js"></script>
+	<script type="text/javascript" src="../WUI/qrecord/js/main.js"></script>
+	<link rel="stylesheet" href="../WUI/qrecord/style.css">
+	<script type="text/javascript">
+			$("#start_record").on("click",function(){
+				var doc_id = 332;
+				var page_id = 1;
+				FWRecorder.record('audio', 'project_'+doc_id+"_"+page_id);
+			}); 
+	</script>
+</body>
+</html>

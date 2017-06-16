@@ -1,0 +1,211 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<%@ include file="common.jsp" %>
+<html>
+	<head>
+		<title>质控医院概述</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-fixed-top navbar-inverse custom-navbar">
+			<div class="container-fluid">
+				<div class="navbar-header" style="width:100%;">
+				    <button type="button" class="navbar-toggle pull-left" data-toggle="sidebar" data-target="#sidebar" >
+				        <span class="sr-only">缩小菜单</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				    </button>
+					<a href="index" class="navbar-brand">中国卒中中心联盟—<span class="area-name">省质控中心管理平台</span></a>
+					<div class="user-menu dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> ${username } <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/CscaCenter/logout"><i class="fa fa-sign-out"></i>&nbsp;退出</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- 左侧菜单 -->
+		<div id="sidebar" class="sidebar">
+			<ul class="nav-list">
+				<li >
+					<a href="main"><i class="fa fa-cogs"></i> 评估表单审核</a>
+				</li>
+				<li class="has-sub active">
+	            	<a href="javascript:;"><i class="fa fa-database"></i> 本身数据反馈<i class="fa fa-angle-left pull-right right-icon"></i></a>
+	            	<ul class="sub-menu">
+	            		<li class="sec-active"><a href="hosSummary"><i class="fa fa-caret-right"></i>  质控医院概况</a></li>
+	            		<li><a href="kpifeedback"><i class="fa fa-caret-right"></i>  KPI数据反馈</a></li>
+	            	</ul>
+	            </li>
+				<li>
+					<a href="permission_deal"><i class="fa fa-wrench"></i> 医院权限审批</a>
+				</li>
+				<li>
+					<a href="data_quality_monitor"><i class="fa fa-database"></i> 数据质量控制</a>
+				</li>
+				<li>
+					<a href="hos_info_push"><i class="fa fa-info-circle"></i> 医院信息推送</a>
+				</li>
+				<li>
+					<a href="hos_question"><i class="fa fa-question-circle"></i> 医院问题解答</a>
+				</li>
+	        </ul>
+		</div>
+		
+		<!-- 右侧内容 -->
+		<div class="main-content">
+			<!-- 右侧导航提示 -->
+			<div class="row path-nav">
+				<ul class="breadcrumb">
+					<li>
+						<i class="ace-icon fa fa-home home-icon"></i>
+						<a href="index">主页</a>
+					</li>
+
+					<li>
+						<a href="#">本身数据反馈</a>
+					</li>
+					<li class="active">质控医院概况</li>
+				</ul>
+			</div>
+			
+			<!-- 右侧主内容 -->
+			
+			<!-- 搜索时间  -->
+			<div class="row search-box">  
+			    <form class='form-inline col-sm-offset-2'> 
+			     <div class="form-group">
+				   <label>开始时间：</label>  
+		            <!--指定 date标记-->  
+		            <div class='input-group date'>  
+	                <input type='text' id='datetimepicker1' class="form-control" />  
+	                <span class="input-group-addon">  
+	                    <span class="fa fa-calendar"></span>  
+	                </span>  
+		            </div> 
+				  </div>
+				  <div class="form-group">
+			        <label>结束时间：</label>  
+		            <!--指定 date标记-->  
+		            <div class='input-group date'>  
+		                <input type='text' id='datetimepicker2' class="form-control" />  
+		                <span class="input-group-addon">  
+		                    <span class="fa fa-calendar"></span>  
+		                </span>  
+		            </div>
+				  </div>
+				  <button type="submit" class="btn btn-primary">查询</button> 
+			    </form>  
+			</div> 
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>全国各省联盟医院数</h4>
+						</div>
+						<div class="panel-body">
+							<div class="chart-box">echart</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>全国各省上报病例数</h4>
+						</div>
+						<div class="panel-body">
+							<div class="chart-box">echart</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-info">
+						<div class="panel-heading no-padding">
+							<ul class="nav nav-tabs nav-tabs-custom2" role="tablist">
+							   <li role="presentation" class="active"><a href="#national" role="tab" data-toggle="tab">全国上报病例种类分布</a></li>
+							   <li role="presentation"><a href="#nationalSecdHos" role="tab" data-toggle="tab">全国二级医院上报病例种类分布</a></li>
+							   <li role="presentation"><a href="#nationalThirdHos" role="tab" data-toggle="tab">全国三级医院上报病例种类分布</a></li>
+							</ul>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content chart-box">
+							  <div role="tabpanel" class="tab-pane active" id="national">
+							  	echart111
+							  </div>
+							  <div role="tabpanel" class="tab-pane" id="nationalSecdHos">
+							  	echart222
+							  </div>
+							  <div role="tabpanel" class="tab-pane" id="nationalThirdHos">
+							  	echart333
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h4>本省质控医院名单及上报病例数</h4>
+						</div>
+						<div class="panel-body">
+							<div class="chart-box">表格</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="panel panel-info">
+						<div class="panel-heading no-padding">
+							<ul class="nav nav-tabs nav-tabs-custom2" role="tablist">
+							   <li role="presentation" class="active"><a href="#provnice" role="tab" data-toggle="tab">本省上报病例种类分布</a></li>
+							   <li role="presentation"><a href="#provniceSecdHos" role="tab" data-toggle="tab">本省二级医院上报病例种类分布</a></li>
+							   <li role="presentation"><a href="#provniceThirdHos" role="tab" data-toggle="tab">本省三级医院上报病例种类分布</a></li>
+							</ul>
+						</div>
+						<div class="panel-body">
+							<div class="tab-content chart-box">
+							  <div role="tabpanel" class="tab-pane active" id="provnice">
+							  	echart111
+							  </div>
+							  <div role="tabpanel" class="tab-pane" id="provniceSecdHos">
+							  	echart222
+							  </div>
+							  <div role="tabpanel" class="tab-pane" id="provniceThirdHos">
+							  	echart333
+							  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		 $("#datetimepicker1").datetimepicker({
+			 minView: "month", //选择日期后，不会再跳转去选择时分秒 
+			 language:  'zh-CN',
+			 format: 'yyyy-mm-dd',
+		 });
+		 $("#datetimepicker2").datetimepicker({
+			 minView: "month", //选择日期后，不会再跳转去选择时分秒 
+			 language:  'zh-CN',
+			 format: 'yyyy-mm-dd',
+		 });
+		</script>
+	</body>
+</html>

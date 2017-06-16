@@ -1,0 +1,28 @@
+package com.guide.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.guide.service.THunitService;
+
+@Controller
+@RequestMapping("/1")
+public class HospitalController {
+
+	@Resource(name = "tHunitService")
+	private THunitService tHunitService;
+
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String h_main(HttpServletRequest request) {
+		return "hospital/main";
+	}
+
+	@RequestMapping(value = "evaluate", method = RequestMethod.GET)
+	public String h_evaluate(HttpServletRequest request) {
+		return "hospital/evaluate";
+	}
+}

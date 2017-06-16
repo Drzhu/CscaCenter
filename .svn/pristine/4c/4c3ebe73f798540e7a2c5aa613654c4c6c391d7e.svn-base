@@ -1,0 +1,413 @@
+package com.guide.controller;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.pojo.HospitalEdit;
+import com.guide.pojo.ZVAndZlpgVariable;
+import com.guide.pojo.ZlpgValue;
+import com.guide.pojo.ZlpgVariable;
+import com.guide.service.HospInfoService;
+import com.guide.service.THunitService;
+import com.guide.util.JsonUtil;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+
+
+
+
+@Controller
+@RequestMapping("/1")
+public class HospitalController {
+
+	@Resource(name = "tHunitService")
+	private THunitService tHunitService;
+	//HospInfoService
+	@Resource(name = "hospInfoService")
+	private HospInfoService hospInfoService;
+
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String h_main(HttpServletRequest request) {
+		return "hospital/main";
+	}
+
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public String index(HttpServletRequest request) {
+		return "hospital/index";
+	}
+
+	@RequestMapping(value = "permission_application", method = RequestMethod.GET)
+	public String permission_application(HttpServletRequest request) {
+		return "hospital/permission_application";
+	}
+
+	@RequestMapping(value = "data_manage", method = RequestMethod.GET)
+	public String data_manage(HttpServletRequest request) {
+		return "hospital/data_manage";
+	}
+
+	@RequestMapping(value = "question_answer", method = RequestMethod.GET)
+	public String question_answer(HttpServletRequest request) {
+		return "hospital/question_answer";
+	}
+	@RequestMapping(value = "hospitalInfo", method = RequestMethod.GET)
+	public String hospitalInfo(HttpServletRequest request, HttpSession session) {
+		String uname = session.getAttribute("username").toString();
+		int i = hospInfoService.existsHospital(uname);
+		if(i==0){
+			return "hospital/hospitalInfo";
+		}else{
+			return "hospital/InfoPreview";
+		}
+		
+	}
+
+	@RequestMapping(value = "evaluate", method = RequestMethod.GET)
+	public String h_evaluate(HttpServletRequest request) {
+		return "hospital/evaluate";
+	}
+	@RequestMapping(value = "editInfo", method = RequestMethod.GET)
+	public String editInfo(HttpServletRequest request) {
+		return "hospital/editInfo";
+	}
+
+	@RequestMapping(value = "evaluateView", method = RequestMethod.GET)
+	public String h_evaluateView(HttpServletRequest request) {
+		return "hospital/evaluateView";
+	}
+
+	@RequestMapping(value = "select_Pcode", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String select_Pcode(HttpServletRequest request, HttpSession session) {
+		HashMap<String, List<ZlpgVariable>> map = new HashMap<String, List<ZlpgVariable>>();
+		List<ZlpgVariable> pcodeList = null;
+		ZlpgValue zv = new ZlpgValue();
+			int hunitid = Integer.parseInt(session.getAttribute("hunitid").toString());
+			int hunitExists = tHunitService.select_hospital(hunitid);
+			if (hunitExists < 1) {
+				int areaid = Integer.parseInt(session.getAttribute("areaid").toString());
+				zv.setHunitid(hunitid);
+				zv.setAreaid(areaid);
+				tHunitService.insert_hospital(zv);
+			}
+			pcodeList = tHunitService.select_Pcode();
+		
+		map.put("zv", pcodeList);
+		return JsonUtil.map2json(map);
+	}
+
+	@RequestMapping(value = "update_Pcode", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String update_Pcode(@RequestParam("pcode") String pcode, HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		String result = "fail";
+		try {
+			String hunitid = session.getAttribute("hunitid").toString();
+			ZVAndZlpgVariable zazv = new ZVAndZlpgVariable();
+			String[] pcode_values = pcode.split(",");
+			for (int i = 0; i < pcode_values.length; i++) {
+				Boolean flag = false;
+				String pcode_value = pcode_values[i];
+				String pname = pcode_value.split("=")[0];
+				String pvalue = pcode_value.split("=")[1];
+				zazv.setPcode(pname);
+				zazv.setHunitid(Integer.parseInt(hunitid));
+				if ("1".equalsIgnoreCase(pvalue)) {
+					flag = true;
+				}
+				zazv.setPcode_value(flag);
+				tHunitService.update_Pcode(zazv);
+			}
+			result = "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "fail";
+		}
+		System.out.println(result);
+		map.put("result", result);
+		return JsonUtil.map2json(map);
+	}
+
+	// update_PState
+	@RequestMapping(value = "update_PState", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String update_PState(HttpServletRequest request, HttpSession session) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		String result = "fail";
+		ZlpgValue zv = new ZlpgValue();
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date putime = sdf.parse(sdf.format(new Date()));
+			int hunitid = Integer.parseInt(session.getAttribute("hunitid").toString());
+			zv.setHunitid(hunitid);
+			zv.setPUTime(putime);
+			tHunitService.update_PState(zv);
+			result = "success";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			result = "fail";
+		}
+		map.put("result", result);
+		return JsonUtil.map2json(map);
+	}
+
+	// load_value
+	@RequestMapping(value = "load_value", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String load_value(HttpServletRequest request, HttpSession session) {
+		HashMap<String, ZlpgValue> map = new HashMap<String, ZlpgValue>();
+		ZlpgValue zv = null;
+		try {
+			String hunitid = session.getAttribute("hunitid").toString();
+			zv = tHunitService.load_value(hunitid);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		map.put("zv", zv);
+		return JsonUtil.map2json(map);
+	}
+	
+	@RequestMapping(value ="hospitalInfoInsert") 
+	public String hospitalInfoInsert(HttpServletRequest request,HttpSession session,HttpServletResponse response,HospitalEdit hospitalEdit,String cYear,String cMonth,String otherDep) throws ParseException{
+		String uname = session.getAttribute("username").toString();
+		String hunitid = session.getAttribute("hunitid").toString();
+		int i = hospInfoService.existsHospital(uname);
+		if(i==0){
+			if("qita".equals(hospitalEdit.getjMDep())){
+				hospitalEdit.setjMDep(otherDep);
+			}
+			if(cYear!=null && !"".equals(cYear) && cMonth!=null && !"".equals(cMonth)){
+				hospitalEdit.setCtime(cYear+"-"+cMonth);
+			}else{
+				hospitalEdit.setCtime("");
+			}
+			if(hospitalEdit.getHlevel()!=null && !"".equals(hospitalEdit.getHlevel()) && !"未分级".equals(hospitalEdit.getHlevel())){
+				String[] str = hospitalEdit.getHlevel().split("级");
+				hospitalEdit.setHlevel(str[0]+"级");
+				hospitalEdit.sethDlevel(str[1]);
+			}else{
+				hospitalEdit.sethDlevel("");
+			}
+			hospitalEdit.setuName(uname);
+			hospitalEdit.setHunitid(hunitid);
+			hospInfoService.hospitalInfoInsert(hospitalEdit);
+		}
+		return "redirect:/1/hospitalInfo";
+	}
+	//select_hInfo
+	@RequestMapping(value = "select_hInfo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String select_hInfo(HttpServletRequest request, HttpSession session) {
+		HashMap<String, HospitalEdit> map = new HashMap<String, HospitalEdit>();
+		HospitalEdit he = null;
+		try {
+			String hunitid = session.getAttribute("hunitid").toString();
+			String oldHosp = hospInfoService.selectOldHosp(hunitid);
+			he = hospInfoService.select_hInfo(hunitid);
+			String puDate ="";
+			String str[] = he.getPutime().split(" ")[0].split("-");
+			puDate = str[0]+"年"+str[1]+"月"+str[2]+"日";
+			he.setPutime(puDate);
+			he.setOldHosp(oldHosp);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		map.put("he", he);
+		return JsonUtil.map2json(map);
+	}
+	//selectOldHosp
+	@RequestMapping(value = "selectOldHosp", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String selectOldHosp(HttpServletRequest request, HttpSession session) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		String oldHosp = "";
+		try {
+			String hunitid = session.getAttribute("hunitid").toString();
+			oldHosp = hospInfoService.selectOldHosp(hunitid);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		map.put("oldHosp", oldHosp);
+		return JsonUtil.map2json(map);
+	}
+	
+	@RequestMapping(value ="hospitalInfoUpdate") 
+	public String hospitalInfoUpdate(HttpServletRequest request,HttpSession session,HttpServletResponse response,HospitalEdit hospitalEdit,String cYear,String cMonth,String otherDep) throws ParseException{
+		String uname = session.getAttribute("username").toString();
+		String hunitid = session.getAttribute("hunitid").toString();
+		if("qita".equals(hospitalEdit.getjMDep())){
+			hospitalEdit.setjMDep(otherDep);
+		}
+		if(hospitalEdit.getHstate()==2){
+			hospitalEdit.setHstate(0);
+		}
+		if(hospitalEdit.getHlevel()!=null && !"".equals(hospitalEdit.getHlevel()) && !"未分级".equals(hospitalEdit.getHlevel())){
+			String[] str = hospitalEdit.getHlevel().split("级");
+			hospitalEdit.setHlevel(str[0]+"级");
+			hospitalEdit.sethDlevel(str[1]);
+		}else if("未分级".equals(hospitalEdit.getHlevel())){
+			hospitalEdit.sethDlevel("");
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String puDate = sdf.format(new Date());
+		hospitalEdit.setPutime(puDate);
+		System.out.println(sdf.format(new Date()));
+		if(cYear!=null && !"".equals(cYear) && cMonth!=null && !"".equals(cMonth)){
+			hospitalEdit.setCtime(cYear+"-"+cMonth);
+		}
+		hospitalEdit.setuName(uname);
+		hospitalEdit.setHunitid(hunitid);
+		hospInfoService.hospitalInfoUpdate(hospitalEdit);
+		return "redirect:/1/hospitalInfo";
+	}
+	
+	//
+	@RequestMapping(value = "selectHospVague", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String selectHospVague(HttpServletRequest request, HttpSession session) {
+		String hname = request.getParameter("hname");
+	 	Map<String, String> dataMap = new HashMap<String, String>();
+	    dataMap.put("name", hname);
+	    String result = "";
+	    String values = "";
+	    int hospNum = 0;
+	    try {
+	         result =sendPost("http://123.56.178.191:9090/innor/innor.do", dataMap);
+	         JSONObject j=JSONObject.fromObject(result);
+	         JSONArray hnameJson = j.getJSONArray("list");
+	         if(hnameJson.length()>10){
+	        	 hospNum = 10;
+	         }else{
+	        	 hospNum = hnameJson.length();
+	         }
+	         for (int i = 0; i < hospNum; i++){
+	        	JSONObject str = hnameJson.getJSONObject(i);
+	        	String name = str.getString("name");
+	        	if(i<hospNum-1){
+	        		values += "'"+name+"',";
+	        	}else{
+	        		values += "'"+name+"'";
+	        	}
+	         }
+	         } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return values;
+	}
+	
+	//applyEditInfo
+	@RequestMapping(value = "applyEditInfo", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String applyEditInfo(HttpServletRequest request, HttpSession session) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		String result = "success";
+		try {
+			String hunitid = session.getAttribute("hunitid").toString();
+			hospInfoService.applyEditInfo(hunitid);
+			result = "success";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			result = "fail";
+		}
+		map.put("oldHosp", result);
+		return JsonUtil.map2json(map);
+	}
+	
+   public static String sendPost(String url, Map<String, String> parameters) {  
+        String result = "";// 返回的结果  
+        BufferedReader in = null;// 读取响应输入流  
+        PrintWriter out = null;  
+        StringBuffer sb = new StringBuffer();// 处理请求参数  
+        String params = "";// 编码之后的参数  
+        try {  
+            // 编码请求参数  
+            if (parameters.size() == 1) {  
+                for (String name : parameters.keySet()) {  
+                    sb.append(name).append("=").append(  
+                            java.net.URLEncoder.encode(parameters.get(name),  
+                                    "UTF-8"));  
+                }  
+                params = sb.toString();  
+            } else {  
+                for (String name : parameters.keySet()) {  
+                    sb.append(name).append("=").append(  
+                            java.net.URLEncoder.encode(parameters.get(name),  
+                                    "UTF-8")).append("&");  
+                }  
+                String temp_params = sb.toString();  
+                params = temp_params.substring(0, temp_params.length() - 1);  
+            }  
+            // 创建URL对象  
+            java.net.URL connURL = new java.net.URL(url);  
+            // 打开URL连接  
+            java.net.HttpURLConnection httpConn = (java.net.HttpURLConnection) connURL  
+                    .openConnection();  
+            // 设置通用属性  
+            httpConn.setRequestProperty("Accept", "*/*");  
+            httpConn.setRequestProperty("Connection", "Keep-Alive");  
+            httpConn.setRequestProperty("User-Agent",  
+                    "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");  
+            // 设置POST方式  
+            httpConn.setDoInput(true);  
+            httpConn.setDoOutput(true);  
+            // 获取HttpURLConnection对象对应的输出流  
+            out = new PrintWriter(httpConn.getOutputStream());  
+            // 发送请求参数  
+            out.write(params);  
+            // flush输出流的缓冲  
+            out.flush();  
+            // 定义BufferedReader输入流来读取URL的响应，设置编码方式  
+            in = new BufferedReader(new InputStreamReader(httpConn  
+                    .getInputStream(), "UTF-8"));  
+            String line;  
+            // 读取返回的内容  
+            while ((line = in.readLine()) != null) {  
+                result += line;  
+            }  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+                if (out != null) {  
+                    out.close();  
+                }  
+                if (in != null) {  
+                    in.close();  
+                }  
+            } catch (IOException ex) {  
+                ex.printStackTrace();  
+            }  
+        }  
+        return result;  
+    }  
+	
+}

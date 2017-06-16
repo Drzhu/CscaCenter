@@ -1,0 +1,28 @@
+package com.guide.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.pojo.THunit;
+import com.guide.service.THunitService;
+
+@Controller
+@RequestMapping("/")
+public class TestController {
+
+	@Resource(name = "tHunitService")
+	private THunitService tHunitService;
+
+	@RequestMapping(value = "test", method = RequestMethod.GET)
+	@ResponseBody
+	public THunit test(HttpServletRequest request) {
+		THunit thunit = new THunit();
+		thunit.setHname("测试中心");
+		return thunit;
+	}
+}

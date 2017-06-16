@@ -1,0 +1,55 @@
+$(function(){
+//	左侧有二级菜单情况
+	/*$(".nav-list li.has-sub").on("click",function(){
+		$(this).addClass("active");
+		$(this).find(".sub-menu").toggle("100");
+		$(this).find(".right-icon").toggleClass("fa-angle-down");
+	});*/
+	
+	
+	$(".nav-list li.has-sub>a").on("click",function(){
+		$(this).addClass("active");
+		var sub=$(this).next();
+		if(sub.is(":visible")){
+			sub.slideUp(200);
+			$(this).find(".right-icon").removeClass("fa-angle-down").addClass("fa-angle-left");
+		}else{
+			sub.slideDown(200);
+			$(this).find(".right-icon").removeClass("fa-angle-left").addClass("fa-angle-down");
+		}
+	});
+	
+	/*function showsub(){
+		var secmenu=$(".nav-list li.has-sub .sub > li");
+		secmenu.on("click",function(){
+			var psub=$(this).parents(".sub")
+			psub.css("display","block");
+			$(this).addClass("sec-active");
+		});
+	}*/
+	
+	
+	
+});
+
+
+/*
+
+	<div id="sidebar" class="sidebar">
+		<ul class="nav-list">
+			<li class="has-sub" id = "ourself_data_feedback">
+            	<a href="javascript:;"><i class="fa fa-database"></i> 本省数据反馈<i class="fa fa-angle-left pull-right right-icon"></i></a>
+            	<ul class="sub" style="display:none;">
+            		<li id = "hosSummary"><a href="hosSummary"><i class="fa fa-caret-right"></i>  质控医院概况</a></li>
+            		<li id = "kpifeedback"><a href="kpifeedback"><i class="fa fa-caret-right"></i>  KPI数据反馈</a></li>
+            	</ul>
+            </li>
+
+	$(function(){
+		$("#ourself_data_feedback").addClass("active");
+		$(".sub-menu").attr("style","display:block");
+		$("#kpifeedback").addClass("sec-active");
+	});
+*
+*
+*/

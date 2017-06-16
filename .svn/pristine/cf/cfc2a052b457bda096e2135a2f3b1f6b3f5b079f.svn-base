@@ -1,0 +1,1207 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maxinum-scale=1,user-scalable=no">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="../font-awesome-4.6.3/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/chcss.css" />
+<title>中国卒中中心联盟数据管理平台</title>
+</head>
+<body style="padding: 0;">
+		<h1 class="pinggu-tit">
+			<span class="btn btn-sm btn-default back-btn"><i class="fa fa-chevron-left"></i> 返回</span>
+			2017 年卒中中心建设和医疗质量现状评估表
+		</h1>
+		<div class="pinggu-cont">
+			<!-- Nav tabs -->
+			<ul class="nav nav-pills nav-stacked nav-stacked-custom" role="tablist">
+			  <li role="presentation" class="active"><a href="#jiegou" role="tab" data-toggle="tab">结构资源配置</a></li>
+			  <li role="presentation"><a href="#shebei" role="tab" data-toggle="tab">设备资源配置</a></li>
+			  <li role="presentation"><a href="#renli" role="tab" data-toggle="tab">人力资源配置</a></li>
+			  <li role="presentation"><a href="#zhiliao" role="tab" data-toggle="tab">治疗技术</a></li>
+			  <li role="presentation"><a href="#jiance" role="tab" data-toggle="tab">监测随访技术</a></li>
+			  <li role="presentation"><a href="#jiaoxue" role="tab" data-toggle="tab">教学科研</a></li>
+			  <li role="presentation"><a href="#cuzhong" role="tab" data-toggle="tab">卒中中心质量管理指标</a></li>
+			  <li role="presentation"><a href="#zuzhi" role="tab" data-toggle="tab">组织管理质量</a></li>
+			</ul>
+			<!-- Tab panes -->
+			<div class="tab-content">
+			  <div role="tabpanel" class="tab-pane active" id="jiegou">
+			  	<div class="dati-box">
+			  		<fieldset>
+				  		<legend>C</legend>
+				  		<div class="dati-control">
+				  			<h4>1.医院至少二级及以上医院等级资格</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 有独立的神经内科专业</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio2" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio2" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 神经内科专业床位20张以上</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio3" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio3" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 有 急诊室</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio4" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio4" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>5. 有常规检查实验室</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio5" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio5" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>6. 有放射科</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio6" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio6" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>7. 有卒中单元</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio7" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio7" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>8. 有卒中预防门诊</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio8" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio8" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+				  	<fieldset>
+				  		<legend class="b">【B】符合“Ｃ”，并</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 有独立的神经内科科室</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 有独立的能提供24小时*7天服务的卒中单元</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 设置卒中急救绿色通道</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 有神经重症监护室（neurological intensive care unit, NICU）</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>5. 有神经外科手术室</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>6. 有神经介入手术室</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>7. 卒中病例登记和质量改进数据库（包括使用“中国卒中中心联盟”的数据录入平台），至少80%卒中患者纳入登记上报</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+				  	<fieldset>
+				  		<legend class="b">【A】符合“B”，并</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 医院经评审获得三级医院等级资格</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 神经内科开设床位40张以上</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 设置24小时*7天卒中急救绿色通道</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 有能提供24小时*7天服务的NICU</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>5. 有能提供 24 小时*7 天服务的神经介入手术室。</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>6. 有能提供 24 小时*7 天服务的神经外科手术室。</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>7. 卒中病例登记和质量改进数据库（包括使用“中国卒中中心联盟”的数据录入平台），至少 90%脑血管病患者纳入登记</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio9" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio9" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+			  	</div>
+			  	
+			  </div>
+			 
+			  <div role="tabpanel" class="tab-pane" id="shebei">
+			  	<div class="dati-box">
+			  		<fieldset>
+				  		<legend>C</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 有能提供24小时*7天检查的计算机断层扫描（computed tomography,CT）（推荐≥64排）</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 卒中患者优先的CT扫描</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 拟静脉溶栓患者，能够在到院后25分钟内开始头颅CT平扫检查，并且45分钟内获得检查结果</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 血常规、生化、凝血相能提供24小时*7天检查</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>5. 拟静脉溶栓患者，实验室检查（血常规、血生化及凝血谱）能够在到院后45分钟内显示结果</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>6. 有能提供24小时*7天检查的心电图（electrocardiogram, ECG）机</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>7. 有能提供24小时*7天检查的X线机</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>8. 有超声心动图</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>9. 有颈部血管的超声设备</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>10. 有经颅多普勒检查仪</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+				  	<fieldset>
+				  		<legend>【B】符合“Ｃ”，并</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 有经食道超声心动图检查仪</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 有CT血管造影（CT angiography，CTA）和CT脑灌注成像（CT perfusion，CTP）检查设备</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 有头颅MRI扫描设备，包括T1、T2、弥散加权序列（diffusion weighted imaging, DWI）和磁共振血管造影序列（magnetic resonance angiography,
+								MRA）和磁共振梯度回波（gradient recalled echo, GRE）T2*成像、磁敏
+								感加权成像（susceptibility weighted imaging, SWI）、磁共振成像液体衰
+								减反转恢复序列（fluid attenuated inversion recovery, FLAIR）、及灌注加
+								权成像（perfusion weighted imaging, PWI）、磁共振静脉造影（magnetic
+								resonance venography，MRV）及增强扫描</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 有脑血管数字减影血管成像（digital subtraction angiography, DSA）检查设备</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>	
+				  	<fieldset>
+				  		<legend>【A】符合“B”，并</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 能提供24小时*7天CTA和CTP检查</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 能提供24小时*7天头颅MRI扫描，包括T1、T2、DWI、MRA、GRE T2*成像、SWI、FLAIR及PWI</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 能提供24小时*7天脑血管病DSA检查</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 氙气CT(Xe-CT)/单光子发射计算机断层成像术（single -photonemission computed tomography，SPECT）</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>5. 正电子发射断层成像术（positron emission tomography，PET）扫描</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+				  </div>		
+			  </div>
+			  <div role="tabpanel" class="tab-pane" id="renli">
+			  <div class="dati-box">
+			  	<fieldset>
+				  		<legend>C</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 有卒中小组，且卒中小组成员要具有以下资质：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①由受过卒中专业培训的主治（或以上）医师组成。</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②至少获得连续1年的卒中诊疗培训。</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>③独立工作前，必须在中心内接受实践培训。</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>④接到急诊电话后15分钟内对疑似卒中患者进行评估。</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4> 2. 有卒中中心主任，且具有以下资质：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①神经内科或神经外科专业副主任医师及以上</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②经高级卒中中心培训6个月以上，完成血管神经病学培训或血管神经外科培训，或者具有同等经历者</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>③每年参加一次全国性的脑血管病相关医学继续教育项目，不限定地点</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>④每年诊断和治疗的脑血管疾病患者≥100例</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 有急诊科医师，且具有以下资质：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①至少接受过一次卒中中心的卒中急救培训</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②每年应与院前急救系统人员至少会晤2次，评审急性卒中救治情况</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>③每年参加≥2次有关急诊医疗服务的继续教育</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 有神经内科专科医师，且：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①至少有1名神经内科专科医师为脑血管病专家</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②至少有3名为经过综合卒中中心培训并获得认证的医师</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>5. 有神经放射诊断医师，且：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①经过培训，能够进行急诊神经影像诊断</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②能够在开始急诊头颅CT检查后20分钟内出具影像初步报告</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>6. 有放射科技师，且：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①至少配备1名以上经过培训且有上岗证的CT/MRI技师</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②围检查期的死亡率＜1%，严重并发症≤2%</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>7. 有卒中护理人员，且：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①接受特定的正式卒中医学培训至少3个月</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②卒中专科护士应接受培训（卒中相关专题讲座）≥3次/年</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>③卒中专科护士应每年参加脑血管病相关的继续教育活动≥20学时</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>8. 有康复医师（包括吞咽障碍管理师），且：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①经过理疗康复部门认证的医师或经过培训的其他医务人员（如富有卒中康复治疗经验的神经科医师）</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②持有政府颁发的上岗证，有≥1年的卒中患者治疗经验</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>③理疗用药、康复治疗、物理治疗、作业治疗、语言治疗必要时可在患者入院后72小时内完成</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>9. 有超声医师，且具有超声科从业人员工作资质并能够熟练按照卒中患者病因筛查的需要完成相关颈部、颅内及心脏的超声检查</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>10. 有医疗质量评价和改进专员（专职/兼职），每年至少接受1次卒中数据上报和反馈培训</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+				  	<fieldset>
+				  	<legend>【Ｂ】符合“Ｃ”，并</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 有急性卒中救治经验的神经外科医师，且：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①值班医师能够在接到呼叫后30分钟内到达医院；</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②值班医师能够实施神经外科急救手术，处置危及生命的颅内疾病</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>③值班医师24小时*7天应诊，并能够得到上级神经外科医师的指导</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>④神经外科医师每年至少完成10例动脉瘤夹闭术</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑤神经外科医师每年至少完成10例去骨瓣减压术</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑥神经外科医师每年至少完成30例血肿清除术</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑦神经外科医师（或有资质的血管外科或外科医师）每年至少完成20例颈动脉内膜剥脱术</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑧神经外科医师能完成脑室引流术</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑨神经外科医师能完成安置颅内压监测传感器</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑩神经外科医师的治疗成果应每年进行统计，并将连续3年以上的平均成果与文献报道的预后和并发症发生率进行比较</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 有内科医师</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 有医疗质量评价和改进专员，每年接受≥2次卒中数据上报和反馈培训</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 有社会志愿者</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+				  	<fieldset>
+				  		<legend>【Ａ】符合“Ｂ”，并</legend>
+				  		<div class="dati-control">
+				  			<h4>1. 有具备血管内治疗资质的神经介入医师，且 ：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①值班医师能够在接到呼叫后30分钟内到达医院</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②神经介入医师能够实施紧急动脉溶栓</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>③神经介入医师能够实施紧急动脉内机械取栓术</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>④神经介入医师能够24小时*7天应诊，每年至少完成10例血管内治疗</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑤神经介入医师完成颅内外血管支架成形术每年至少20例</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>⑥神经介入医师的治疗成果应每年进行统计，并将连续3年以上的平均成果与文献报道的预后和并发症发生率进行比较</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>2. 有能进行颈动脉内膜剥脱术的外科专家</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>3. 有 NICU 医师，且：</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>①24小时*7天应诊</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control second">
+				  			<h4>②高年资NICU医师每年参加至少8h关于急性卒中诊疗的继续教育</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>4. 有医务科人员加入卒中小组</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  		<div class="dati-control">
+				  			<h4>5. 有临 床研究协调员，且具备如下资质：具备医疗背景， 可以是执业护
+								师、临床专科护师优先，能协调患者诊治流程、检查活动、卒中登记、
+								健康宣教和质量控制、改进等事项顺利进行</h4>
+				  			<div class="sel-option">
+				  				<label>
+				  					<input type="radio" name="radio1" />是
+				  				</label>
+				  				<label>
+				  					<input type="radio" name="radio1" />否
+				  				</label>
+				  			</div>
+				  		</div>
+				  	</fieldset>
+				  </div>	
+			  </div>
+			  <div role="tabpanel" class="tab-pane" id="zhiliao">..444.</div>
+			  <div role="tabpanel" class="tab-pane" id="jiance">55</div>
+			  <div role="tabpanel" class="tab-pane" id="jiaoxue">.66..</div>
+			  <div role="tabpanel" class="tab-pane" id="cuzhong">.77..</div>
+			  <div role="tabpanel" class="tab-pane" id="zuzhi">..88.</div>
+			</div>
+		</div>
+		<script src="../js/jquery-3.1.0.min.js"></script>
+		<script src="../js/bootstrap/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,781 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,maxinum-scale=1,user-scalable=no">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css"
+	href="font-awesome-4.6.3/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="css/bootstrap/bootstrapValidator.css" />
+<link rel="stylesheet" type="text/css" href="css/chcss.css" />
+<title>医生注册</title>
+</head>
+<body style="background-color: #f9f9f9; padding: 0;">
+	<div class="row form-box">
+		<div class="col-sm-12">
+			<div class="cont-header">
+				<h3>中国百万血管健康计划 - 医生注册</h3>
+			</div>
+			<form id="registForm" class="form-horizontal" role="form" action="regist_do" method="post">
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 手机号 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="phoneNumber" />
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 登录密码 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="password" class="form-control" name="password" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 再次输入密码 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="password" class="form-control" name="confirmPassword" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 真实姓名 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="realName" id="realName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 证件类型 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-4">
+						<select class="form-control" name="cardType">
+							<option>身份证</option>
+							<option>军官证</option>
+							<option>台胞证</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 证件号码 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="cardNumber" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 银行开户行 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-4">
+						<select class="form-control" name="openBank">
+							<option value="">---请选择---</option>
+							<option value="中国工商银行">中国工商银行</option>
+							<option value="中国建设银行">中国建设银行</option>
+							<option value="中国银行">中国银行</option>
+							<option value="中国农业银行">中国农业银行</option>
+							<option value="交通银行">交通银行</option>
+							<option value="招商银行">招商银行</option>
+							<option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+							<option value="中信银行">中信银行</option>
+							<option value="光大银行">光大银行</option>
+							<option value="民生银行">民生银行</option>
+							<option value="兴业银行">兴业银行</option>
+							<option value="华夏银行">华夏银行</option>
+							<option value="上海浦东发展银行">上海浦东发展银行</option>
+							<option value="深圳发展银行">深圳发展银行</option>
+							<option value="广东发展银行">广东发展银行</option>
+							<!--<option value="平安银行">平安银行</option>-->
+							<option value="北京银行">北京银行</option>
+							<option value="南京银行">南京银行</option>
+							<option value="宁波银行">宁波银行</option>
+							<option value="江苏银行">江苏银行</option>
+							<option value="浙商银行">浙商银行</option>
+							<option value="渤海银行">渤海银行</option>
+							<option value="恒丰银行">恒丰银行</option>
+							<option value="昆仑银行">昆仑银行</option>
+							<option value="大连银行">大连银行</option>
+							<option value="包头银行">包头银行</option>
+							<option value="珠海华润银行">珠海华润银行</option> 
+							<option value="河北银行">河北银行</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 开户行所在地 <span
+						class="must-tips">*</span>
+					</label>
+					<div id="bankArea">
+						<div class="col-sm-4">
+							<select class="form-control prov" name="bankPro">
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<select class="form-control city" name="bankCity"
+								disabled="disabled">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 银行支行 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankBranch"
+							placeholder="只需填写支行信息，比如：中关村支行" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 银行账户 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">医院所在区</label>
+					<div id="hospitalArea">
+						<div class="col-sm-4">
+							<select class="form-control prov" name="hospitalPro">
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<select class="form-control city" name="hospitalCity"
+								disabled="disabled">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 医院名称 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input id="hospitalName" type="text" class="form-control" name="hospitalName" autocomplete="off" data-provide="typeahead"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 科室 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-4" style="padding-right: 0;">
+						<select class="form-control" name="department">
+							<option value="请选择">--请选择--</option>
+							<option value="心血管内科">心血管内科</option>
+							<option value="心血管科">心血管科</option>
+							<option value="心脏病科">心脏病科</option>
+							<option value="心内科">心内科</option>
+							<option value="心血管门诊">心血管门诊</option>
+							<option value="高血压科">高血压科</option>
+							<option value="心脏中心心内科门诊">心脏中心心内科门诊</option>
+							<option value="心病科">心病科</option>
+							<option value="神经内科">神经内科</option>
+							<option value="脑血管门诊">脑血管门诊</option>
+							<option value="脑病科">脑病科</option>
+							<option value="神经科">神经科</option>
+							<option value="神经内科及神经康复科">神经内科及神经康复科</option>
+							<option value="神经康复科">神经康复科</option>
+							<option value="老年病科">老年病科</option>
+							<option value="老干科">老干科</option>
+							<option value="肾内科">肾内科</option>
+							<option value="全科">全科</option>
+							<option value="心理科">心理科</option>
+							<option value="精神科">精神科</option>
+							<option value="qita">--其他--</option>	
+						</select>
+					</div>
+					<!-- <span style="padding:8px; float:left;">或者</span> -->
+					<div class="col-sm-4 other-dep" style="display: none;">
+						<input type="text" class="form-control" name="otherDep"
+							placeholder="请输入科室" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 职称 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-4" style="padding-right: 0;">
+						<select class="form-control" name="jobTitle">
+							<option value="">-请选择-</option>
+							<option value="主任医师">主任医师</option>
+							<option value="副主任医师">副主任医师</option>
+							<option value="主治医师">主治医师</option>
+							<option value="住院医师">住院医师</option>
+							<option value="qita">其它</option>
+						</select>
+					</div>
+					<div class="col-sm-4 other-jobtitle" style="display: none;">
+						<input type="text" class="form-control" name="otherJobTitle"
+							placeholder="请输入职称" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 个人照片 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-9 no-margin">
+						<div class="col-sm-7 no-margin no-padding">
+							<input type="file" class="form-control" name="personalPic" id="personalPic">
+						</div>
+						<div class="col-sm-2">
+							<button class="btn btn-info" type="button" name="uploadBtn" id="uploadBtn" onclick="doUpload()">上传</button>
+						</div>		 
+						<div class="help-block col-sm-12 no-padding">请使用本人正式标准照片。(支持格式：jpg gif png bmp)</div>
+						<div class="upload-imgshow col-sm-8 no-padding" id = "personalPic_img" name="personalPic_img">
+						</div>
+						<div class="imginfo-tips">请上传图片</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 相关资质 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-9 no-margin">
+						<div class="col-sm-7 no-margin no-padding">
+							<input type="file" class="form-control" name="qualification" id="qualification">
+						</div>
+						<div class="col-sm-2">
+							<button class="btn btn-info" type="button" onclick="UpQualification()">上传</button>
+						</div>		 
+						<div class="help-block col-sm-12 no-padding">请上传您的医生执业资格证。(支持格式：jpg gif png bmp)</div>
+						<div class="upload-imgshow col-sm-8 no-padding" id = "qualification_img" name="qualification_img">
+						</div>
+						<div class="imginfo-tips">请上传图片</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">相关资质(辅助)</label>
+					<div class="col-sm-9 no-margin">
+						<div class="col-sm-7 no-margin no-padding">
+							<input type="file" class="form-control" name="otherQual" id="otherQual">
+						</div>
+						<div class="col-sm-2">
+							<button class="btn btn-info" type="button" onclick="UpOtherQual()">上传</button>
+						</div>		 
+						<div class="help-block col-sm-12 no-padding">请上传您的医生执业资格证。(支持格式：jpg gif png bmp)</div>
+						<div class="upload-imgshow col-sm-8 no-padding" id = "otherQual_img" name="otherQual_img">
+						</div>
+						<div class="imginfo-tips">请上传图片</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-3 col-sm-6">
+						<label> <input type="checkbox" name="agreement[]"
+							value="agreement"> 同意 <a href="" data-toggle="modal"
+							data-target="#myModal">《健康教育云用户注册协议》</a>
+						</label>
+					</div>
+				</div>
+				<div class="form-group cont-footer no-margin">
+					<div class="col-sm-offset-5 col-sm-10">
+						<button id="registerBtn" type="submit" class="btn btn-success">注册</button>
+						<button type="reset" class="btn btn-default">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		data-backdrop="static" data-keyboard="false">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">健康教育云用户注册协议</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+						<b>一、总则</b>
+					</p>
+					<p>1.1 健康教育云的所有权和运营权归平台方所有。</p>
+					<p>1.2
+						用户在注册完成之前应仔细阅读本协议，并同意遵守本协议后方可成为注册用户。一旦注册成功，则用户与健康教育云之间自动形成协议关系，用户应当受本协议的约束。用户在使用平台所提供的产品或服务时，应当接受相关协议后方能使用。</p>
+					<p>1.3
+						健康教育云有权在必要时修改服务条款，服务条款一旦发生变动，将会在重要页面上提示修改内容或通过其他形式告知用户。用户应当及时关注并同意本平台不承担通知义务。本平台的通知、公告、声明或其它类似内容是本协议的一部分。</p>
+					<p>
+						<b>二、服务内容</b>
+					</p>
+					<p>2.1 健康教育云的具体内容由本平台根据实际情况提供。</p>
+					<p>2.2 除非本协议另有其它明示规定，健康教育云所推出的新产品、新功能、新服务，均受到本协议之规范</p>
+					<p>2.3
+						健康教育云仅提供相关的网络服务，除此之外与相关网络服务有关的设备(如电脑、手机、及其他与接入互联网或移动网有关的装置)及所需的费用(如为接入互联网而支付的电话费及上网费、为使用移动网而支付的手机费)均应由用户自行负担。</p>
+					<p>2.4健康教育云需要定期或不定期地对本平台或相关的设备进行检修或者维护，如因此类情况而造成网络服务在合理时间内的中断，本平台无需为此承担任何责任。本平台保留不经事先通知为维修保养、升级或其它目的暂停服务任何部分的权利。</p>
+					<p>2.5鉴于网络服务的特殊性，用户同意健康教育云有权不经事先通知，随时变更、中断或终止部分或全部的网络服务。健康教育云不担保网络服务不会中断，对网络服务的及时性、安全性、准确性也都不作担保。</p>
+					<p>
+						<b>三、用户账号及隐私保护</b>
+					</p>
+					<p>3.1 经健康教育云注册系统完成注册程序并通过身份认证的用户即成为正式用户，可以获得本平台规定用户所应享有的一切权限。</p>
+					<p>3.2
+						用户必须按照注册要求填写真实的注册信息，如果因注册信息不真实而引起的问题，并对问题发生所带来的后果，本平台不负任何责任。</p>
+					<p>3.3用户不应将其账号、密码转让或出借予他人使用。如用户发现其账号遭他人非法使用，应立即通知本平台。因黑客行为或用户的保管疏忽导致账号、密码遭他人非法使用，本平台不承担任何责任。</p>
+					<p>
+						3.4 本平台不对外公开或向第三方提供单个用户的注册资料，除非：<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;• 事先获得用户的明确授权；<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;• 只有透露您的个人资料，才能提供您所要求的产品和服务；<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;• 根据有关的法律法规要求；<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;• 按照相关政府主管部门的要求；<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;• 为维护数据堂的合法权益。<br>
+					</p>
+					<p>3.5
+						本平台可能会与第三方合作向用户提供相关网络服务，在此情况下，如该第三方同意承担与本平台同等的保护用户隐私责任，则本平台有权将用户注册资料等提供给该第三方。</p>
+					<p>3.6 在不透露单个用户隐私资料的前提下，本平台有权对整个用户数据库进行分析并对用户数据库进行商业上的利用。</p>
+					<p>
+						<b>四、使用准则</b>
+					</p>
+					<p>4.1 用户必须遵守中华人民共和国与计算机互联网规定和知识产权有关的法律和法规、实施办法。</p>
+					<p>
+						4.2
+						用户对其自行发表、上传或传送的内容负全部责任，所有用户不得在本平台任何页面发布、转载、传送含有下列内容之一的信息，否则本站有权自行处理并不通知用户：<br>
+						(1)违反宪法确定的基本原则；<br> (2)危害国家安全，泄漏国家机密，颠覆国家政权，破坏国家统一；<br>
+						(3)损害国家荣誉和利益；<br> (4)煽动民族仇恨、民族歧视，破坏民族团结；<br>
+						(5)破坏国家宗教政策，宣扬邪教和封建迷信；<br> (6)散布谣言，扰乱社会秩序，破坏社会稳定；<br>
+						(7)散布淫秽、色情、赌博、暴力、恐怖或者教唆犯罪；<br> (8)侮辱或者诽谤他人，侵害他人合法权益；<br>
+						(9)煽动非法集会、结社、游行、示威、聚众扰乱社会秩序；<br> (10)以非法民间组织名义活动；<br>
+						(11)含有法律、行政法规禁止的其他内容。<br>
+					</p>
+					<p>4.3
+						当第三方认为用户上传于本平台的信息侵犯其权利，并根据《信息网络传播权保护条例》或者相关法律规定向本平台发送权利通知书时，用户同意本平台可以自行判断决定删除涉嫌侵权信息，除非用户提交书面证据材料排除侵权的可能性，本平台将不会自动恢复上述删除的信息；</p>
+					<p>4.4
+						如用户在使用网络服务时违反上述任何规定，本平台有权要求用户改正或直接采取一切必要的措施(包括但不限于删除用户上传的内容、暂停或终止用户使用网络服务的权利)以减轻用户不当行为而造成的影响。</p>
+					<p>
+						<b>五、版权声明</b>
+					</p>
+					<p>5.1用户在本平台上发布的信息（文字、图片、音频、视频等），均表明该用户主动将该信息的发表权、汇编权、修改权、信息网络传播权无偿独家转让给健康教育云。本协议已经构成《著作权法》第二十五条所规定的书面协议，并在用户同意本协议时生效。</p>
+					<p>5.2
+						用户同意并明确了解上述条款，不将已发表于本平台上的信息（文字、图片、音频、视频等），以任何形式发布或授权其它网站（及媒体）使用。</p>
+					<p>
+						<b>六、责任声明</b>
+					</p>
+					<p>6.1基于技术和不可预见的原因而导致的服务中断，或者因用户的非法操作而造成的损失，健康教育云不负责任。用户应当自行承担一切因自身行为而直接或者间接导致的民事或刑事法律责任。</p>
+					<p>6.2 本平台上的所有内容仅代表用户自己的立场和观点，与本平台无关，由用户本人承担一切法律责任。</p>
+					<p>
+						<b>七、附则</b>
+					</p>
+					<p>7.1 本协议的订立、执行和解释及争议的解决均应适用中华人民共和国法律。</p>
+					<p>7.2 如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有效并且有约束力。</p>
+					<p>7.3 本协议解释权及修订权归健康教育云所有。</p>
+					<p>如您同意本协议确定的条件和条款，请在下面点击确认。点击确认后，此电子协议即时生效。</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success">我同意</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">不同意</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap3-typeahead.js"></script>
+	<script type="text/javascript" src="js/pro-city/jquery.cityselect.js"></script>
+	<script type="text/javascript">
+	
+	var personal_status= false;
+	var qualification_status=false;
+	function UpOtherQual(){
+		var formData =  new FormData();
+		formData.append("otherQual",$("#otherQual")[0].files[0]);
+		formData.append("realName",$("#realName").val());
+		$.ajax({
+			url : 'uploadOtherQual',
+			type : 'POST',
+			data :formData,
+			async : false,
+			cache : false,
+			contentType :false,
+			processData : false,
+			success : function(returndata) {
+				var img_path = returndata.split("@")[0];
+				$("#otherQual_img").html("<img src = '"+img_path+"'/> <input hidden name='otherQual_path' value= '"+returndata.split("@")[1]+"'/>");
+			},
+			error : function(returndata) {
+				alert(returndata);
+			}
+		});
+	}
+	function UpQualification(){
+		qualification_status=true;
+		var formData =  new FormData();
+		formData.append("qualification",$("#qualification")[0].files[0]);
+		formData.append("realName",$("#realName").val());
+		$.ajax({
+			url : 'uploadQualification',
+			type : 'POST',
+			data :formData,
+			async : false,
+			cache : false,
+			contentType :false,
+			processData : false,
+			success : function(returndata) {
+				var img_path = returndata.split("@")[0];
+				$("#qualification_img").html("<img src = '"+img_path+"'/> <input hidden name='qualification_path' value= '"+returndata.split("@")[1]+"'/>");
+				$("#qualification_img").siblings(".imginfo-tips").hide();
+			},
+			error : function(returndata) {
+				$("#qualification_img").siblings(".imginfo-tips").show().html("请先选择图片");
+				console.log(returndata);
+			}
+		});
+	}
+		function doUpload() {
+			personal_status=true;
+			var formData =  new FormData();
+			formData.append("personalPic",$("#personalPic")[0].files[0]);
+			formData.append("realName",$("#realName").val());
+			$.ajax({
+				url : 'uploadPersonalPic',
+				type : 'POST',
+				data :formData,
+				async : false,
+				cache : false,
+				contentType :false,
+				processData : false,
+				success : function(returndata) {
+					var img_path = returndata.split("@")[0];
+					$("#personalPic_img").html("<img src = '"+img_path+"'/> <input hidden name='personalPic_path' value= '"+returndata.split("@")[1]+"'/>");
+					$("#personalPic_img").siblings(".imginfo-tips").hide();
+					/* $("#personalPic2").val(Math.random()+"-"+returndata.split("@")[1]);
+					validate(); */
+				},
+				error : function(returndata) {
+					$("#personalPic_img").siblings(".imginfo-tips").show().html("请先选择图片");
+					console.log(returndata);
+				}
+			});
+		}
+		/* function validate(){
+			$("#registForm").bootstrapValidator(series.fields.personalPic = {
+						validators : {
+							 
+						},
+						callback : {
+							message : '请上传图片',
+							callback : function(value,validator) {
+								alert(value);
+								validator.updateStatus('personalPic','VALID');
+								return true;
+							}
+						}
+			});
+				//$("#registForm").bootstrapValidator(series);	
+				//$("#registForm").data('bootstrapValidator').validate();  
+		} */
+		function getFileName(o) {
+			var pos = o.lastIndexOf("\\");
+			return o.substring(pos + 1);
+		}
+		
+		/* 医院名称模糊查询 */
+		var name2Id = {};//姓名对应的id
+		function parseServerObjectArray() {
+            $("#hospitalName").typeahead({
+                source: function (query, process) {
+                    //query是输入的值
+                    $.post("GetNames", { name: query }, function (e){
+                        if (e.success) {
+                           //if (e.data.length == 0) { alert("没有查到对应的医院"); return; }
+                            var array = [];
+                            $.each(e.data, function (index, ele) {
+                                name2Id[ele.name] = ele.id;//键值对保存下来。
+                                array.push(ele.name);
+                            });
+                            process(array);
+                        }
+                    });
+                },
+                items: 8,
+                afterSelect: function (item) {
+                    console.log(name2Id[item]);//打印对应的id
+                },
+                delay: 500
+            });
+        }
+		parseServerObjectArray();
+			$("#bankArea").citySelect();//开户行所在地区域
+			$("#hospitalArea").citySelect();//医院所在区
+		var	series ={
+				//表单验证
+				message : 'This value is not valid',
+				feedbackIcons : {
+					valid : 'fa fa-check',
+					invalid : 'fa fa-remove',
+					validating : 'fa fa-refresh'
+				},
+				fields : {
+					phoneNumber : {
+						validators : {
+							notEmpty : {
+								message : '手机号不能为空'
+							},
+							stringLength : {
+								min : 11,
+								max : 11,
+								message : '请输入11位手机号码'
+							},
+							regexp : {
+								regexp : /^1[3|5|8]{1}[0-9]{9}$/,
+								message : '请输入正确的手机号码'
+							},
+							threshold : 6, //有6字符以上才发送ajax请求，（input中输入一个字符，插件会向服务器发送一次，设置限制，6字符以上才开始）
+//								remote : {
+//									//ajax验证。server result:{"valid",true or false} 向服务发送当前input name值，获得一个json数据。例表示正确：{"valid",true}  
+//									url : '',//验证地址
+//									message : '改手机号已注册',//提示消息
+//									delay : 2000,//每输入一个字符，就发ajax请求，服务器压力还是太大，设置2秒发送一次ajax（默认输入一个字符，提交一次，服务器压力太大）
+//									type : 'POST'//请求方式
+//								/**自定义提交数据，默认值提交当前input value
+//								 *  data: function(validator) {
+//								      return {
+//								          password: $('[name="passwordNameAttributeInYourForm"]').val(),
+//								          whatever: $('[name="whateverNameAttributeInYourForm"]').val()
+//								      };
+//								   }
+//								 */
+//								}
+						}
+					},
+					password : {
+						validators : {
+							notEmpty : {
+								message : '密码不能为空'
+							},
+							stringLength : {
+								min : 6,
+								message : '密码不能少于6位'
+							},
+							identical : {
+								field : 'confirmPassword',//需要进行比较的input name值
+								message : '两次密码不一致'
+							},
+							different : {
+								field : 'phoneNumber',
+								message : '密码不能和手机号一致'
+							},
+							regexp : {
+								regexp : /^[a-zA-Z0-9_\.]+$/,
+								message : 'The username can only consist of alphabetical, number, dot and underscore'
+							}
+						}
+					},
+					confirmPassword : {
+						validators : {
+							notEmpty : {
+								message : '确认密码不能为空'
+							},
+							stringLength : {
+								min : 6,
+								message : '密码不能少于6位'
+							},
+							identical : {
+								field : 'password',
+								message : '密码和确认密码不一致'
+							},
+							different : {
+								field : 'phoneNumber',
+								message : '密码不能和手机号一致'
+							},
+							regexp : {
+								regexp : /^[a-zA-Z0-9_\.]+$/,
+								message : 'The username can only consist of alphabetical, number, dot and underscore'
+							}
+						}
+					},
+					realName : {
+						validators : {
+							notEmpty : {
+								message : '真实姓名不能为空'
+							}
+						}
+					},
+					cardType : {
+						validators : {
+							notEmpty : {
+								message : '请选择证件类型'
+							}
+						}
+					},
+					cardNumber : {
+						validators : {
+							notEmpty : {
+								message : '证件号码不能为空'
+							}
+						}
+					},
+					openBank : {
+						validators : {
+							notEmpty : {
+								message : '请选择银行开户行'
+							}
+						}
+					},
+					bankPro : {
+						validators : {
+							notEmpty : {
+								message : '请选择银行开户行所在地'
+							}
+						}
+					},
+					bankCity : {
+						validators : {
+							/* notEmpty : {
+								message : '请选择一个区域'
+							} */
+						}
+					},
+					bankBranch : {
+						validators : {
+							notEmpty : {
+								message : '请输入银行支行'
+							}
+						}
+					},
+					bankAccount : {
+						validators : {
+							notEmpty : {
+								message : '请输入银行账户'
+							}
+						}
+					},
+					hospitalName : {
+						validators : {
+							notEmpty : {
+								message : '请输入医院名称'
+							}
+						}
+					},
+					department : {
+						validators : {
+							notEmpty : {
+								message : '请选择科室'
+							},
+							callback : {
+								message : '请选择科室',
+								callback : function(value,
+										validator) {
+									var otherDep = $("#registForm").find("div.other-dep");
+									if (value == 'qita') {
+										otherDep.show();
+										return true;
+									} else {
+										otherDep.hide();
+										return true;
+									}
+								}
+							}
+						}
+					},
+					otherDep : {
+						validators : {
+							notEmpty : {
+								message : '请输入科室'
+							},
+							callback : {
+								message : '请输入科室',
+								callback : function(value,validator) {
+									validator.updateStatus('department','VALID');
+									return true;
+								}
+							}
+						}
+					},
+					jobTitle : {
+						validators : {
+							notEmpty : {
+								message : '请选择职称'
+							},
+							callback : {
+								message : '请选择职称',
+								callback : function(value,validator) {
+									var otherDep = $("#registForm").find("div.other-jobtitle");
+									if (value == 'qita') {
+										otherDep.show();
+										return true;
+									} else {
+										otherDep.hide();
+										return true;
+									}
+								}
+							}
+						}
+					},
+					otherJobTitle : {
+						validators : {
+							notEmpty : {
+								message : '请输入职称'
+							},
+							callback : {
+								message : '请输入职称',
+								callback : function(value,validator) {
+									validator.updateStatus('jobTitle','VALID');
+									return true;
+								}
+							}
+						}
+					},
+					personalPic: {
+						validators : {
+							notEmpty : {
+								message : '不能为空'
+							}
+						}
+					},
+					qualification : {
+						validators : {
+							notEmpty : {
+								message : '不能为空'
+							}
+						}
+					},
+					'agreement[]' : {
+						validators : {
+							notEmpty : {
+								message : '请选择是否同意协议'
+							}
+						}
+					}
+				}
+			}
+		$(function() {
+			$("#registForm").bootstrapValidator(series); 
+			$("#registerBtn").on("click",function(){
+				if(personal_status==false){
+					//alert("请先点击确定按钮查询！");
+					$("#personalPic_img").siblings(".imginfo-tips").show();
+					$("#registForm").bootstrapValidator(series);
+					return false;
+				}else if(qualification_status==false){
+					$("#qualification_img").siblings(".imginfo-tips").show();
+					$("#registForm").bootstrapValidator(series);
+					return false;
+				}else{
+					$("#registForm").bootstrapValidator(series);
+				}
+			});
+			/* console.log(bootstrapv); */
+		});
+	</script>
+</body>
+</html>

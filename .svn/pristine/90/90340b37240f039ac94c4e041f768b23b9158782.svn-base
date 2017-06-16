@@ -1,0 +1,299 @@
+package com.guide.controller;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.pojo.SubmitHospital;
+import com.guide.pojo.THunit;
+import com.guide.pojo.ZlpgTm;
+import com.guide.pojo.ZlpgValue;
+import com.guide.pojo.ZlpgVariable;
+import com.guide.service.SubmitHospitalService;
+import com.guide.service.ZlpgTmService;
+import com.guide.service.ZlpgValueService;
+import com.guide.util.DataExportUtil;
+import com.guide.util.TxtUtils;
+
+@Controller
+@RequestMapping("/2")
+public class ProvinceController {
+
+	@Resource(name = "submitHospitalService")
+	private SubmitHospitalService submitHospitalService;
+	
+	@Resource(name = "zlpgValueService")
+	private ZlpgValueService zlpgValueService;
+
+	@Resource(name = "zlpgTmService")
+	private ZlpgTmService zlpgTmService;
+
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String p_main(HttpServletRequest request) {
+		
+		return "province/main";
+	}
+
+	@RequestMapping(value = "hospital", method = RequestMethod.GET)
+	public String p_hospital(HttpServletRequest request,@RequestParam("areaid") String areaid) {
+		System.err.println(areaid);                                                                                                                                                           
+		
+		return "province/show_hospital";
+	}
+
+	@RequestMapping(value = "detail/{mivd}/{thunitId}", method = RequestMethod.GET)
+	public String p_detail(HttpServletRequest request,HttpSession session,@PathVariable("thunitId") String thunitId,@PathVariable("mivd") String mivd) {
+		session.setAttribute("thunitId", thunitId);
+		System.err.println(thunitId);
+		System.err.println(mivd);
+		List<ZlpgTm> list = zlpgTmService.selectByHunitId(thunitId);
+		List<ZlpgTm> list_module = zlpgTmService.selectByHunitId(mivd);
+		System.err.println(list_module);
+		HashMap<String,Object> map = new HashMap<String, Object>();
+		
+		for (int i = 1; i < list.size(); i++) {
+			
+			if(i==list.get(i).getMid()){
+				HashMap<String,String> second_map = new HashMap<String,String>();
+				second_map.put(list.get(i).getTname(),list.get(i).getTvalue().toString());
+				map.put("tmap", second_map);
+				System.err.println("second_map::"+second_map);
+			}
+			map.put("abc", list.get(i).getAbc());
+		}
+		System.err.println(map);
+		request.setAttribute("tm", map);
+		request.setAttribute("module", list_module);
+		return "province/show_detail-bak";
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "datatable_query", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String datatable_query(HttpServletRequest request, @RequestParam("search[value]") String search,
+			@RequestParam("draw") int draw, @RequestParam("start") int start,@RequestParam("areaid") int areaid) throws Exception {
+		String str = request.getParameter("search[value]");
+		if (str.contains("\"")) {
+			str = str.replace(str.substring(str.indexOf("\""), str.length()), "");
+		}
+		int len = submitHospitalService.query_count(str,areaid);
+		List<SubmitHospital> list = submitHospitalService.datatable_query(start, str,areaid);
+		JSONObject json = new JSONObject();
+		List<List<String>> list1 = new ArrayList<List<String>>();
+		List<String> list2 = new ArrayList<String>();
+
+		for (SubmitHospital i : list) {
+			list2.add(i.getCity());
+			list2.add(i.getHName());
+			list2.add(i.getHlevel());
+			list2.add(i.getLinkMan());
+			list2.add(i.getJMTel());
+			list2.add("<a href='detail/1/"+i.getHUnitID()+"'>查看</a>");
+			//list2.add("<a href='detail'>查看</a>");
+			list1.add(list2);
+			list2 = new ArrayList<String>();
+		}
+		json.put("data", list1);
+		json.put("recordsTotal", len);
+		json.put("recordsFiltered", len);
+		json.put("draw", draw);
+		return json.toJSONString();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "nosubmit_datatable_query", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String nosubmit_datatable_query(HttpServletRequest request, @RequestParam("search[value]") String search,
+			@RequestParam("draw") int draw, @RequestParam("start") int start,@RequestParam("areaid") int areaid) throws Exception {
+		String str = request.getParameter("search[value]");
+		if (str.contains("\"")) {
+			str = str.replace(str.substring(str.indexOf("\""), str.length()), "");
+		}
+		int len = submitHospitalService.query_count(str,areaid);
+		List<SubmitHospital> list = submitHospitalService.datatable_query(start, str,areaid);
+		JSONObject json = new JSONObject();
+		List<List<String>> list1 = new ArrayList<List<String>>();
+		List<String> list2 = new ArrayList<String>();
+
+		for (SubmitHospital i : list) {
+			list2.add(i.getCity());
+			list2.add(i.getHName());
+			list2.add(i.getHlevel());
+			list2.add(i.getLinkMan());
+			list2.add(i.getJMTel());
+			list1.add(list2);
+			list2 = new ArrayList<String>();
+		}
+		json.put("data", list1);
+		json.put("recordsTotal", len);
+		json.put("recordsFiltered", len);
+		json.put("draw", draw);
+		return json.toJSONString();
+	}
+	
+	/*下载已填表的txt文件*/
+	@RequestMapping(value = "txt_submit", method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+	public void txt_submit(HttpServletRequest request,HttpServletResponse resp,@RequestParam("areaid") String areaid) {
+		String file_path = "D://test//pp"+areaid+".txt";
+		String content ="";
+		List<ZlpgValue> zlpg_list = zlpgValueService.submit_txt(areaid);
+		for(ZlpgValue i:zlpg_list){
+			content += i.getAreaid()+"\t"+i.getHunitid()+"\r\n";
+		}
+		TxtUtils.contentToTxt(file_path,content);
+		File file = new File(file_path);
+		InputStream fin = null;
+		ServletOutputStream out = null;
+		String fileName=areaid+".txt";
+		try {
+			fin = new FileInputStream(file);
+			resp.setCharacterEncoding("utf-8");
+			resp.setContentType("text/plain");
+			resp.addHeader("Content-Disposition","attachment;filename="+fileName);
+			out = resp.getOutputStream();
+			byte[] buffer = new byte[512]; // 缓冲区
+			int bytesToRead = -1;
+			// 通过循环将读入的Word文件的内容输出到浏览器中
+			while ((bytesToRead = fin.read(buffer)) != -1) {
+				out.write(buffer, 0, bytesToRead);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fin != null)
+				try {
+					fin.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			if (out != null)
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			if (file != null)
+				file.delete(); // 删除临时文件
+		}
+	}
+	
+	/*下载未填表的txt文件*/
+	@RequestMapping(value = "txt_nosubmit", method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+	public void txt_nosubmit(HttpServletRequest request,HttpServletResponse resp,@RequestParam("areaid") String areaid) {
+		String file_path = "D://test//pp"+areaid+".txt";
+		String content ="";
+		List<THunit> zlpg_list = zlpgValueService.nosubmit_txt(areaid);
+		for(THunit i:zlpg_list){
+			content += i.getCity()+"\t"+i.getHname()+"\t"+i.getHlevel()+"\t"+i.getLinkman()+"\t"+i.getJmtel()+"\r\n";
+		}
+		TxtUtils.contentToTxt(file_path,content);
+		File file = new File(file_path);
+		InputStream fin = null;
+		ServletOutputStream out = null;
+		String fileName=areaid+".txt";
+		try {
+			fin = new FileInputStream(file);
+			resp.setCharacterEncoding("utf-8");
+			resp.setContentType("text/plain");
+			resp.addHeader("Content-Disposition","attachment;filename="+fileName);
+			out = resp.getOutputStream();
+			byte[] buffer = new byte[512]; // 缓冲区
+			int bytesToRead = -1;
+			// 通过循环将读入的Word文件的内容输出到浏览器中
+			while ((bytesToRead = fin.read(buffer)) != -1) {
+				out.write(buffer, 0, bytesToRead);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fin != null)
+				try {
+					fin.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			if (out != null)
+				try {
+					out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			if (file != null)
+				file.delete(); // 删除临时文件
+		}
+	}
+	/**
+	 * 下载已填表的Excel文件
+	 * @param request
+	 * @param resp
+	 * @param areaid
+	 * @author WANGZHEN
+	 * @date 2016年12月20日 14:34:59
+	 */
+	@RequestMapping(value = "excel_download", method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+	public void excel_download(HttpServletRequest request,HttpServletResponse resp,@RequestParam("areaid") String areaid) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("result", "result");
+		DataExportUtil deu = new DataExportUtil();
+		List<ZlpgValue> zvList = zlpgValueService.downloadExcel(areaid);
+		List<ZlpgVariable> colLost = zlpgValueService.excelColList();
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String filename = "已填写的Excel-"+sdf.format(date);
+		int length = 10000;
+				try {
+					File file = deu.toExcel(zvList,colLost, length, filename, request);
+					deu.dataExcelExcel(file, filename, resp);
+					System.out.println("Hello World!");
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
+	}
+	/**
+	 * 下载未填表的Excel文件
+	 * @param request
+	 * @param resp
+	 * @param areaid
+	 * @author WANGZHEN
+	 * @date 2016年12月20日 14:34:59
+	 */
+	@RequestMapping(value = "excel_NotFilled", method = RequestMethod.GET,produces = "text/plain;charset=UTF-8")
+	public void excel_NotFilled(HttpServletRequest request,HttpServletResponse resp,@RequestParam("areaid") String areaid) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("result", "result");
+		DataExportUtil deu = new DataExportUtil();
+		List<SubmitHospital> list = zlpgValueService.excel_NotFilled(areaid);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String filename = "未填写的Excel-"+sdf.format(date);
+		int length = 10000;
+		try {
+			File file = deu.NotFiled_Excel(list, length, filename, request);
+			deu.dataExcelExcel(file, filename, resp);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

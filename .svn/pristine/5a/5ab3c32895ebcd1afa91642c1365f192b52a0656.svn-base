@@ -1,0 +1,217 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="common.jsp" %>
+<!DOCTYPE html>
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="<%=base %>/css/bootstrap/bootstrap-modal.css" />
+	<style type="text/css">
+	</style>
+		<title>中国卒中中心联盟数据管理平台</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-fixed-top navbar-inverse custom-navbar">
+			<div class="container-fluid">
+				<div class="navbar-header" style="width:100%;">
+				    <button type="button" class="navbar-toggle pull-left" data-toggle="sidebar" data-target="#sidebar" >
+				        <span class="sr-only">缩小菜单</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				    </button>
+					<a href="index" class="navbar-brand">中国卒中中心联盟—<span class="area-name">医院信息管理平台</span></a>
+					<div class="user-menu dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> ${username }  <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/CscaCenter/logout"><i class="fa fa-sign-out"></i>&nbsp;退出</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div id="sidebar" class="sidebar">
+			<ul class="nav-list">
+				<li class="active">
+					<a href="hospitalInfo"><i class="fa fa-edit"></i> 医院基本信息</a>
+				</li>
+				<li>
+					<a href="data_manage"><i class="fa fa-database"></i> 数据上报</a>
+				</li>
+				<li>
+					<a href="permission_application"><i class="fa fa-cogs"></i> 数据反馈</a>
+				</li>
+				<li>
+					<a href="main"><i class="fa fa-edit"></i> 卒中中心评估</a>
+				</li>
+	        </ul>
+		</div>
+		<div class="main-content">
+			<div class="row">
+				<ol class="breadcrumb">
+				  <li><i class="fa fa-home"></i> 医院基本信息</li>
+				</ol>
+			</div>
+			<div class="row" >
+			<div class="col-sm-2">
+			</div>
+				<div class="col-sm-8">
+					<div class="cont-header" style="text-align: center;margin-top: 80px">
+						<h3 style="color:red;">医院基本信息</h3>
+					</div>
+					<hr/>
+					<div id="applyEdit">
+						<span style="font-weight: bold; font-family: 仿宋;font-size: 24px;color: #3399cc; ">医院信息</span>
+						<span style="font-weight: bold;float: right;font-size: 14px;">填写时间：<input style="border: none;font-size: 14px;" type="text" id="putime" readonly="readonly"></span>
+					</div>
+					 <table class="table table-bordered" align="center" >
+					 <tr>
+					 	<td colspan="1" style="text-align: right;">医院名称(全称)</td>
+					 	<td colspan="5"><input class="form-control" type="text" id="hName" readonly="readonly"></td>
+					 </tr>
+					  <tr>
+					 	<td colspan="1" style="text-align: right;">医院英文名称</td>
+					 	<td colspan="5"><input class="form-control" type="text" id="eHName" readonly="readonly"></td>
+					 </tr>
+					 <tr>
+					 	<td colspan="1" style="text-align: right;">医院所在省份</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="areaName" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">医院级别</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="hlevel" readonly="readonly"></td>
+					 </tr>
+					 <tr>
+					 	<td colspan="1" style="text-align: right;">卒中中心</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="czlevel" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">科室</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="jMDep" readonly="readonly"></td>
+					 </tr> 
+					 <tr id="shoupaishijian">
+					 	<td colspan="1" style="text-align: right;">授牌时间</td>
+					 	<td colspan="5"><input class="form-control" type="text" id="ctime" readonly="readonly"></td>
+					 </tr>
+					</table>
+					<div >
+						<span style="font-weight: bold; font-family: 仿宋;font-size: 24px;color: #3399cc; ">主任信息</span>
+					</div>
+					 <table class="table table-bordered" align="center" >
+					 
+					 <tr >
+					 	<td colspan="1" style="text-align: right;"> 姓名（卒中中心主任）</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="judgeMan" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">邮箱</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="jMMail" readonly="readonly"></td>
+					 </tr> 
+					 <tr >
+					 	<td colspan="1" style="text-align: right;">移动电话</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="jMTel" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">办公电话（座机） </td>
+					 	<td colspan="2"><input class="form-control" type="text" id="JMph" readonly="readonly"></td>
+					 </tr> 
+					 <tr >
+					 	<td colspan="1" style="text-align: right;">技术职称</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="jMTjob" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">职务 </td>
+					 	<td colspan="2"><input class="form-control" type="text" id="jMJob" readonly="readonly"></td>
+					 </tr> 
+					</table>
+					<div>
+						<span style="font-weight: bold; font-family: 仿宋;font-size: 24px;color: #3399cc; ">协调员信息</span>
+					</div>
+					<table class="table table-bordered" align="center" >
+					 <tr >
+					 	<td colspan="1" style="text-align: right;">姓名（协调员）</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="linkMan" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">邮箱</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="linkMail" readonly="readonly"></td>
+					 </tr> 
+					 <tr >
+					 	<td colspan="1" style="text-align: right;">移动电话</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="linkTel" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">微信号 </td>
+					 	<td colspan="2"><input class="form-control" type="text" id="linkwx" readonly="readonly"></td>
+					 </tr> 
+					 <tr >
+					 	<td colspan="1" style="text-align: right;">技术职称</td>
+					 	<td colspan="2"><input class="form-control" type="text" id="linkTjob" readonly="readonly"></td>
+					 	<td colspan="1" style="text-align: right;">职务 </td>
+					 	<td colspan="2"><input class="form-control" type="text" id="linkJob" readonly="readonly"></td>
+					 </tr> 
+					</table>
+					<div >
+						<span style="font-weight: bold; font-family: 仿宋;font-size: 24px;color: #3399cc; ">通讯地址信息</span>
+					</div>
+					 <table class="table table-bordered" align="center" >
+					 <tr>
+					 	<td colspan="1" style="text-align: right;">通讯地址及邮编</td>
+					 	<td colspan="5"><input class="form-control" type="text" id="address" readonly="readonly"></td>
+					 </tr>
+					</table>
+					<div class="form-group cont-footer no-margin">
+						<div class="col-sm-offset-5 col-sm-11">
+							<a class="btn btn-primary" href="editInfo">修改信息</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="<%=base %>/js/bootstrap/bootstrap-modalmanager.js" ></script>
+	<script type="text/javascript" src="<%=base %>/js/bootstrap/bootstrap-modal.js" ></script>
+	<script type="text/javascript" src="<%=base %>/js/pro-city/jquery.cityselect.js" ></script>
+	<script type="text/javascript" src="<%=base %>/js/bootstrap/bootstrapValidator.min.js"></script>
+	<script>
+	//<input type="button" class="btn btn-primary btn-sm" style="margin-left: 30px" data-toggle="popover" data-placement="top" data-trigger="hover" value="申请修改主要信息" onclick="applyEditInfo()"/>
+	function title() { 
+		  return '向省级申请修改“医院信息”一栏中的主要信息'; 
+		}
+	function applyEditInfo() {
+		location.reload();
+		$.ajax({
+			type :"get",
+			url: "applyEditInfo",
+		 	success: function (res) {
+		 		console.info(res.result)
+		 		if(res.result=="success"){
+		 			location.reload();
+		 		}
+		 	}
+		});
+	}
+	$(function(){
+		$("[data-toggle='popover']").popover({ 
+		    html : true,  
+		    title: title(),  
+		    delay:{show:0, hide:300}, 
+		    content: function() { 
+		    }  
+		  }); 
+		$.ajax({
+			type :"get",
+			url: "select_hInfo",
+		 	success: function (res) {
+			 	var data =eval('('+res+')');
+			 	var hospInfo = data.he;
+			 	//console.info(hospInfo);
+				$("#areaName").val(hospInfo.areaName+"-"+hospInfo.city);
+				if(hospInfo.czlevel=="非卒中中心"){
+					$("#shoupaishijian").hide();
+				}
+				console.info(hospInfo.hDlevel);
+				$("#hlevel").val(hospInfo.hlevel+""+hospInfo.hDlevel);
+				for ( var i in hospInfo) {
+					 if(i!="hunitid" && i!="uName" && i!="areaName" && i!="city" && i!="oldHosp" && i!="hstate" && i!="hlevel" && i!="hDlevel"){
+						document.getElementById(i).value = hospInfo[i];
+					} 
+				} 
+				if(hospInfo.hstate==0){
+					$("#applyEdit").append("<input type='button' class='btn btn-primary btn-sm' style='margin-left: 30px;margin-bottom: 10px' data-toggle='popover' data-placement='top' data-trigger='hover' value='申请修改主要信息' onclick='applyEditInfo()'/>");
+				}else if(hospInfo.hstate==1){
+					$("#applyEdit").append("<input type='button' class='btn btn-info btn-sm' style='margin-left: 30px;margin-bottom: 10px' data-toggle='popover' data-placement='top' data-trigger='hover' value='正在审核中'/>");
+				}else if(hospInfo.hstate==2){
+					$("#applyEdit").append("<button class='btn btn-success btn-sm' style='margin-left: 30px;margin-bottom: 10px'>审核通过,点击修改信息修改主要信息</button>");
+				}
+			}
+		})
+	})
+</script>
+</html>

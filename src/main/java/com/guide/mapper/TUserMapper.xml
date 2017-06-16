@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.TUserMapper">
+
+	<select id="Validate_bk" resultType="java.lang.Integer">
+
+		select count(*) from black_list where black_name = #{username}
+
+	</select>
+	<select id="selectUserByPassword" resultType="com.guide.pojo.TUser">
+		SELECT
+		a.uname,a.upwd as password,a.mail,a.hunitid,a.rid,a.areaid as areaId,a.tel,a.ulevel,b.AreaName
+		AS areaName,b.Hname
+		FROM t_user AS a LEFT JOIN uni_hunit_zk AS b ON a.HUnitID =
+		b.HUnitID
+		WHERE UName = #{uname} AND UPwd = #{upwd} and a.Rid = 17
+	</select>
+	
+	<select id="selectZkUserByPassword" resultType="com.guide.pojo.TUser"
+		>
+		SELECT
+		*
+		FROM zk_user where UName = #{uname} AND UPwd = #{upwd}
+	</select>
+</mapper>

@@ -1,0 +1,11 @@
+com.guide.controller.ProvinceKPIController.java--->图表KPI展示
+-本省数据反馈        
+----质控医院概况    
+----KPI数据反馈
+      
+/CscaCenter/src/main/java/com/guide/controller/ProvinceController.java --->涉及省级页面跳转、下载查看查询评估表
+
+/CscaCenter/src/main/java/com/guide/controller/UserController.java --->登录验证退出、cookie操作
+
+/CscaCenter/src/main/webapp/WEB-INF/jsp/province/hosSummary.jsp --->质控医院概况  
+/CscaCenter/src/main/webapp/WEB-INF/jsp/province/kpifeedback.jsp --->KPI数据反馈 

@@ -1,0 +1,49 @@
+package com.guide.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.guide.pojo.ProHosDetail;
+import com.guide.pojo.ProvinceEntity;
+
+public interface ProvinceMapper {
+
+	List<ProvinceEntity> selectAllHospital();
+
+	List<ProvinceEntity> selectAllBingLi(@Param("areaname" ) String areaname,@Param("start_time")  String start_time,@Param("end_time")  String end_time);
+
+	List<ProvinceEntity> selectStateAll(@Param("begin_time") String begin_time, @Param("end_time") String end_time);
+
+	List<ProvinceEntity> selectStateLevel(@Param("level") String level, @Param("begin_time") String begin_time,
+			@Param("end_time") String end_time);
+
+	List<ProvinceEntity> datatable_query(@Param("start_time") String start_time, @Param("end_time") String end_time,
+			 @Param("areaname") String areaname,@Param("start") Integer start,@Param("order_t") String order_t, @Param("order_Column") String order_Column);
+	List<ProvinceEntity> datatable_query_all(@Param("areaname") String areaname);
+	List<ProvinceEntity> selectCount(@Param("start_time") String start_time, @Param("end_time") String end_time,@Param("areaname")  String areaname);
+
+	List<ProvinceEntity> selectProvinceAll(@Param("areaname") String areaname,@Param("begin_time") String begin_time, @Param("end_time") String end_time);
+
+	List<ProvinceEntity> selectProvinceLevel(@Param("areaname") String areaname, @Param("level") String level, @Param("begin_time") String begin_time, @Param("end_time") String end_time);
+
+	//省KPI反馈模块（是否考虑禁忌）
+	List<ProvinceEntity> ConSelectPro(@Param("areaname") String areaname,@Param("start_time") String start_time,@Param("end_time")  String end_time);
+
+	List<ProvinceEntity> ConSelectProByLevel(@Param("areaname" ) String areaname,@Param("level")  String level,@Param("start_time")  String start_time,@Param("end_time")  String end_time);
+
+	List<ProvinceEntity> selectPro(@Param("areaname") String areaname,@Param("start_time")  String start_time,@Param("end_time") String end_time);
+
+	List<ProvinceEntity> selectProByLevel(@Param("areaname") String areaname, @Param("level") String level, @Param("start_time") String start_time,@Param("end_time")  String end_time);
+
+	List<ProvinceEntity> downExcelByProvince(@Param("areaname") String areaname, @Param("start_time") String start_time,@Param("end_time")  String end_time);
+
+	List<ProvinceEntity> datatable_query_local(@Param("start_time") String start_time, @Param("end_time")  String end_time, @Param("areaname") String areaname);
+
+	List<ProHosDetail> selectHosDetail();
+
+	List<ProHosDetail> selectFuhe(@Param("table_name") String table_name, @Param("start_time") String start_time,@Param("end_time") String end_time);
+
+	Double selectFuheState(@Param("table_name") String table_name, @Param("start_time") String start_time,@Param("end_time") String end_time);
+
+}

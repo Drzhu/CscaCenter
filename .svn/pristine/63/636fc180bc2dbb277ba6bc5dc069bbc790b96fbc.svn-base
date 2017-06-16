@@ -1,0 +1,238 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class TUser implements Serializable {
+    /**
+     * t_user.UID
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Integer uid;
+
+    /**
+     * t_user.UName (账号)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private String uname;
+
+    /**
+     * t_user.UPwd (密码)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private String upwd;
+
+    /**
+     * t_user.URName (昵称)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private String urname;
+
+    /**
+     * t_user.Mail (Email)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private String mail;
+
+    /**
+     * t_user.tel (手机号)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private String tel;
+
+    /**
+     * t_user.HUnitID (所属医院id)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Integer hunitid;
+
+    /**
+     * t_user.Code (医院唯一编码)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private String code;
+
+    /**
+     * t_user.Rid (角色ID)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Integer rid;
+
+    /**
+     * t_user.AreaID (分中心ID)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Integer areaid;
+
+    /**
+     * t_user.Owner (创建者UID)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Integer owner;
+
+    /**
+     * t_user.Oname (创建者urname)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private String oname;
+
+    /**
+     * t_user.Ctime (创建时间)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Date ctime;
+
+    /**
+     * t_user.UState (账号状态 1可用 0封停)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Integer ustate;
+
+    /**
+     * t_user.MissPWD (申请重置密码 1申请 0默认状态)
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Byte misspwd;
+
+    /**
+     * t_user.ulevel
+     * @ibatorgenerated 2016-12-15 16:54:40
+     */
+    private Integer ulevel;
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getUpwd() {
+        return upwd;
+    }
+
+    public void setUpwd(String upwd) {
+        this.upwd = upwd;
+    }
+
+    public String getUrname() {
+        return urname;
+    }
+
+    public void setUrname(String urname) {
+        this.urname = urname;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public Integer getHunitid() {
+        return hunitid;
+    }
+
+    public void setHunitid(Integer hunitid) {
+        this.hunitid = hunitid;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Integer getRid() {
+        return rid;
+    }
+
+    public void setRid(Integer rid) {
+        this.rid = rid;
+    }
+
+    public Integer getAreaid() {
+        return areaid;
+    }
+
+    public void setAreaid(Integer areaid) {
+        this.areaid = areaid;
+    }
+
+    public Integer getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Integer owner) {
+        this.owner = owner;
+    }
+
+    public String getOname() {
+        return oname;
+    }
+
+    public void setOname(String oname) {
+        this.oname = oname;
+    }
+
+    public Date getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
+
+    public Integer getUstate() {
+        return ustate;
+    }
+
+    public void setUstate(Integer ustate) {
+        this.ustate = ustate;
+    }
+
+    public Byte getMisspwd() {
+        return misspwd;
+    }
+
+    public void setMisspwd(Byte misspwd) {
+        this.misspwd = misspwd;
+    }
+
+    public Integer getUlevel() {
+        return ulevel;
+    }
+
+    public void setUlevel(Integer ulevel) {
+        this.ulevel = ulevel;
+    }
+
+	@Override
+	public String toString() {
+		return "TUser [uid=" + uid + ", uname=" + uname + ", upwd=" + upwd + ", urname=" + urname + ", mail=" + mail
+				+ ", tel=" + tel + ", hunitid=" + hunitid + ", code=" + code + ", rid=" + rid + ", areaid=" + areaid
+				+ ", owner=" + owner + ", oname=" + oname + ", ctime=" + ctime + ", ustate=" + ustate + ", misspwd="
+				+ misspwd + ", ulevel=" + ulevel + "]";
+	}
+}

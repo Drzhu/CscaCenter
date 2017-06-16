@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.TUserMapper" >
+
+
+ <select id="Valicate_user" resultType="java.lang.Integer" parameterType="com.guide.pojo.TUser">
+ 
+  select Rid from t_user where UName =  #{uname} and UPwd =  #{upwd} ;
+    
+ </select>
+ 
+  <select id="Validate_right" resultType="java.lang.Integer" parameterType="com.guide.pojo.TUser">
+ 
+  select count(*) from t_user where UName =  #{uname} and UPwd =  #{upwd} ;
+    
+ </select>
+ 
+   <select id="user_info" resultType="com.guide.pojo.TUser" parameterType="com.guide.pojo.TUser">
+ 
+  select uname,upwd,mail,hunitid,rid,areaid,tel,ulevel from t_user where UName =  #{uname} and UPwd =  #{upwd} ;
+    
+ </select>
+ 
+
+</mapper>

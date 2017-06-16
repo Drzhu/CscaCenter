@@ -1,0 +1,22 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String base = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+""+request.getContextPath();
+%>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+   	<!-- <meta name="viewport" content="width=device-width, initial-scale=1,maxinum-scale=1,user-scalable=no"> -->
+   	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+   	<meta name="renderer" content="webkit">
+   	<link rel="stylesheet" type="text/css" href="<%=base %>/font-awesome-4.6.3/css/font-awesome.css" />
+   	<link rel="stylesheet" type="text/css" href="<%=base %>/css/bootstrap/bootstrap.min.css" />
+   	<link rel="stylesheet" type="text/css" href="<%=base %>/css/csca-css.css" />
+   	<link rel = "Shortcut Icon" href="<%=base %>/img/czh.ico">
+	<script src="<%=base %>/js/jquery-3.1.0.min.js"></script>
+	<script src="<%=base %>/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<%=base %>/js/echart/echarts3.js"></script>
+	<script src="<%=base %>/js/echart/html2canvas.min.js"></script>
+	<script src="<%=base %>/js/echart/province.js"></script>
+	
+	

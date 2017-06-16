@@ -1,0 +1,308 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class TDoctor implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
+
+    private String duser;
+
+    private String dpwd;
+
+    private String drPh;
+
+    private String wxId;
+
+    private String invCo;
+
+    private String drName;
+
+    private String idCard;
+
+    private String areaname;
+
+    private String city;
+
+    private String address;
+
+    private String drDesc;
+
+    private String hospital;
+
+    private String department;
+
+    private String drTitle;
+
+    private String imgAddr;
+
+    private String relAddr1;
+
+    private String relAddr2;
+
+    private String payBankAr;
+
+    private String payBankAd;
+
+    private String payBankBr;
+
+    private String payBankOp;
+
+    private String payAcId;
+
+    private String payAcName;
+
+    private String payAcHp;
+
+    private Date regTime;
+
+    private String curStatus;
+
+    private String regStatus;
+
+    private Date updTime;
+
+    private Date insTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDuser() {
+        return duser;
+    }
+
+    public void setDuser(String duser) {
+        this.duser = duser;
+    }
+
+    public String getDpwd() {
+        return dpwd;
+    }
+
+    public void setDpwd(String dpwd) {
+        this.dpwd = dpwd;
+    }
+
+    public String getDrPh() {
+        return drPh;
+    }
+
+    public void setDrPh(String drPh) {
+        this.drPh = drPh;
+    }
+
+    public String getWxId() {
+        return wxId;
+    }
+
+    public void setWxId(String wxId) {
+        this.wxId = wxId;
+    }
+
+    public String getInvCo() {
+        return invCo;
+    }
+
+    public void setInvCo(String invCo) {
+        this.invCo = invCo;
+    }
+
+    public String getDrName() {
+        return drName;
+    }
+
+    public void setDrName(String drName) {
+        this.drName = drName;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getAreaname() {
+        return areaname;
+    }
+
+    public void setAreaname(String areaname) {
+        this.areaname = areaname;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getDrDesc() {
+        return drDesc;
+    }
+
+    public void setDrDesc(String drDesc) {
+        this.drDesc = drDesc;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getDrTitle() {
+        return drTitle;
+    }
+
+    public void setDrTitle(String drTitle) {
+        this.drTitle = drTitle;
+    }
+
+    public String getImgAddr() {
+        return imgAddr;
+    }
+
+    public void setImgAddr(String imgAddr) {
+        this.imgAddr = imgAddr;
+    }
+
+    public String getRelAddr1() {
+        return relAddr1;
+    }
+
+    public void setRelAddr1(String relAddr1) {
+        this.relAddr1 = relAddr1;
+    }
+
+    public String getRelAddr2() {
+        return relAddr2;
+    }
+
+    public void setRelAddr2(String relAddr2) {
+        this.relAddr2 = relAddr2;
+    }
+
+    public String getPayBankAr() {
+        return payBankAr;
+    }
+
+    public void setPayBankAr(String payBankAr) {
+        this.payBankAr = payBankAr;
+    }
+
+    public String getPayBankAd() {
+        return payBankAd;
+    }
+
+    public void setPayBankAd(String payBankAd) {
+        this.payBankAd = payBankAd;
+    }
+
+    public String getPayBankBr() {
+        return payBankBr;
+    }
+
+    public void setPayBankBr(String payBankBr) {
+        this.payBankBr = payBankBr;
+    }
+
+    public String getPayBankOp() {
+        return payBankOp;
+    }
+
+    public void setPayBankOp(String payBankOp) {
+        this.payBankOp = payBankOp;
+    }
+
+    public String getPayAcId() {
+        return payAcId;
+    }
+
+    public void setPayAcId(String payAcId) {
+        this.payAcId = payAcId;
+    }
+
+    public String getPayAcName() {
+        return payAcName;
+    }
+
+    public void setPayAcName(String payAcName) {
+        this.payAcName = payAcName;
+    }
+
+    public String getPayAcHp() {
+        return payAcHp;
+    }
+
+    public void setPayAcHp(String payAcHp) {
+        this.payAcHp = payAcHp;
+    }
+
+    public Date getRegTime() {
+        return regTime;
+    }
+
+    public void setRegTime(Date regTime) {
+        this.regTime = regTime;
+    }
+
+    public String getCurStatus() {
+        return curStatus;
+    }
+
+    public void setCurStatus(String curStatus) {
+        this.curStatus = curStatus;
+    }
+
+    public String getRegStatus() {
+        return regStatus;
+    }
+
+    public void setRegStatus(String regStatus) {
+        this.regStatus = regStatus;
+    }
+
+    public Date getUpdTime() {
+        return updTime;
+    }
+
+    public void setUpdTime(Date updTime) {
+        this.updTime = updTime;
+    }
+
+    public Date getInsTime() {
+        return insTime;
+    }
+
+    public void setInsTime(Date insTime) {
+        this.insTime = insTime;
+    }
+}

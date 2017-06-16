@@ -1,0 +1,7 @@
+package com.guide.mapper;
+
+import com.guide.pojo.ZkUser;
+
+public interface ZkUserMapper {
+	int Validate_right(ZkUser zkuser);
+}

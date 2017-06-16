@@ -1,0 +1,101 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class TCode implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer id;
+
+	private String invCo;
+
+	private String createUser;
+
+	private Date createTime;
+
+	private Date deadTime;
+
+	private Date appTime;
+
+	private String validStatus;
+
+	private Date updTime;
+
+	private Date insTime;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getInvCo() {
+		return invCo;
+	}
+
+	public void setInvCo(String invCo) {
+		this.invCo = invCo;
+	}
+
+	public String getCreateUser() {
+		return createUser;
+	}
+
+	public void setCreateUser(String createUser) {
+		this.createUser = createUser;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getDeadTime() {
+		return deadTime;
+	}
+
+	public void setDeadTime(Date deadTime) {
+		this.deadTime = deadTime;
+	}
+
+	public Date getAppTime() {
+		return appTime;
+	}
+
+	public void setAppTime(Date appTime) {
+		this.appTime = appTime;
+	}
+
+	public String getValidStatus() {
+		return validStatus;
+	}
+
+	public void setValidStatus(String validStatus) {
+		this.validStatus = validStatus;
+	}
+
+	public Date getUpdTime() {
+		return updTime;
+	}
+
+	public void setUpdTime(Date updTime) {
+		this.updTime = updTime;
+	}
+
+	public Date getInsTime() {
+		return insTime;
+	}
+
+	public void setInsTime(Date insTime) {
+		this.insTime = insTime;
+	}
+}

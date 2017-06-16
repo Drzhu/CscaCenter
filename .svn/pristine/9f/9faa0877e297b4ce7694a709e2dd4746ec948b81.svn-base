@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.SubmitHospitalMapper">
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+
+	<select id="datatable_query" parameterType="HashMap"
+		resultType="com.guide.pojo.SubmitHospital">
+		<![CDATA[
+		SELECT a.HName,a.Hlevel,a.City,a.JudgeMan,a.JMTel,a.HUnitID, a.`AreaID` FROM t_hunit a LEFT JOIN 
+		zlpg_value b ON a.`HUnitID` = b.`hunitid` WHERE b.`PState`=1 and a.AreaID = #{areaid} and a.HName like "%${HName}%" ORDER BY a.${order_Column} ${order_t} limit #{start},10;
+		]]>
+	</select>
+
+	<select id="query_count" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT count(*) FROM t_hunit a LEFT JOIN 
+		zlpg_value b ON a.`HUnitID` = b.`hunitid` WHERE b.`PState`=1 and a.AreaID = #{areaid} and a.HName like "%${str}%" ;
+		]]>
+	</select>
+
+	<select id="nosubmit_datatable_query" parameterType="HashMap"
+		resultType="com.guide.pojo.THunit">
+		<![CDATA[
+		SELECT b.* FROM t_hunit b WHERE b.HUnitID NOT IN (SELECT a.HUnitID FROM zlpg_value a WHERE a.PState=1) 
+		and b.AreaID = #{areaid} and b.HName like "%${HName}%" ORDER BY b.${order_Column} ${order_t} limit #{start},10;
+		]]>
+	</select>
+
+	<select id="nosubmit_query_count" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT count(*) FROM t_hunit b WHERE b.HUnitID NOT IN (SELECT a.HUnitID FROM zlpg_value a WHERE a.PState=1) and b.AreaID = ${areaid} and b.HName like "%${str}%";
+		]]>
+
+	</select>
+
+</mapper>

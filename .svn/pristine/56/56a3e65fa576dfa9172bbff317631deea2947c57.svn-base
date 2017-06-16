@@ -1,0 +1,56 @@
+package com.guide.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.guide.mapper.THunitMapper;
+import com.guide.pojo.HospitalEdit;
+import com.guide.pojo.THunit;
+import com.guide.pojo.ZVAndZlpgVariable;
+import com.guide.pojo.ZlpgValue;
+import com.guide.pojo.ZlpgVariable;
+
+@Service("tHunitService")
+public class THunitServiceImpl implements THunitService {
+	@Autowired
+	private THunitMapper tHunitMapper;
+
+	public List<THunit> selectByTHunitWithHospital(THunit thunit) {
+		System.err.println(thunit.getHname());
+		return tHunitMapper.selectByTHunitWithHospital(thunit);
+	}
+
+	public List<ZlpgVariable> select_Pcode() {
+		// TODO Auto-generated method stub
+		return tHunitMapper.select_Pcode();
+	}
+
+	public void update_Pcode(ZVAndZlpgVariable zazv) {
+		// TODO Auto-generated method stub
+		tHunitMapper.update_Pcode(zazv);
+	}
+
+	public void update_PState(ZlpgValue zv) {
+		// TODO Auto-generated method stub
+		tHunitMapper.update_PState(zv);
+	}
+
+	public void insert_hospital(ZlpgValue zv) {
+		// TODO Auto-generated method stub
+		tHunitMapper.insert_hospital(zv);
+	}
+
+	public int select_hospital(int hunitid) {
+		// TODO Auto-generated method stub
+		return tHunitMapper.select_hospital(hunitid);
+	}
+
+	public ZlpgValue load_value(String hunitid) {
+		// TODO Auto-generated method stub
+		return tHunitMapper.load_value(hunitid);
+	}
+
+
+}

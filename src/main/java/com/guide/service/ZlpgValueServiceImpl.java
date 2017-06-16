@@ -1,0 +1,44 @@
+package com.guide.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.guide.mapper.ZlpgValueMapper;
+import com.guide.pojo.SubmitHospital;
+import com.guide.pojo.THunit;
+import com.guide.pojo.TXTDownload;
+import com.guide.pojo.ZVAndZlpgVariable;
+import com.guide.pojo.ZlpgValue;
+import com.guide.pojo.ZlpgVariable;
+
+@Service("zlpgValueService")
+public class ZlpgValueServiceImpl implements ZlpgValueService {
+	@Autowired
+	private ZlpgValueMapper zlpgValueMapper;
+
+	public List<TXTDownload> submit_txt(String areaid) {
+		return zlpgValueMapper.submit_txt(areaid);
+	}
+
+	public List<THunit> nosubmit_txt(String areaid) {
+		return zlpgValueMapper.nosubmit_txt(areaid);
+	}
+
+	public List<SubmitHospital> downloadExcel(String areaid) {
+		// TODO Auto-generated method stub
+		return zlpgValueMapper.downloadExcel(areaid);
+	}
+
+	public List<SubmitHospital> excel_NotFilled(String areaid) {
+		// TODO Auto-generated method stub
+		return zlpgValueMapper.excel_NotFilled(areaid);
+	}
+
+	public List<ZlpgVariable> excelColList() {
+		// TODO Auto-generated method stub
+		return zlpgValueMapper.excelColList();
+	}
+
+}

@@ -1,0 +1,54 @@
+package com.guide.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.guide.mapper.TDoctorMapper;
+import com.guide.pojo.TDoctor;
+
+@Service("doctorService")
+public class DoctorServiceImpl implements DoctorService {
+	@Autowired
+	private TDoctorMapper doctorMapper;
+
+	public int deleteByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return doctorMapper.deleteByPrimaryKey(id);
+	}
+
+	public int insert(TDoctor record) {
+		// TODO Auto-generated method stub
+		return doctorMapper.insert(record);
+	}
+
+	public int insertSelective(TDoctor record) {
+		// TODO Auto-generated method stub
+		return doctorMapper.insertSelective(record);
+	}
+
+	public TDoctor selectByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return doctorMapper.selectByPrimaryKey(id);
+	}
+
+	public int updateByPrimaryKeySelective(TDoctor record) {
+		// TODO Auto-generated method stub
+		return doctorMapper.updateByPrimaryKeySelective(record);
+	}
+
+	public int updateByPrimaryKey(TDoctor record) {
+		// TODO Auto-generated method stub
+		return doctorMapper.updateByPrimaryKey(record);
+	}
+
+	public int validate_user(String username) {
+		// TODO Auto-generated method stub
+		return doctorMapper.validate_user(username);
+	}
+
+	public int validate_right(TDoctor record) {
+		// TODO Auto-generated method stub
+		return doctorMapper.validate_right(record);
+	}
+
+}

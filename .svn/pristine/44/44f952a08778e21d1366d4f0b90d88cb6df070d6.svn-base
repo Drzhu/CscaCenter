@@ -1,0 +1,47 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+
+public class ZlpgVariable implements Serializable {
+    /**
+     * zlpg_variable.id (变量id)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Integer id;
+
+    /**
+     * zlpg_variable.pcode (变量名)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private String pcode;
+
+    /**
+     * zlpg_variable.cname (中文含义)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private String cname;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPcode() {
+        return pcode;
+    }
+
+    public void setPcode(String pcode) {
+        this.pcode = pcode;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+}

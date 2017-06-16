@@ -1,0 +1,177 @@
+package com.guide.controller;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.pojo.TUser;
+import com.guide.service.TUserService;
+import com.guide.util.JsonUtil;
+
+/**
+ * @author zhutong
+ */
+@Controller
+@RequestMapping("/")
+public class UserController {
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat fmr = new SimpleDateFormat("MM-dd");
+	DecimalFormat df = new DecimalFormat();
+	private Logger logger;
+
+	@Resource(name = "tUserService")
+	private TUserService tUserService;
+
+	public UserController() {
+		this.logger = Logger.getLogger(UserController.class);
+	}
+
+	// 退出登录
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpSession session) {
+		// 删除session登录信息
+		session.removeAttribute("login_level");
+		return "login";
+	}
+
+	// 登录验证
+	// @ResponseBody
+	// @RequestMapping(value = "Validate_b", method = RequestMethod.POST,
+	// produces = "text/plain;charset=UTF-8")
+	/*
+	 * public String Validate_b(@RequestParam("username") String
+	 * username, @RequestParam("password") String password, HttpServletRequest
+	 * request, HttpSession session, HttpServletResponse response) throws
+	 * Exception { HashMap<String, String> map = new HashMap<String, String>();
+	 * int black = tUserService.Validate_bk(username); if (black != 0) { return
+	 * "{\"error\":\"error\"}"; } // 医院人员账号是否正确 List<TUser> list_hosp =
+	 * tUserService.selectUserByPassword(username,password); List<TUser>
+	 * list_prov =
+	 * tUserService.selectZkUserByPassword(username,password,"province");
+	 * List<TUser> list_state =
+	 * tUserService.selectZkUserByPassword(username,password,"state");
+	 * if(list_hosp.size()!=0){ session.setAttribute("username", username);
+	 * session.setAttribute("login_level", "hosp");
+	 * session.setAttribute("hunitid", list_hosp.get(0).getHUnitID());
+	 * session.setAttribute("areaid", list_hosp.get(0).getAreaId());
+	 * session.setAttribute("areaname", list_hosp.get(0).getAreaName());
+	 * session.setAttribute("HName", list_hosp.get(0).getHname()); map.put("17",
+	 * "17"); addCookie(username, password, response, request); }else
+	 * if(list_prov.size()!= 0){ session.setAttribute("username", username);
+	 * session.setAttribute("areaid", list_prov.get(0).getAreaId());
+	 * session.setAttribute("areaname", list_prov.get(0).getAreaName());
+	 * session.setAttribute("login_level", "prov"); addCookie(username,
+	 * password, response, request); map.put("199", "199"); }else
+	 * if(list_state.size()!=0){ session.setAttribute("username", username);
+	 * session.setAttribute("login_level", "state"); addCookie(username,
+	 * password, response, request); map.put("9999", "9999"); }else{
+	 * map.put("error", "error"); } return JsonUtil.map2json(map); }
+	 */
+	// 登录验证
+	@ResponseBody
+	@RequestMapping(value = "Validate_b", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String Validate_c(@RequestParam("username") String username, @RequestParam("password") String password,
+			HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		int black = tUserService.Validate_bk(username);
+		if (black != 0) {
+			logger.error("黑名单用户："+username);
+			return "{\"error\":\"error\"}";
+		}
+		// 医院人员账号是否正确
+		List<TUser> list_hosp = tUserService.selectUserByPassword(username, password);
+		List<TUser> list = tUserService.selectZkUserByPassword(username, password);
+		if (list_hosp.size() == 0) {
+			String login_level = list.get(0).getLevel();
+			if (list.size() != 0) {
+				switch (login_level) {
+				case "province":
+					logger.info("登录级别："+login_level+",用户名：【"+list.get(0).getAreaName()+"】"+username);
+					session.setAttribute("username", username);
+					session.setAttribute("areaid", list.get(0).getAreaId());
+					session.setAttribute("areaname", list.get(0).getAreaName());
+					session.setAttribute("login_level", "prov");
+					addCookie(username, password, response, request);
+					map.put("199", "199");
+					break;
+				case "state":
+					logger.info("登录级别："+login_level+",用户名："+username);
+					session.setAttribute("username", username);
+					session.setAttribute("login_level", "state");
+					addCookie(username, password, response, request);
+					map.put("9999", "9999");
+					break;
+				case "other":
+					logger.info("登录级别："+login_level+",用户名：【"+list.get(0).getRole()+"】"+username);
+					session.setAttribute("username", username);
+					session.setAttribute("login_level", "other");
+					session.setAttribute("views", list.get(0).getRole());
+					addCookie(username, password, response, request);
+					map.put("other", "other");
+					break;
+				default:
+					logger.error("其他类角色:"+username);
+					map.put("error", "error");
+					break;
+				}
+			}else{
+				logger.error("用户名或密码错误:"+username);
+				return "{\"error\":\"error\"}";
+			}
+		}else{
+			logger.info("登录级别：Hospital,用户名："+username);
+			session.setAttribute("username", username);
+			session.setAttribute("login_level", "hosp");
+			session.setAttribute("hunitid", list_hosp.get(0).getHUnitID());
+			session.setAttribute("areaid", list_hosp.get(0).getAreaId());
+			session.setAttribute("areaname", list_hosp.get(0).getAreaName());
+			session.setAttribute("HName", list_hosp.get(0).getHname());
+			map.put("17", "17");
+			addCookie(username, password, response, request);
+		}
+		return JsonUtil.map2json(map);
+	}
+
+	private void addCookie(String username, String password, HttpServletResponse response, HttpServletRequest request)
+			throws UnsupportedEncodingException {
+		if (!username.equals("") && !password.equals("")) {
+			// 创建Cookie
+			Cookie nameCookie = new Cookie("name", URLEncoder.encode(username, "utf-8"));
+			Cookie pswCookie = new Cookie("psw", password);
+			// 设置Cookie的父路径
+			nameCookie.setPath(request.getContextPath() + "/");
+			pswCookie.setPath(request.getContextPath() + "/");
+
+			// 获取是否保存Cookie
+			String rememberMe = request.getParameter("rember");
+			if (rememberMe == null || rememberMe.equals(false)) {// 不保存Cookie
+				nameCookie.setMaxAge(0);
+				pswCookie.setMaxAge(0);
+			} else {// 保存Cookie的时间长度，单位为秒
+				nameCookie.setMaxAge(7 * 24 * 60 * 60);
+				pswCookie.setMaxAge(7 * 24 * 60 * 60);
+			}
+			// 加入Cookie到响应头
+			response.addCookie(nameCookie);
+			response.addCookie(pswCookie);
+		}
+	}
+
+}

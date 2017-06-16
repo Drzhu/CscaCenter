@@ -1,0 +1,122 @@
+package com.guide.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONArray;
+import com.guide.pojo.ProvinceEntity;
+import com.guide.service.ProvinceService;
+
+@Controller
+@RequestMapping("/2")
+public class ProvinceKPIController {
+
+	
+	@Autowired
+	private ProvinceService provinceService;
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "selectAllHospital",method = RequestMethod.GET)
+	public String selectAllHospital(HttpServletRequest req,HttpServletResponse resp){
+		List<ProvinceEntity> list_hos = provinceService.selectAllHospital();
+		List<ProvinceEntity> list_bingli = provinceService.selectAllBingLi();
+		List<String> x_catalog = new ArrayList<String>();
+		List<Integer> y_data = new ArrayList<Integer>();
+		for(ProvinceEntity p:list_hos){
+			x_catalog.add(p.getAreaName());
+			y_data.add(p.getAreaName_Count());
+		}
+		
+		List<String> x_catalog_bingli = new ArrayList<String>();
+		List<Integer> y_data_bingli = new ArrayList<Integer>();
+		for(ProvinceEntity p:list_bingli){
+			x_catalog_bingli.add(p.getAreaName());
+			y_data_bingli.add(p.getAreaName_Count());
+		}
+		
+		List<ProvinceEntity> pie_state_all = provinceService.selectStateAll("2017-03-11","2017-03-12");
+		JSONArray pie_state_json = new JSONArray();
+		for(ProvinceEntity p1:pie_state_all){
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", p1.getA_Diag_Name());
+			Hos_obj.put("value", p1.getA_DIAG_Count());
+			pie_state_json.add(Hos_obj);
+		}
+		
+		List<ProvinceEntity> pie_state_two = provinceService.selectStateLevel("二级","2017-03-11","2017-03-12");
+		JSONArray pie_state_two_json = new JSONArray();
+		for(ProvinceEntity p2:pie_state_two){
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", p2.getA_Diag_Name());
+			Hos_obj.put("value", p2.getA_DIAG_Count());
+			pie_state_two_json.add(Hos_obj);
+		}
+		
+		List<ProvinceEntity> pie_state_three = provinceService.selectStateLevel("三级","2017-03-11","2017-03-12");
+		JSONArray pie_state_three_json = new JSONArray();
+		for(ProvinceEntity p3:pie_state_three){
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", p3.getA_Diag_Name());
+			Hos_obj.put("value", p3.getA_DIAG_Count());
+			pie_state_three_json.add(Hos_obj);
+		}
+		
+		req.setAttribute("x_catalog", x_catalog);
+		req.setAttribute("y_data", y_data);
+		req.setAttribute("x_catalog_bingli", x_catalog_bingli);
+		req.setAttribute("y_data_bingli", y_data_bingli);
+		req.setAttribute("pie_state_json", pie_state_json);
+		req.setAttribute("pie_state_two_json", pie_state_two_json);
+		req.setAttribute("pie_state_three_json", pie_state_three_json);
+		return "province/test";
+	}
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "hos_datatable", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String datatable_query(HttpServletRequest request, @RequestParam("search[value]") String search,
+			@RequestParam("draw") int draw, @RequestParam("start") int start,@RequestParam("areaname") String areaname,@RequestParam("order[0][column]") String order_k,@RequestParam("order[0][dir]") String order_t) throws Exception {
+		
+		String start_time ="2016-01-01";
+		String end_time = "2016-02-02";
+		
+		String order_Column = request.getParameter("columns["+order_k+"][name]");
+		String str = request.getParameter("search[value]");
+		List<ProvinceEntity> len = provinceService.selectCount(start_time,end_time,areaname);
+		List<ProvinceEntity> list = provinceService.datatable_query(start_time,end_time,areaname,start,order_t,order_Column);
+		JSONObject json = new JSONObject();
+		List<List<Object>> list1 = new ArrayList<List<Object>>();
+		List<Object> list2 = new ArrayList<Object>();
+
+		for (ProvinceEntity i : list) {
+			list2.add(i.getHName());
+			list2.add(i.getAreaName());
+			list2.add(i.getCity());
+			list2.add(i.getHlevel());
+			list2.add(i.getCzlevel());
+			list2.add(i.getJMTel()+"\r\n"+i.getJMMail());
+			list2.add(i.getLinkTel()+"\r\n"+i.getLinkMail());
+			//list2.add(i.getCtime());
+			list2.add("授牌时间");
+			list2.add(i.getBingli_count());
+			list2.add(i.getBingli_count()*0.3);
+			list1.add(list2);
+			list2 = new ArrayList<Object>();
+		}
+		json.put("data", list1);
+		json.put("recordsTotal", len.size());
+		json.put("recordsFiltered", len.size());
+		json.put("draw", draw);
+		return json.toJSONString();
+	}
+}

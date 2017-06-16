@@ -1,0 +1,24 @@
+package com.guide.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.guide.mapper.SubmitHospitalMapper;
+import com.guide.pojo.SubmitHospital;
+
+@Service("submitHospitalService")
+public class SubmitHospitalServiceImpl implements SubmitHospitalService {
+	@Autowired
+	private SubmitHospitalMapper submitHospitalMapper;
+
+	public List<SubmitHospital> datatable_query(int start, String HName) {
+		return submitHospitalMapper.datatable_query(start, HName);
+	}
+
+	public int query_count(String str) {
+		return submitHospitalMapper.query_count(str);
+	}
+
+}

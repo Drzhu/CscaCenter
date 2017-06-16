@@ -1,0 +1,459 @@
+package com.guide.controller;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONArray;
+import com.guide.pojo.ProvinceEntity;
+import com.guide.service.ProvinceService;
+import com.guide.util.DateUtil;
+
+@Controller
+@RequestMapping("/2")
+public class ProvinceKPIController {
+
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd ");
+	DecimalFormat df = new DecimalFormat("0");
+	@Autowired
+	private ProvinceService provinceService;
+	private static String Down_str;
+	@RequestMapping(value = "hosSummary", method = { RequestMethod.GET })
+	public String hosSummary(HttpServletRequest req, HttpServletResponse resp) {
+		return "province/hosSummary";
+	}
+
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "hosSummary", method = { RequestMethod.POST })
+	public String hosSummary_do(HttpServletRequest req, HttpServletResponse resp,
+			@RequestParam(value = "areaname", required = false) String areaname,
+			@RequestParam(value = "start_time", required = false) String start_time,
+			@RequestParam(value = "end_time", required = false) String end_time,
+			@RequestParam(value = "timespan", required = false) Integer timespan) {
+		List<ProvinceEntity> list_hos = provinceService.selectAllHospital();
+		List<ProvinceEntity> list_bingli = provinceService.selectAllBingLi(areaname, start_time, end_time);
+		JSONObject dict = new JSONObject();
+		dict.put("1", "脑梗死");
+		dict.put("2", "短暂性脑缺血发作");
+		dict.put("3", "脑内出血");
+		dict.put("4", "蛛网膜下腔出血");
+		dict.put("5", "其他未能分类卒中");
+		String x_catalog = ",";
+		List<Integer> y_data = new ArrayList<Integer>();
+		for (ProvinceEntity p : list_hos) {
+			x_catalog += p.getAreaName() + ",";
+			y_data.add(p.getAreaName_Count());
+		}
+		String x_catalog_bingli = ",";
+		List<Integer> y_data_bingli = new ArrayList<Integer>();
+		for (ProvinceEntity p : list_bingli) {
+			x_catalog_bingli += p.getAreaName() + ",";
+			y_data_bingli.add(p.getAreaName_Count());
+		}
+
+		List<ProvinceEntity> pie_state_all = provinceService.selectStateAll(start_time, end_time);
+		JSONArray pie_state_json = new JSONArray();
+		for (ProvinceEntity p1 : pie_state_all) {
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", dict.get(p1.getA_Diag_Name()));
+			Hos_obj.put("value", p1.getA_DIAG_Count());
+			pie_state_json.add(Hos_obj);
+		}
+
+		List<ProvinceEntity> pie_state_two = provinceService.selectStateLevel("二级", start_time, end_time);
+		JSONArray pie_state_two_json = new JSONArray();
+		for (ProvinceEntity p2 : pie_state_two) {
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", dict.get(p2.getA_Diag_Name()));
+			Hos_obj.put("value", p2.getA_DIAG_Count());
+			pie_state_two_json.add(Hos_obj);
+		}
+
+		List<ProvinceEntity> pie_state_three = provinceService.selectStateLevel("三级", start_time, end_time);
+		JSONArray pie_state_three_json = new JSONArray();
+		for (ProvinceEntity p3 : pie_state_three) {
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", dict.get(p3.getA_Diag_Name()));
+			Hos_obj.put("value", p3.getA_DIAG_Count());
+			pie_state_three_json.add(Hos_obj);
+		}
+
+		List<ProvinceEntity> pie_province_all = provinceService.selectProvinceAll(areaname, start_time, end_time);
+		JSONArray pie_province_json = new JSONArray();
+		for (ProvinceEntity p4 : pie_province_all) {
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", dict.get(p4.getA_Diag_Name()));
+			Hos_obj.put("value", p4.getA_DIAG_Count());
+			pie_province_json.add(Hos_obj);
+		}
+		List<ProvinceEntity> pie_province_two = provinceService.selectProvinceLevel(areaname, "二级", start_time,
+				end_time);
+		JSONArray pie_province_two_json = new JSONArray();
+		for (ProvinceEntity p5 : pie_province_two) {
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", dict.get(p5.getA_Diag_Name()));
+			Hos_obj.put("value", p5.getA_DIAG_Count());
+			pie_province_two_json.add(Hos_obj);
+		}
+		List<ProvinceEntity> pie_province_three = provinceService.selectProvinceLevel(areaname, "三级", start_time,
+				end_time);
+		JSONArray pie_province_three_json = new JSONArray();
+		for (ProvinceEntity p6 : pie_province_three) {
+			JSONObject Hos_obj = new JSONObject();
+			Hos_obj.put("name", dict.get(p6.getA_Diag_Name()));
+			Hos_obj.put("value", p6.getA_DIAG_Count());
+			pie_province_three_json.add(Hos_obj);
+		}
+		String data_outer = "";
+		List<ProvinceEntity> list = provinceService.datatable_query_local(start_time, end_time, areaname);
+		List<ProvinceEntity> list_all = provinceService.datatable_query_all(areaname);
+		Map<String, ProvinceEntity> map1 = new HashMap<>();
+		for(ProvinceEntity i:list_all){
+			map1.put(i.getHName(), i);
+		}
+		for(ProvinceEntity i:list){
+			map1.put(i.getHName(), i);
+		}
+		Iterator<String> iter = map1.keySet().iterator();
+		while(iter.hasNext()){
+			String key = iter.next();
+			data_outer += "<a id = \""+map1.get(key).getHUnitId()+"\" name=\"area\">"+map1.get(key).getHName()+"</a>"+","+map1.get(key).getAreaName()+","+map1.get(key).getCity()+","+map1.get(key).getHlevel()+","+map1.get(key).getCzlevel()+","+map1.get(key).getJudgeMan()
+			+","+map1.get(key).getJMTel()+","+map1.get(key).getJMMail()+","+
+			(map1.get(key).getCtime() == null ? "-" : sdf.format(map1.get(key).getCtime()))+
+			","+(map1.get(key).getBingli_count() == null ?0:map1.get(key).getBingli_count())+","+
+			(map1.get(key).getBingli_count() == null ? 0:df.format(Integer.parseInt(map1.get(key).getBingli_count()) / (timespan / 30.0)))+"*";
+		}
+		Down_str = data_outer;
+		req.setAttribute("start_time", start_time);
+		req.setAttribute("end_time", end_time);
+		req.setAttribute("timespan", timespan);
+		req.setAttribute("x_catalog", x_catalog.substring(1, x_catalog.length() - 1));
+		req.setAttribute("y_data", y_data);
+		req.setAttribute("x_catalog_bingli", x_catalog_bingli.substring(1, x_catalog_bingli.length() - 1));
+		req.setAttribute("y_data_bingli", y_data_bingli);
+		req.setAttribute("pie_state_json", pie_state_json);
+		req.setAttribute("pie_state_two_json", pie_state_two_json);
+		req.setAttribute("pie_state_three_json", pie_state_three_json);
+		req.setAttribute("pie_province_json", pie_province_json);
+		req.setAttribute("pie_province_two_json", pie_province_two_json);
+		req.setAttribute("pie_province_three_json", pie_province_three_json);
+		req.setAttribute("dataTable", data_outer);
+		return "province/hosSummary_do";
+	}
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "DownExcelByProvince", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String DownExcelByProvince(HttpServletRequest req, HttpServletResponse resp,
+			@RequestParam(value = "areaname") String areaname, @RequestParam(value = "start_time") String start_time,
+			@RequestParam(value = "end_time") String end_time, @RequestParam(value = "timespan") int timespan) {
+		JSONObject res = new JSONObject();
+		List<JSONObject> list_data = new ArrayList<JSONObject>();
+		String[] data =Down_str.split("\\*");
+		for (int i = 0; i < data.length; i++) {
+			JSONObject json = new JSONObject();
+			json.put("hname", data[i].split(",")[0]);
+			json.put("areaname", data[i].split(",")[1]);
+			json.put("city", data[i].split(",")[2]);
+			json.put("hlevel", data[i].split(",")[3]);
+			json.put("czlevel", data[i].split(",")[4]);
+			json.put("jmname", data[i].split(",")[5]);
+			json.put("jmtel", data[i].split(",")[6]);
+			json.put("jmmail", data[i].split(",")[7]);
+			json.put("time", data[i].split(",")[8] == null ? "-" : data[i].split(",")[8]);
+			json.put("bingli_count", data[i].split(",")[9]);
+			json.put("evg", df.format(Integer.parseInt(data[i].split(",")[9]) / (timespan / 30.0)));
+			list_data.add(json);
+		}
+		res.put("data", list_data);
+		return res.toJSONString();
+	}
+	//dataTable服务器模式时开启使用。
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "hos_datatable", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String datatable_query(HttpServletRequest request, @RequestParam("search[value]") String search,
+			@RequestParam("draw") int draw, @RequestParam("start") int start, @RequestParam("areaname") String areaname,
+			@RequestParam("order[0][column]") String order_k, @RequestParam("order[0][dir]") String order_t,
+			@RequestParam("timespan") int timespan, @RequestParam("start_time") String start_time,
+			@RequestParam("end_time") String end_time) throws Exception {
+
+		String order_Column = request.getParameter("columns[" + order_k + "][name]");
+		List<ProvinceEntity> len = provinceService.selectCount(start_time, end_time, areaname);
+		List<ProvinceEntity> list = provinceService.datatable_query(start_time, end_time, areaname, start, order_t,order_Column);
+		JSONObject json = new JSONObject();
+		List<List<String>> list1 = new ArrayList<List<String>>();
+		List<String> list2 = new ArrayList<String>();
+		for (ProvinceEntity i : list) {
+			list2.add(i.getHName());
+			list2.add(i.getAreaName());
+			list2.add(i.getCity());
+			list2.add(i.getHlevel());
+			list2.add(i.getCzlevel());
+			list2.add(i.getJudgeMan());//卒中中心主任姓名
+			list2.add(i.getJMTel());//卒中中心主任电话
+			list2.add(i.getJMMail());//卒中中心主任邮箱
+			list2.add(i.getCtime() == null ? "" : sdf.format(i.getCtime()));
+			list2.add(i.getBingli_count());
+			list2.add(df.format(Integer.parseInt(i.getBingli_count()) / (timespan / 30.0)));
+			list1.add(list2);
+			list2 = new ArrayList<String>();
+			}
+		if("Utype".equals(order_Column) && "desc".equals(order_t)){//病例数排序替代名称（Utype=>bingli）
+			list1 = OrderByCountDesc(list1);
+		}if("Utype".equals(order_Column) && "asc".equals(order_t)){
+			list1 = OrderByCountAsc(list1);
+		}
+		if("LinkTel".equals(order_Column) && "desc".equals(order_t)){//平均数排序替换名称（LinkTel=>evg）
+			list1 = OrderByEvgDesc(list1);
+		}
+		if("LinkTel".equals(order_Column) && "asc".equals(order_t)){
+			list1 = OrderByEvgAsc(list1);
+		}
+		json.put("data", list1);
+		json.put("recordsTotal", len.size());
+		json.put("recordsFiltered", len.size());
+		json.put("draw", draw);
+		return json.toJSONString();
+	}
+
+	@RequestMapping(value = "kpifeedback", method = { RequestMethod.GET })
+	public String kpifeedback(HttpServletRequest req, HttpServletResponse resp) {
+		return "province/kpifeedback";
+	}
+
+	@RequestMapping(value = "kpifeedback", method = { RequestMethod.POST })
+	public String kpifeedback_do(HttpServletRequest req, HttpServletResponse resp,
+			@RequestParam(value = "areaname", required = false) String areaname,
+			@RequestParam(value = "start_time", required = false) String start_time,
+			@RequestParam(value = "end_time", required = false) String end_time,
+			@RequestParam(value = "timespan", required = false) String timespan) {
+
+		List<ProvinceEntity> list_pro_con = provinceService.ConSelectPro(areaname, start_time, end_time);
+		List<Float> pro_con = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_con) {
+			pro_con.add(i.getCon_score());
+		}
+		List<ProvinceEntity> list_pro_con_L2 = provinceService.ConSelectProByLevel(areaname, "二级", start_time,
+				end_time);
+		List<Float> pro_con_L2 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_con_L2) {
+			pro_con_L2.add(i.getCon_score());
+		}
+		List<ProvinceEntity> list_pro_con_L3 = provinceService.ConSelectProByLevel(areaname, "三级", start_time,
+				end_time);
+		List<Float> pro_con_L3 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_con_L3) {
+			pro_con_L3.add(i.getCon_score());
+		}
+		List<ProvinceEntity> list_pro = provinceService.selectPro(areaname, start_time, end_time);
+		List<Float> pro = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro) {
+			pro.add(i.getScore());
+		}
+		List<ProvinceEntity> list_pro_L2 = provinceService.selectProByLevel(areaname, "二级", start_time, end_time);
+		List<Float> pro_L2 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_L2) {
+			pro_L2.add(i.getScore());
+		}
+		List<ProvinceEntity> list_pro_L3 = provinceService.selectProByLevel(areaname, "三级", start_time, end_time);
+		List<Float> pro_L3 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_L3) {
+			pro_L3.add(i.getScore());
+		}
+
+		List<ProvinceEntity> list_state_con = provinceService.ConSelectPro("", start_time, end_time);
+		List<Float> state_con = new ArrayList<Float>();
+		for (ProvinceEntity i : list_state_con) {
+			state_con.add(i.getCon_score());
+		}
+
+		List<ProvinceEntity> list_state_con_L2 = provinceService.ConSelectProByLevel("", "二级", start_time, end_time);
+		List<Float> state_con_L2 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_state_con_L2) {
+			state_con_L2.add(i.getCon_score());
+		}
+
+		List<ProvinceEntity> list_state_con_L3 = provinceService.ConSelectProByLevel("", "三级", start_time, end_time);
+		List<Float> state_con_L3 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_state_con_L3) {
+			state_con_L3.add(i.getCon_score());
+		}
+
+		List<ProvinceEntity> list_state_L2 = provinceService.selectProByLevel("", "二级", start_time, end_time);
+		List<Float> state_L2 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_state_L2) {
+			state_L2.add(i.getScore());
+		}
+
+		List<ProvinceEntity> list_state_L3 = provinceService.selectProByLevel("", "三级", start_time, end_time);
+		List<Float> state_L3 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_state_L3) {
+			state_L3.add(i.getScore());
+		}
+
+		List<ProvinceEntity> list_state = provinceService.selectPro("", start_time, end_time);
+		List<Float> state = new ArrayList<Float>();
+		for (ProvinceEntity i : list_state) {
+			state.add(i.getScore());
+		}
+
+		List<ProvinceEntity> list_pro_six_con = provinceService.ConSelectPro(areaname,
+				DateUtil.addMonth(start_time, -6), start_time);
+		List<Float> pro_six_con = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_six_con) {
+			pro_six_con.add(i.getCon_score());
+		}
+
+		List<ProvinceEntity> list_pro_six = provinceService.selectPro(areaname, DateUtil.addMonth(start_time, -6),
+				start_time);
+		List<Float> pro_six = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_six) {
+			pro_six.add(i.getScore());
+		}
+		List<ProvinceEntity> list_pro_six_con_L2 = provinceService.ConSelectProByLevel(areaname, "二级",
+				DateUtil.addMonth(start_time, -6), start_time);
+		List<Float> pro_six_con_L2 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_six_con_L2) {
+			pro_six_con_L2.add(i.getCon_score());
+		}
+		List<ProvinceEntity> list_pro_six_L2 = provinceService.selectProByLevel(areaname, "二级",
+				DateUtil.addMonth(start_time, -6), start_time);
+		List<Float> pro_six_L2 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_six_L2) {
+			pro_six_L2.add(i.getScore());
+		}
+		List<ProvinceEntity> list_pro_six_con_L3 = provinceService.ConSelectProByLevel(areaname, "三级",
+				DateUtil.addMonth(start_time, -6), start_time);
+		List<Float> pro_six_con_L3 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_six_con_L3) {
+			pro_six_con_L3.add(i.getCon_score());
+		}
+		List<ProvinceEntity> list_pro_six_L3 = provinceService.selectProByLevel(areaname, "三级",
+				DateUtil.addMonth(start_time, -6), start_time);
+		List<Float> pro_six_L3 = new ArrayList<Float>();
+		for (ProvinceEntity i : list_pro_six_L3) {
+			pro_six_L3.add(i.getScore());
+		}
+		req.setAttribute("pro_six_con_L3", pro_six_con_L3);
+		req.setAttribute("pro_six_L3", pro_six_L3);
+		req.setAttribute("pro_six_L2", pro_six_L2);
+		req.setAttribute("pro_six_con_L2", pro_six_con_L2);
+		req.setAttribute("pro_six", pro_six);
+		req.setAttribute("pro_six_con", pro_six_con);
+		req.setAttribute("state_L3", state_L3);
+		req.setAttribute("state_L2", state_L2);
+		req.setAttribute("state_con_L2", state_con_L2);
+		req.setAttribute("state_con_L3", state_con_L3);
+		req.setAttribute("state", state);
+		req.setAttribute("state_con", state_con);
+		req.setAttribute("pro_con", pro_con);
+		req.setAttribute("pro_con_L2", pro_con_L2);
+		req.setAttribute("pro_con_L3", pro_con_L3);
+		req.setAttribute("pro", pro);
+		req.setAttribute("pro_L2", pro_L2);
+		req.setAttribute("pro_L3", pro_L3);
+		req.setAttribute("start_time", start_time);
+		req.setAttribute("end_time", end_time);
+		req.setAttribute("timespan", timespan);
+		return "province/kpifeedback_do";
+	}
+
+
+	private List<List<String>> OrderByCountDesc(List<List<String>> list1) {
+		List<List<String>> list = new ArrayList<List<String>>();
+		Map<Integer, List<String>> map = new TreeMap<Integer, List<String>>(new Comparator<Integer>() {
+			public int compare(Integer obj1, Integer obj2) {
+				// 降序排序
+				return obj2.compareTo(obj1);
+			}
+		});
+		for (int i = 0; i < list1.size(); i++) {
+			map.put(Integer.parseInt(list1.get(i).get(9)), list1.get(i));
+		}
+		Set<Integer> keySet = map.keySet();
+		Iterator<Integer> iter = keySet.iterator();
+		while (iter.hasNext()) {
+			Integer key = iter.next();
+			list.add(map.get(key));
+		}
+		return list;
+	}
+
+	private List<List<String>> OrderByCountAsc(List<List<String>> list1) {
+		List<List<String>> list = new ArrayList<List<String>>();
+		Map<Integer, List<String>> map = new TreeMap<Integer, List<String>>(new Comparator<Integer>() {
+			public int compare(Integer obj1, Integer obj2) {
+				// 升序排序
+				return obj1.compareTo(obj2);
+			}
+		});
+		for (int i = 0; i < list1.size(); i++) {
+			map.put(Integer.parseInt(list1.get(i).get(9)), list1.get(i));
+		}
+		Set<Integer> keySet = map.keySet();
+		Iterator<Integer> iter = keySet.iterator();
+		while (iter.hasNext()) {
+			Integer key = iter.next();
+			list.add(map.get(key));
+		}
+		return list;
+	}
+
+	private List<List<String>> OrderByEvgDesc(List<List<String>> list1) {
+		List<List<String>> list = new ArrayList<List<String>>();
+		Map<Integer, List<String>> map = new TreeMap<Integer, List<String>>(new Comparator<Integer>() {
+			public int compare(Integer obj1, Integer obj2) {
+				// 降序排序
+				return obj2.compareTo(obj1);
+			}
+		});
+		for (int i = 0; i < list1.size(); i++) {
+			map.put(Integer.parseInt(list1.get(i).get(10)), list1.get(i));
+		}
+		Set<Integer> keySet = map.keySet();
+		Iterator<Integer> iter = keySet.iterator();
+		while (iter.hasNext()) {
+			Integer key = iter.next();
+			list.add(map.get(key));
+		}
+		return list;
+	}
+
+	private List<List<String>> OrderByEvgAsc(List<List<String>> list1) {
+		List<List<String>> list = new ArrayList<List<String>>();
+		Map<Integer, List<String>> map = new TreeMap<Integer, List<String>>(new Comparator<Integer>() {
+			public int compare(Integer obj1, Integer obj2) {
+				// 升序排序
+				return obj1.compareTo(obj2);
+			}
+		});
+		for (int i = 0; i < list1.size(); i++) {
+			map.put(Integer.parseInt(list1.get(i).get(10)), list1.get(i));
+		}
+		Set<Integer> keySet = map.keySet();
+		Iterator<Integer> iter = keySet.iterator();
+		while (iter.hasNext()) {
+			Integer key = iter.next();
+			list.add(map.get(key));
+		}
+		return list;
+	}
+}

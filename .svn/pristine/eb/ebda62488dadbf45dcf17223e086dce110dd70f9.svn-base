@@ -1,0 +1,53 @@
+package com.guide.pojo;
+
+public class SubmitHospital {
+	private String City;
+	private String HName;
+	private String Hlevel;
+	private String LinkMan;
+	private String JMTel;
+	private String HUnitID;
+	
+	public String getCity() {
+		return City;
+	}
+	public void setCity(String city) {
+		City = city;
+	}
+	public String getHName() {
+		return HName;
+	}
+	public void setHName(String hName) {
+		HName = hName;
+	}
+	public String getHlevel() {
+		return Hlevel;
+	}
+	public void setHlevel(String hlevel) {
+		Hlevel = hlevel;
+	}
+	public String getLinkMan() {
+		return LinkMan;
+	}
+	public void setLinkMan(String linkMan) {
+		LinkMan = linkMan;
+	}
+	public String getJMTel() {
+		return JMTel;
+	}
+	public void setJMTel(String jMTel) {
+		JMTel = jMTel;
+	}
+	public String getHUnitID() {
+		return HUnitID;
+	}
+	public void setHUnitID(String hUnitID) {
+		HUnitID = hUnitID;
+	}
+	@Override
+	public String toString() {
+		return "SubmitHospital [City=" + City + ", HName=" + HName + ", Hlevel=" + Hlevel + ", LinkMan=" + LinkMan
+				+ ", JMTel=" + JMTel + ", HUnitID=" + HUnitID + "]";
+	}
+	
+}

@@ -1,0 +1,20 @@
+package com.guide.mapper;
+
+import java.util.List;
+
+import com.guide.pojo.THunit;
+import com.guide.pojo.ZlpgValue;
+
+public interface ZlpgValueMapper {
+	/*TXT下载
+	 * 查询已经填表的医院信息
+	 * 参数：省id
+	 * */
+ 	List<ZlpgValue> submit_txt(String areaid);
+ 	
+	/*TXT下载
+	 * 查询没有填表的医院信息
+	 * 参数：省id
+	 * */
+ 	List<THunit> nosubmit_txt(String areaid);
+}

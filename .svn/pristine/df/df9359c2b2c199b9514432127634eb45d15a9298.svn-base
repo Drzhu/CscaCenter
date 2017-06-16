@@ -1,0 +1,21 @@
+package com.guide.service;
+
+import com.guide.pojo.TDoctor;
+
+public interface DoctorService {
+	int deleteByPrimaryKey(Integer id);
+
+	int insert(TDoctor record);
+
+	int insertSelective(TDoctor record);
+
+	TDoctor selectByPrimaryKey(Integer id);
+
+	int updateByPrimaryKeySelective(TDoctor record);
+
+	int updateByPrimaryKey(TDoctor record);
+	
+    int validate_user(String username);
+
+	int validate_right(TDoctor record);
+}

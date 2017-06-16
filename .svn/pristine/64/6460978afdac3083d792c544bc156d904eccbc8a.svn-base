@@ -1,0 +1,135 @@
+package com.guide.controller;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.pojo.ZVAndZlpgVariable;
+import com.guide.pojo.ZlpgValue;
+import com.guide.pojo.ZlpgVariable;
+import com.guide.service.THunitService;
+import com.guide.util.JsonUtil;
+
+@Controller
+@RequestMapping("/1")
+public class HospitalController {
+
+	@Resource(name = "tHunitService")
+	private THunitService tHunitService;
+
+	@RequestMapping(value = "main", method = RequestMethod.GET)
+	public String h_main(HttpServletRequest request) {
+		return "hospital/main";
+	}
+
+	@RequestMapping(value = "evaluate", method = RequestMethod.GET)
+	public String h_evaluate(HttpServletRequest request) {
+		return "hospital/evaluate";
+	}
+	@RequestMapping(value = "select_Pcode", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String select_Pcode(HttpServletRequest request, HttpSession session) {
+		HashMap<String, List<ZlpgVariable>> map = new HashMap<String, List<ZlpgVariable>>();
+		List<ZlpgVariable> pcodeList = null;
+		ZlpgValue zv = new ZlpgValue();
+		try {
+			int hunitid = Integer.parseInt(session.getAttribute("hunitid").toString());
+			int hunitExists = tHunitService.select_hospital(hunitid);
+			if(hunitExists<1){
+				int areaid = Integer.parseInt(session.getAttribute("areaid").toString());
+				zv.setHunitid(hunitid);
+				zv.setAreaid(areaid);
+				tHunitService.insert_hospital(zv);
+			}
+			pcodeList = tHunitService.select_Pcode();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		map.put("zv", pcodeList);
+		return JsonUtil.map2json(map);
+	}
+	@RequestMapping(value = "update_Pcode", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String update_Pcode(@RequestParam("pcode") String pcode,HttpServletRequest request, HttpSession session,HttpServletResponse response) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		String result = "fail";
+		try {
+			String hunitid = session.getAttribute("hunitid").toString();
+			ZVAndZlpgVariable zazv = new ZVAndZlpgVariable();
+			String[] pcode_values = pcode.split(",");
+			for (int i = 0; i < pcode_values.length; i++) {
+				Boolean flag = false;
+				String pcode_value = pcode_values[i];
+				String pname =pcode_value.split("=")[0];
+				String pvalue =pcode_value.split("=")[1];
+				zazv.setPcode(pname);
+				zazv.setHunitid(Integer.parseInt(hunitid));
+				if("1".equalsIgnoreCase(pvalue)){
+					flag=true;
+				}
+				zazv.setPcode_value(flag);
+				tHunitService.update_Pcode(zazv);
+			}
+			result = "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "fail";
+		}
+		System.out.println(result);
+		map.put("result", result);
+		return JsonUtil.map2json(map);
+	}
+	//update_PState
+	@RequestMapping(value = "update_PState", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String update_PState(HttpServletRequest request,HttpSession session) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		String result = "fail";
+		ZlpgValue zv = new ZlpgValue();
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date putime = sdf.parse(sdf.format(new Date()));
+			int hunitid = Integer.parseInt(session.getAttribute("hunitid").toString());
+			zv.setHunitid(hunitid);
+			zv.setPUTime(putime);
+			tHunitService.update_PState(zv);
+			result = "success";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			result = "fail";
+		} 
+		map.put("result", result);
+		return JsonUtil.map2json(map);
+	}
+	//load_value
+	@RequestMapping(value = "load_value", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String load_value(HttpServletRequest request,HttpSession session) {
+		HashMap<String, ZlpgValue> map = new HashMap<String, ZlpgValue>();
+		ZlpgValue zv = null;
+		try {
+			String hunitid = session.getAttribute("hunitid").toString();
+			zv = tHunitService.load_value(hunitid);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} 
+		map.put("zv", zv);
+		return JsonUtil.map2json(map);
+	}
+	
+}

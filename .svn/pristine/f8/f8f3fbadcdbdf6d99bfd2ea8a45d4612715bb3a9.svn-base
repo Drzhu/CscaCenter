@@ -1,0 +1,695 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="common.jsp" %>
+<!DOCTYPE html>
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="<%=base %>/css/bootstrap/bootstrap-modal.css" />
+	<link rel="stylesheet" type="text/css" href="<%=base %>/css/bootstrap/bootstrap-datetimepicker.min.css" />
+	<style type="text/css">
+	.must-tips{
+	color:red;
+	}
+	.typeahead.dropdown-menu {width: 95%}
+	</style>
+		<title>中国卒中中心联盟数据管理平台</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-fixed-top navbar-inverse custom-navbar">
+			<div class="container-fluid">
+				<div class="navbar-header" style="width:100%;">
+				    <button type="button" class="navbar-toggle pull-left" data-toggle="sidebar" data-target="#sidebar" >
+				        <span class="sr-only">缩小菜单</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				    </button>
+					<a href="index" class="navbar-brand">中国卒中中心联盟—<span class="area-name">医院信息管理平台</span></a>
+					<div class="user-menu dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> ${username }  <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="/CscaCenter/logout"><i class="fa fa-sign-out"></i>&nbsp;退出</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div id="sidebar" class="sidebar">
+			<ul class="nav-list">
+				<li class="active">
+					<a href="hospitalInfo"><i class="fa fa-edit"></i> 医院基本信息</a>
+				</li>
+				<li>
+					<a href="data_manage"><i class="fa fa-database"></i> 数据上报</a>
+				</li>
+				<li>
+					<a href="permission_application"><i class="fa fa-cogs"></i> 数据反馈</a>
+				</li>
+				<li>
+					<a href="main"><i class="fa fa-edit"></i> 卒中中心评估</a>
+				</li>
+	        </ul>
+		</div>
+		<div class="main-content">
+			<div class="row">
+				<ol class="breadcrumb">
+				  <li><i class="fa fa-home"></i> 医院基本信息</li>
+				</ol>
+			</div>
+			<div class="row" >
+				<div class="col-sm-12">
+					<div class="cont-header" style="text-align: center;margin-top: 80px">
+						<h3 style="color:red;">医院基本信息 - 填写</h3>
+					</div>
+					<hr/>
+					 <form id="hospitalInfoForm" class="form-horizontal" role="form" action="hospitalInfoInsert" method="post" onkeydown="if(event.keyCode==13)return false;" >
+					 <div class="form-group">
+						<label class="col-sm-4 control-label" style="font-weight: normal;"> 已录医院名称 <span
+							class="must-tips">*</span>
+						</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" id="oldHosp" name="oldHosp" readonly="readonly"/>
+						</div>
+					</div>
+					 <div class="form-group">
+						<label class="col-sm-4 control-label" style="font-weight: normal;"> 医院名称(全称) <span
+							class="must-tips">*</span>
+						</label>
+						<div id="auto_hname" >
+							<div class="col-sm-5">
+								<input type="text"  class="form-control" id="hName" name="hName" autocomplete="off" data-provide="typeahead" onchange="auto_hname()"/>
+							</div>
+						</div>
+						<div id="write_hname" style="display: none">
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="newHName" name="newHName" placeholder="手动自行填写医院全称 " autocomplete="off" data-provide="typeahead"/>
+							</div>
+							<div class="col-sm-1">
+								<input class="btn btn-primary" style="font-size:12px;width: 90%" type="button" value="返回查询" onclick="clickReturn()"/>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 医院英文名称 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="eHName" name="eHName" />
+					</div>
+					
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 所在省份/直辖市/自治区 <span
+						class="must-tips">*</span>
+					</label>
+					<div id="Addr">
+						<div class="col-sm-2">
+							<select class="form-control prov" id="areaName" name="areaName">
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control city" id="city" name="city">
+							</select>
+						</div>
+						
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 医院级别 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-4">
+						<select class="form-control" id="hlevel" name="hlevel" >
+						<option value="--请选择--">--请选择--</option>
+							<option value="三级特等">三级特等</option>
+							<option value="三级甲等">三级甲等</option>
+							<option value="三级乙等">三级乙等</option>
+							<option value="三级丙等">三级丙等</option>
+							<option value="二级甲等">二级甲等</option>
+							<option value="二级乙等">二级乙等</option>
+							<option value="二级丙等">二级丙等</option>
+							<option value="一级甲等">一级甲等</option>
+							<option value="一级乙等">一级乙等</option>
+							<option value="一级丙等">一级丙等</option>
+							<option value="未分级">未分级</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 卒中中心 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-4">
+						<select class="form-control main" id="czlevel" name="czlevel">
+							<option value="--请选择--">--请选择--</option>
+							<option value="卒中中心（Primary Stroke Center，PSC）">卒中中心（Primary Stroke Center，PSC）</option>
+							<option value="综合卒中中心（Comprehensive Stroke Center，CSC）">综合卒中中心（Comprehensive Stroke Center，CSC）</option>
+							<option value="非卒中中心">非卒中中心</option>
+						</select>
+					</div>
+				</div>
+				<div id="shoupai" class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 授牌时间 <span
+						class="must-tips">*</span>
+					</label>
+					<div id="cDate">
+						<div class="col-sm-2">
+							<select class="form-control" id="cYear" name="cYear">
+								<option value="--请选择--">--请选择--</option>
+							</select>
+						</div>
+						<div class="col-sm-2">
+							<select class="form-control" id="cMonth" name="cMonth">
+								<option value="--请选择--">--请选择--</option>
+							</select>
+						</div>
+						
+					</div>
+                	<input id="sQTime" name="sQTime" type="text" class="form-control" style="display: none;"/>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 科室 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-2" style="padding-right: 0;">
+						<select class="form-control" id="jMDep" name="jMDep">
+							<option value="--请选择--">--请选择--</option>
+							<option value="神经内科">神经内科</option>
+							<option value="神经外科">神经外科</option>
+							<option value="神经介入">神经介入</option>
+							<option value="急诊科">急诊科</option>
+							<option value="康复科">康复科</option>
+							<option value="老年科">老年科</option>
+							<option value="脑病科">脑病科</option>
+							<option value="内科">内科</option>
+							<option value="外科">外科</option>
+							<option value="qita">--其他科室--</option>	
+						</select>
+					</div>
+					<!-- <span style="padding:8px; float:left;">或者</span> -->
+					<div class="col-sm-3 other-dep" style="display: none;">
+						<input type="text" class="form-control" id="otherDep" name="otherDep"
+							placeholder="请输入科室"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 姓名（卒中中心主任） <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input id="judgeMan"  name="judgeMan"  type="text" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 移动电话 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="jMTel" name="jMTel" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 邮箱 
+					<span class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input id="jMMail" name="jMMail" type="text" class="form-control" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 办公电话（座机） 
+					<span class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="JMph" name="JMph" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 技术职称 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="jMTjob" name="jMTjob" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 职务 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="jMJob" name="jMJob" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 姓名（协调员） <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="linkMan" name="linkMan" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 邮箱 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="linkMail" name="linkMail" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 移动电话 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="linkTel" name="linkTel" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 微信号 
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="linkwx" name="linkwx" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 技术职称 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="linkTjob" name="linkTjob" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 职务
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="linkJob" name="linkJob" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-4 control-label" style="font-weight: normal;"> 通讯地址及邮编 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="address" name="address" />
+					</div>
+				</div>
+				<!-- 模态框（Modal） -->
+				<div class="modal fade" id="myModal" tabindex="-1" style="margin-top: 70%" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								<h4 class="modal-title" id="myModalLabel">
+									确认提交
+								</h4>
+							</div>
+							<div class="modal-body">
+								<span>确认提交医院基本信息</span>
+							</div>
+							<div class="modal-footer" >
+								<button type="button" class="btn btn-default"  data-dismiss="modal">关闭
+								</button>
+								<button  class="btn btn-primary" onclick="confirmTiJiao()">
+									提交
+								</button>
+							</div>
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal -->
+				</div>
+				<div class="form-group cont-footer no-margin">
+					<div class="col-sm-offset-5 col-sm-11">
+						<button  class="btn btn-success" data-toggle="modal" data-target="#myModal" >提交信息</button>
+						<button id="hospitalInfoBtn" style="display: none;" class="btn btn-success" type="submit">提交信息</button><!-- onclick="return del()" -->
+						<button type="reset" class="btn btn-default">重置</button>
+					</div>
+				</div>
+			</form>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="<%=base %>/js/bootstrap/bootstrap-modalmanager.js" ></script>
+	<script type="text/javascript" src="<%=base %>/js/bootstrap/bootstrap-modal.js" ></script>
+	<script type="text/javascript" src="<%=base %>/js/pro-city/jquery.cityselect.js" ></script>
+	<script type="text/javascript" src="<%=base %>/js/bootstrap/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="<%=base %>/js/bootstrap/bootstrap3-typeahead.js"></script>
+	<script>
+	
+	$('#czlevel').change(function(){ 
+		console.info($('#czlevel').val());
+		if($('#czlevel').val()=="非卒中中心"){
+			$('#shoupai').hide();
+			//cYear
+			$('#cYear').val("");
+			$('#cMonth').val("");
+		}else{
+			$('#shoupai').show();
+		}
+		
+	});
+	var hospDatas=null;
+    $("#hName").typeahead({
+        source: function (query, process) {
+        	if(query!=" "){
+        		//console.info(query);
+        		return  $.ajax({
+        			type :"post",
+           			data : "hname="+query ,
+           			url: "selectHospVague",
+           		 	success: function (res) {
+           		 		//console.info(res);
+           		 		var obj = eval("["+res+"]");
+           		 		hospDatas = obj;
+           		 	 	return process(obj);    
+           			}
+            	});
+        	}
+        },
+        items: 11,
+        addItem: true,
+    });
+    function clickReturn() {
+    	$("#write_hname").hide();
+		$("#auto_hname").show();
+		$("#newHName").val("");
+	}
+    function auto_hname() {
+		if($("#hName").val()=="其他"){
+			$("#auto_hname").hide();
+			$("#write_hname").show();
+			$("#hName").val("");
+		}
+	}
+    $("#hName").blur(function(){
+    	var hospName = $("#hName").val();
+    	var hospData = new Array(); 
+    	if(hospDatas!=null){
+    		//console.info(hospName+">>>"+$.inArray(hospName, hospDatas));
+    		if($.inArray(hospName, hospDatas)==-1){
+    			$("#hName").val("");
+    		}
+    	}
+      });
+ 	function confirmTiJiao(){
+ 		$('#myModal').modal('hide');
+ 		if($("#hName").val()==""){
+ 			$("#hName").val($("#newHName").val());
+ 		}
+ 		$("#hospitalInfoBtn").click(); 
+ 	}
+	$(function(){
+		$("#hospitalInfoForm").bootstrapValidator(series);
+		$.ajax({
+			type :"get",
+   			url: "selectOldHosp",
+   		 	success: function (res) {
+   		 		var obj = eval('('+res+')');
+   		 		var oldHosp = obj.oldHosp;
+				$("#oldHosp").val(oldHosp);   		 		
+   			}
+    	});
+		$("#Addr").citySelect({prov:""});
+		 var y  = new Date().getFullYear();   
+         for (var i = y; i > (y-51); i--){ //以今年为准，前50年   
+         	$("#cYear").append("<option value='"+i+"年'>"+i+"年</option>"); 
+         }
+		for (var i = 1; i < 13; i++){
+            $("#cMonth").append("<option value='"+i+"月'>"+i+"月</option>"); 
+		}   
+	})
+	
+	var	series ={
+		//表单验证
+		message : 'This value is not valid',
+		feedbackIcons : {
+			valid : 'fa fa-check',
+			invalid : 'fa fa-remove',
+			validating : 'fa fa-refresh'
+		},
+		fields : {
+			hName : {
+				validators : {
+					notEmpty : {
+						message : '医院名称不能为空'
+					}
+				}
+			},
+			eHName : {
+				validators : {
+					notEmpty : {
+						message : '医院英文名称不能为空'
+					},
+					regexp: {
+                        regexp: /^[ A-Za-z]*$/,
+                        message: '医院英文名称由字母组成'
+                    }
+				}
+			},
+			areaName : {
+				validators : {
+					notEmpty : {
+						message : '所在省份/直辖市/自治区不能为空'
+					}
+				}
+			},
+			hlevel : {
+				validators : {
+					notEmpty : {
+						message : '医院级别不能为空'
+					},
+					callback : {
+						message : '医院级别不能为空',
+						callback : function(value,
+								validator) {
+							if (value != '--请选择--') {
+								return true;
+							}else{
+								return false;
+							}
+						}
+					}
+				}
+			},
+			hDlevel : {
+				validators : {
+					notEmpty : {
+						message : '医院等级不能为空'
+					},
+					callback : {
+						message : '医院等级不能为空',
+						callback : function(value,
+								validator) {
+							if (value != '--请选择--') {
+								return true;
+							}else{
+								return false;
+							}
+						}
+					}
+				}
+			},
+			czlevel : {
+				validators : {
+					notEmpty : {
+						message : '卒中中心不能为空'
+					},
+					callback : {
+						message : '卒中中心不能为空',
+						callback : function(value,
+								validator) {
+							if (value != '--请选择--') {
+								return true;
+							}else{
+								return false;
+							}
+						}
+					}
+				}, 
+			},
+			cYear : {
+				validators : {
+					notEmpty : {
+						message : '年份不能为空'
+					},
+					callback : {
+						message : '年份不能为空',
+						callback : function(value,
+								validator) {
+							if (value != '--请选择--') {
+								return true;
+							}else{
+								return false;
+							}
+						}
+					} 
+				}
+			},
+			cMonth : {
+				validators : {
+					notEmpty : {
+						message : '月份不能为空'
+					},
+					callback : {
+						message : '月份不能为空',
+						callback : function(value,
+								validator) {
+							if (value != '--请选择--') {
+								return true;
+							}else{
+								return false;
+							}
+						}
+					}
+				}
+			},
+			jMDep : {
+				validators : {
+					notEmpty : {
+						message : '请选择科室'
+					},
+					callback : {
+						message : '请选择科室',
+						callback : function(value,
+								validator) {
+							var otherDep = $("#hospitalInfoForm").find("div.other-dep");
+							if (value == 'qita') {
+								otherDep.show();
+								return true;
+							} else if(value == '--请选择--'){
+								otherDep.hide();
+								return false;
+							}else{
+								otherDep.hide();
+								return true;
+							}
+						}
+					}
+				}
+			},
+			otherDep : {
+				validators : {
+					notEmpty : {
+						message : '请输入科室'
+					},
+					callback : {
+						message : '请输入科室',
+						callback : function(value,validator) {
+							validator.updateStatus('jMDep','VALID');
+							return true;
+						}
+					}
+				}
+			},
+			judgeMan : {
+				validators : {
+					notEmpty : {
+						message : '姓名（卒中中心主任）不能为空'
+					}
+				}
+			},
+			jMMail : {
+				validators : {
+					 notEmpty : {
+						message : '邮箱不能为空'
+					},
+					 emailAddress: {
+                         message: '邮箱地址格式有误'
+                     }
+				}
+			},
+			jMTel : {
+				validators : {
+					notEmpty : {
+						message : '移动电话不能为空'
+					},
+					stringLength: {
+                        min: 11,
+                        max: 11,
+                        message: '请输入11位移动电话'
+                    },
+                    regexp: {
+                        regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                        message: '请输入正确的移动电话'
+                    }
+				}
+			},
+			JMph : {
+				validators : {
+					notEmpty : {
+						message : '办公电话（座机）不能为空'
+					},
+                    regexp: {
+                        regexp: /^0\d{2,3}-?\d{7,8}$/,
+                        message: '请输入正确的办公电话（座机）如：010-12345678'
+                    }
+				}
+			},
+			jMTjob : {
+				validators : {
+					notEmpty : {
+						message : '技术职称不能为空'
+					}
+				}
+			},
+			jMJob : {
+				validators : {
+					 notEmpty : {
+						message : '职务不能为空'
+					} 
+				}
+			},
+			linkMan : {
+				validators : {
+					 notEmpty : {
+						message : '姓名（协调员）不能为空'
+					} 
+				}
+			},
+			linkMail : {
+				validators : {
+					notEmpty : {
+						message : '邮箱不能为空'
+					},
+					 emailAddress: {
+                         message: '邮箱地址格式有误'
+                     }
+				}
+			},
+			linkTel : {
+				validators : {
+					 notEmpty : {
+						message : '移动电话不能为空'
+					},
+					stringLength: {
+                        min: 11,
+                        max: 11,
+                        message: '请输入11位手机号码'
+                    },
+                    regexp: {
+                        regexp: /^1[3|5|8]{1}[0-9]{9}$/,
+                        message: '请输入正确的手机号码'
+                    }
+				}
+			},
+			linkTjob : {
+				validators : {
+					 notEmpty : {
+						message : '技术职称不能为空'
+					} 
+				}
+			},
+			address : {
+				validators : {
+					 notEmpty : {
+						message : '通讯地址及邮编不能为空'
+					} 
+				}
+			},
+		}
+	}
+</script>
+</html>

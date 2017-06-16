@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.TDoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.guide.pojo.TDoctor" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="duser" property="duser" jdbcType="VARCHAR" />
+    <result column="dpwd" property="dpwd" jdbcType="VARCHAR" />
+    <result column="dr_ph" property="drPh" jdbcType="VARCHAR" />
+    <result column="wx_id" property="wxId" jdbcType="VARCHAR" />
+    <result column="inv_co" property="invCo" jdbcType="VARCHAR" />
+    <result column="dr_name" property="drName" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="areaname" property="areaname" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="dr_desc" property="drDesc" jdbcType="VARCHAR" />
+    <result column="hospital" property="hospital" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="dr_title" property="drTitle" jdbcType="VARCHAR" />
+    <result column="img_addr" property="imgAddr" jdbcType="VARCHAR" />
+    <result column="rel_addr1" property="relAddr1" jdbcType="VARCHAR" />
+    <result column="rel_addr2" property="relAddr2" jdbcType="VARCHAR" />
+    <result column="pay_bank_ar" property="payBankAr" jdbcType="VARCHAR" />
+    <result column="pay_bank_ad" property="payBankAd" jdbcType="VARCHAR" />
+    <result column="pay_bank_br" property="payBankBr" jdbcType="VARCHAR" />
+    <result column="pay_bank_op" property="payBankOp" jdbcType="VARCHAR" />
+    <result column="pay_ac_id" property="payAcId" jdbcType="VARCHAR" />
+    <result column="pay_ac_name" property="payAcName" jdbcType="VARCHAR" />
+    <result column="pay_ac_hp" property="payAcHp" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="cur_status" property="curStatus" jdbcType="VARCHAR" />
+    <result column="reg_status" property="regStatus" jdbcType="VARCHAR" />
+    <result column="upd_time" property="updTime" jdbcType="TIMESTAMP" />
+    <result column="ins_time" property="insTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, duser, dpwd, dr_ph, wx_id, inv_co, dr_name, id_card, areaname, city, address, 
+    dr_desc, hospital, department, dr_title, img_addr, rel_addr1, rel_addr2, pay_bank_ar, 
+    pay_bank_ad, pay_bank_br, pay_bank_op, pay_ac_id, pay_ac_name, pay_ac_hp, reg_time, 
+    cur_status, reg_status, upd_time, ins_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_doctor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 验证用户名和密码是否正确 -->
+   <select id="validate_right" resultType="java.lang.Integer" parameterType="com.guide.pojo.TDoctor" >
+    select count(*) from t_doctor
+    where dr_ph = #{drPh,jdbcType=VARCHAR} and dpwd = #{dpwd,jdbcType=VARCHAR}
+  </select>
+  <!-- 验证是否存在该用户 -->
+     <select id="validate_user" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(*) from t_doctor
+    where dr_ph = #{drPh,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_doctor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.guide.pojo.TDoctor" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_doctor (duser, dpwd, dr_ph, 
+      wx_id, inv_co, dr_name, 
+      id_card, areaname, city, 
+      address, dr_desc, hospital, 
+      department, dr_title, img_addr, 
+      rel_addr1, rel_addr2, pay_bank_ar, 
+      pay_bank_ad, pay_bank_br, pay_bank_op, 
+      pay_ac_id, pay_ac_name, pay_ac_hp, 
+      reg_time, cur_status, reg_status, 
+      upd_time, ins_time)
+    values (#{duser,jdbcType=VARCHAR}, #{dpwd,jdbcType=VARCHAR}, #{drPh,jdbcType=VARCHAR}, 
+      #{wxId,jdbcType=VARCHAR}, #{invCo,jdbcType=VARCHAR}, #{drName,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{areaname,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{drDesc,jdbcType=VARCHAR}, #{hospital,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{drTitle,jdbcType=VARCHAR}, #{imgAddr,jdbcType=VARCHAR}, 
+      #{relAddr1,jdbcType=VARCHAR}, #{relAddr2,jdbcType=VARCHAR}, #{payBankAr,jdbcType=VARCHAR}, 
+      #{payBankAd,jdbcType=VARCHAR}, #{payBankBr,jdbcType=VARCHAR}, #{payBankOp,jdbcType=VARCHAR}, 
+      #{payAcId,jdbcType=VARCHAR}, #{payAcName,jdbcType=VARCHAR}, #{payAcHp,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{curStatus,jdbcType=VARCHAR}, #{regStatus,jdbcType=VARCHAR}, 
+      #{updTime,jdbcType=TIMESTAMP}, #{insTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guide.pojo.TDoctor" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_doctor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      duser,
+      dpwd,
+      dr_ph,
+      wx_id,
+      inv_co,
+      dr_name,
+      id_card,
+      areaname,
+      city,
+      address,
+      dr_desc,
+      hospital,
+      department,
+      dr_title,
+      img_addr,
+      rel_addr1,
+      rel_addr2,
+      pay_bank_ar,
+      pay_bank_ad,
+      pay_bank_br,
+      pay_bank_op,
+      pay_ac_id,
+      pay_ac_name,
+      pay_ac_hp,
+      reg_time,
+      cur_status,
+      reg_status,
+      upd_time,
+      ins_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{duser,jdbcType=VARCHAR},
+      #{dpwd,jdbcType=VARCHAR},
+      #{drPh,jdbcType=VARCHAR},
+      #{wxId,jdbcType=VARCHAR},
+      #{invCo,jdbcType=VARCHAR},
+      #{drName,jdbcType=VARCHAR},
+      #{idCard,jdbcType=VARCHAR},
+      #{areaname,jdbcType=VARCHAR},
+      #{city,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR},
+      #{drDesc,jdbcType=VARCHAR},
+      #{hospital,jdbcType=VARCHAR},
+      #{department,jdbcType=VARCHAR},
+      #{drTitle,jdbcType=VARCHAR},
+      #{imgAddr,jdbcType=VARCHAR},
+      #{relAddr1,jdbcType=VARCHAR},
+      #{relAddr2,jdbcType=VARCHAR},
+      #{payBankAr,jdbcType=VARCHAR},
+      #{payBankAd,jdbcType=VARCHAR},
+      #{payBankBr,jdbcType=VARCHAR},
+      #{payBankOp,jdbcType=VARCHAR},
+      #{payAcId,jdbcType=VARCHAR},
+      #{payAcName,jdbcType=VARCHAR},
+      #{payAcHp,jdbcType=VARCHAR},
+      #{regTime,jdbcType=TIMESTAMP},
+      #{curStatus,jdbcType=VARCHAR},
+      #{regStatus,jdbcType=VARCHAR},
+      #{updTime,jdbcType=TIMESTAMP},
+      #{insTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guide.pojo.TDoctor" >
+    update t_doctor
+    <set >
+      <if test="duser != null" >
+        duser = #{duser,jdbcType=VARCHAR},
+      </if>
+      <if test="dpwd != null" >
+        dpwd = #{dpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="drPh != null" >
+        dr_ph = #{drPh,jdbcType=VARCHAR},
+      </if>
+      <if test="wxId != null" >
+        wx_id = #{wxId,jdbcType=VARCHAR},
+      </if>
+      <if test="invCo != null" >
+        inv_co = #{invCo,jdbcType=VARCHAR},
+      </if>
+      <if test="drName != null" >
+        dr_name = #{drName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="areaname != null" >
+        areaname = #{areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="drDesc != null" >
+        dr_desc = #{drDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null" >
+        hospital = #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="drTitle != null" >
+        dr_title = #{drTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="imgAddr != null" >
+        img_addr = #{imgAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="relAddr1 != null" >
+        rel_addr1 = #{relAddr1,jdbcType=VARCHAR},
+      </if>
+      <if test="relAddr2 != null" >
+        rel_addr2 = #{relAddr2,jdbcType=VARCHAR},
+      </if>
+      <if test="payBankAr != null" >
+        pay_bank_ar = #{payBankAr,jdbcType=VARCHAR},
+      </if>
+      <if test="payBankAd != null" >
+        pay_bank_ad = #{payBankAd,jdbcType=VARCHAR},
+      </if>
+      <if test="payBankBr != null" >
+        pay_bank_br = #{payBankBr,jdbcType=VARCHAR},
+      </if>
+      <if test="payBankOp != null" >
+        pay_bank_op = #{payBankOp,jdbcType=VARCHAR},
+      </if>
+      <if test="payAcId != null" >
+        pay_ac_id = #{payAcId,jdbcType=VARCHAR},
+      </if>
+      <if test="payAcName != null" >
+        pay_ac_name = #{payAcName,jdbcType=VARCHAR},
+      </if>
+      <if test="payAcHp != null" >
+        pay_ac_hp = #{payAcHp,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="curStatus != null" >
+        cur_status = #{curStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="regStatus != null" >
+        reg_status = #{regStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null" >
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insTime != null" >
+        ins_time = #{insTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guide.pojo.TDoctor" >
+    update t_doctor
+    set duser = #{duser,jdbcType=VARCHAR},
+      dpwd = #{dpwd,jdbcType=VARCHAR},
+      dr_ph = #{drPh,jdbcType=VARCHAR},
+      wx_id = #{wxId,jdbcType=VARCHAR},
+      inv_co = #{invCo,jdbcType=VARCHAR},
+      dr_name = #{drName,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      areaname = #{areaname,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      dr_desc = #{drDesc,jdbcType=VARCHAR},
+      hospital = #{hospital,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      dr_title = #{drTitle,jdbcType=VARCHAR},
+      img_addr = #{imgAddr,jdbcType=VARCHAR},
+      rel_addr1 = #{relAddr1,jdbcType=VARCHAR},
+      rel_addr2 = #{relAddr2,jdbcType=VARCHAR},
+      pay_bank_ar = #{payBankAr,jdbcType=VARCHAR},
+      pay_bank_ad = #{payBankAd,jdbcType=VARCHAR},
+      pay_bank_br = #{payBankBr,jdbcType=VARCHAR},
+      pay_bank_op = #{payBankOp,jdbcType=VARCHAR},
+      pay_ac_id = #{payAcId,jdbcType=VARCHAR},
+      pay_ac_name = #{payAcName,jdbcType=VARCHAR},
+      pay_ac_hp = #{payAcHp,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      cur_status = #{curStatus,jdbcType=VARCHAR},
+      reg_status = #{regStatus,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      ins_time = #{insTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

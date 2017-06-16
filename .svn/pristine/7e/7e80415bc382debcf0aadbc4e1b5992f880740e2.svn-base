@@ -1,0 +1,128 @@
+package com.guide.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+
+import com.guide.pojo.THunit;
+import com.guide.pojo.ZVAndZlpgVariable;
+import com.guide.pojo.ZlpgVariable;
+
+public interface THunitMapper {
+    /**
+     * 条件统计
+     * 参数:查询条件,null为整张表
+     * 返回:查询个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    int countByExample(THunit example);
+
+    /**
+     * 批量条件删除
+     * 参数:删除条件,null为整张表
+     * 返回:删除个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    int deleteByExample(THunit example);
+
+    /**
+     * 批量条件查询,支持大字段类型
+     * 参数:查询条件,null查整张表
+     * 返回:对象集合
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    List<THunit> selectByExampleWithBLOBs(THunit example);
+
+    /**
+     * 批量条件查询
+     * 参数:查询条件,null查整张表
+     * 返回:对象集合
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    List<THunit> selectByTHunit(THunit thunit);
+    
+    /**
+     * 批量模糊查询
+     * 参数:查询条件,null查整张表
+     * 返回:对象集合
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    List<THunit> selectByTHunitWithHospital(THunit thunit);
+    /**
+     * 批量条件修改，空值条件不修改
+     * 参数:1.要修改成的值，2.要修改条件
+     * 返回:成功修改个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    int updateByExampleSelective(@Param("record") THunit record, @Param("example") THunit example);
+
+    /**
+     * 批量条件修改，空值条件会修改成null,支持大字段类型
+     * 参数:1.要修改成的值，2.要修改条件
+     * 返回:成功修改个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    int updateByExampleWithBLOBs(@Param("record") THunit record, @Param("example") THunit example);
+
+    /**
+     * 批量条件修改，空值条件会修改成null
+     * 参数:1.要修改成的值，2.要修改条件
+     * 返回:成功修改个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    int updateByExample(@Param("record") THunit record, @Param("example") THunit example);
+
+    /**
+     * 物理分页条件查询,支持大字段
+     * 参数:1.查询条件 2.分页条件 new RowBounds(2,3) 
+            从第2条开始显示，显示3条(从0开始编号)
+     * 返回:成功修改个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    List<THunit> selectByExampleWithBLOBsAndPage(THunit example, RowBounds rowBound);
+
+    /**
+     * 物理分页条件查询
+     * 参数:1.查询条件 2.分页条件 new RowBounds(2,3) 
+            从第2条开始显示，显示3条(从0开始编号)
+     * 返回:成功修改个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    List<THunit> selectByExampleAndPage(THunit example, RowBounds rowBound);
+
+    /**
+     * 插入，空属性也会插入
+     * 参数:pojo对象
+     * 返回:删除个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    int insert(THunit record);
+
+    /**
+     * 插入，空属性不会插入
+     * 参数:pojo对象
+     * 返回:删除个数
+     * @ibatorgenerated 2016-11-24 15:30:16
+     */
+    int insertSelective(THunit record);
+
+    /**
+     * 
+     * @author WANGZHENYUE
+     * @return 查询variable表的pcodeList
+     * @date 2016年12月21日
+     */
+	List<ZlpgVariable> select_Pcode();
+
+	/**
+	 * 
+	 * update_Pcode:(这里用一句话描述这个方法的作用)
+	 * @author wzy 
+	 * @param pcode
+	 * @param pcode_value 
+	 * @since JDK 1.7
+	 */
+	void update_Pcode(ZVAndZlpgVariable zazv);
+
+}

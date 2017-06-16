@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.THunitMapper">
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+	<resultMap id="BaseResultMap" type="com.guide.pojo.THunit">
+		<result column="HUnitID" property="hunitid" jdbcType="INTEGER" />
+		<result column="HName" property="hname" jdbcType="VARCHAR" />
+		<result column="Code" property="code" jdbcType="VARCHAR" />
+		<result column="lid" property="lid" jdbcType="INTEGER" />
+		<result column="Hlevel" property="hlevel" jdbcType="VARCHAR" />
+		<result column="Owner" property="owner" jdbcType="INTEGER" />
+		<result column="Oname" property="oname" jdbcType="VARCHAR" />
+		<result column="AreaID" property="areaid" jdbcType="INTEGER" />
+		<result column="AreaName" property="areaname" jdbcType="VARCHAR" />
+		<result column="City" property="city" jdbcType="VARCHAR" />
+		<result column="Address" property="address" jdbcType="VARCHAR" />
+		<result column="Telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="Corporation" property="corporation" jdbcType="VARCHAR" />
+		<result column="Bed" property="bed" jdbcType="VARCHAR" />
+		<result column="Employee" property="employee" jdbcType="VARCHAR" />
+		<result column="SQTime" property="sqtime" jdbcType="VARCHAR" />
+		<result column="Runtime" property="runtime" jdbcType="VARCHAR" />
+		<result column="JudgeMan" property="judgeman" jdbcType="VARCHAR" />
+		<result column="JMJob" property="jmjob" jdbcType="VARCHAR" />
+		<result column="JMTel" property="jmtel" jdbcType="VARCHAR" />
+		<result column="JMMail" property="jmmail" jdbcType="VARCHAR" />
+		<result column="LinkMan" property="linkman" jdbcType="VARCHAR" />
+		<result column="LMJob" property="lmjob" jdbcType="VARCHAR" />
+		<result column="Ctime" property="ctime" jdbcType="TIMESTAMP" />
+		<result column="Utype" property="utype" jdbcType="VARCHAR" />
+		<result column="Latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="Longitude" property="longitude" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="selectByTHunitWithHospital" resultMap="BaseResultMap"
+		parameterType="com.guide.pojo.THunit">
+		select HName from uni_hunit_zk where HName like "%${hname}%"
+		limit 10
+	</select>
+
+	<select id="select_Pcode" resultType="com.guide.pojo.ZlpgVariable">
+		<![CDATA[
+		select id,pcode,cname,mvid from zlpg_variable 
+		]]>
+	</select>
+	<!-- select_hospital -->
+	<select id="select_hospital" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer" flushCache="true">
+	<![CDATA[
+	select count(*) from zlpg_value where hunitid=#{hunitid}
+	]]>
+	</select>
+	<update id="update_Pcode" parameterType="com.guide.pojo.ZVAndZlpgVariable"
+		flushCache="true">
+		update zlpg_value set ${pcode}=#{pcode_value} where
+		hunitid=#{hunitid}
+	</update>
+	<!-- update_PState -->
+	<update id="update_PState" parameterType="com.guide.pojo.ZlpgValue"
+		flushCache="true">
+		update zlpg_value set pstate=1,putime=#{PUTime} where
+		hunitid=#{hunitid}
+	</update>
+	<insert id="insert_hospital" parameterType="com.guide.pojo.ZlpgValue"
+		flushCache="true">
+		insert into zlpg_value(hunitid,areaid)
+		values(#{hunitid},#{areaid})
+	</insert>
+	<select id="load_value" parameterType="java.lang.String"
+		resultType="com.guide.pojo.ZlpgValue">
+		select * from zlpg_value where hunitid=#{hunitid}
+	</select>
+</mapper>

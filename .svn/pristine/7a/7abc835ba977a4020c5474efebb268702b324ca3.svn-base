@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.TCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.guide.pojo.TCode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="inv_co" property="invCo" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="dead_time" property="deadTime" jdbcType="TIMESTAMP" />
+    <result column="app_time" property="appTime" jdbcType="TIMESTAMP" />
+    <result column="valid_status" property="validStatus" jdbcType="VARCHAR" />
+    <result column="upd_time" property="updTime" jdbcType="TIMESTAMP" />
+    <result column="ins_time" property="insTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, inv_co, create_user, create_time, dead_time, app_time, valid_status, upd_time, 
+    ins_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_code
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_code
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.guide.pojo.TCode" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_code (inv_co, create_user, create_time, 
+      dead_time, app_time, valid_status, 
+      upd_time, ins_time)
+    values (#{invCo,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{deadTime,jdbcType=TIMESTAMP}, #{appTime,jdbcType=TIMESTAMP}, #{validStatus,jdbcType=VARCHAR}, 
+      #{updTime,jdbcType=TIMESTAMP}, #{insTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guide.pojo.TCode" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      inv_co,
+      create_user,
+      create_time,
+      dead_time,
+      app_time,
+      valid_status,
+      upd_time,
+      ins_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{invCo,jdbcType=VARCHAR},
+      #{createUser,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP},
+      #{deadTime,jdbcType=TIMESTAMP},
+      #{appTime,jdbcType=TIMESTAMP},
+      #{validStatus,jdbcType=VARCHAR},
+      #{updTime,jdbcType=TIMESTAMP},
+      #{insTime,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guide.pojo.TCode" >
+    update t_code
+    <set >
+      <if test="invCo != null" >
+        inv_co = #{invCo,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deadTime != null" >
+        dead_time = #{deadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appTime != null" >
+        app_time = #{appTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validStatus != null" >
+        valid_status = #{validStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="updTime != null" >
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="insTime != null" >
+        ins_time = #{insTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guide.pojo.TCode" >
+    update t_code
+    set inv_co = #{invCo,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      dead_time = #{deadTime,jdbcType=TIMESTAMP},
+      app_time = #{appTime,jdbcType=TIMESTAMP},
+      valid_status = #{validStatus,jdbcType=VARCHAR},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      ins_time = #{insTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

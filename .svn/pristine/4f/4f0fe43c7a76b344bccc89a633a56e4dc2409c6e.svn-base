@@ -1,0 +1,7 @@
+package com.guide.service;
+
+import com.guide.pojo.ZkUser;
+
+public interface ZkUserService {
+	int Validate_right(ZkUser zkuser);
+}

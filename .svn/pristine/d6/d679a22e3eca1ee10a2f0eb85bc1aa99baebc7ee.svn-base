@@ -1,0 +1,18 @@
+package com.guide.mapper;
+
+import com.guide.pojo.TCode;
+
+public interface TCodeMapper {
+	
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TCode record);
+
+    int insertSelective(TCode record);
+
+    TCode selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TCode record);
+
+    int updateByPrimaryKey(TCode record);
+}

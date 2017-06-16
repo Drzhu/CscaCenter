@@ -1,0 +1,53 @@
+package com.guide.init;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.stereotype.Service;
+
+public class test {
+public static void main(String[] args) throws Exception{
+	C.Application();
+}
+}
+
+class A {
+	public static int res(int i){
+		if(i>0){
+			return i*i +res(i-1);
+		}else{
+			return 0;
+		}
+	}
+}
+
+class HDate{
+	public static void handle(String datetime) throws Exception {
+		Calendar cal =Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = sdf.parse(datetime);
+		cal.setTime(date);
+		System.err.println(cal.get(Calendar.YEAR));
+		System.err.println(cal.get(Calendar.MONTH)+1);
+		cal.set(Calendar.MONTH, cal.get(Calendar.MONTH)-12+1);
+		System.err.println(cal.get(Calendar.YEAR)+"-"+cal.get(Calendar.MONTH));
+		
+		cal.add(Calendar.YEAR, -1);
+		System.err.println(cal.get(Calendar.YEAR)+"-"+cal.get(Calendar.MONTH));
+	}
+}
+
+class C{
+	public static void Application(){
+		ClassPathXmlApplicationContext  ctx = new ClassPathXmlApplicationContext (new String[] {"classpath*:spring_mvc.xml","classpath*:spring_mybatis.xml"}); 
+		ctx.start();
+	}
+
+}

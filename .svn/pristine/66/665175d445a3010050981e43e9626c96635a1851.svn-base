@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.ZlpgValueMapper">
+
+	<select id="submit_txt" parameterType="java.lang.String"
+		resultType="com.guide.pojo.TXTDownload">
+		<![CDATA[
+	SELECT b.`City`,b.`HName`,b.`Hlevel`,b.`JudgeMan`,b.`JMTel`,a.* FROM zlpg_value a LEFT JOIN t_hunit b ON a.`hunitid` = b.`HUnitID` WHERE a.`PState` = 1 AND a.`areaid`=#{areaid}
+		]]>
+	</select>
+
+	<select id="nosubmit_txt" parameterType="java.lang.String"
+		resultType="com.guide.pojo.THunit">
+		<![CDATA[
+		SELECT b.* FROM t_hunit b WHERE b.HUnitID NOT IN (SELECT a.HUnitID FROM zlpg_value a WHERE a.PState=1) and b.AreaID = #{areaid}
+		]]>
+	</select>
+	<select id="downloadExcel" parameterType="java.lang.String"
+			resultType="com.guide.pojo.ZlpgValue">
+			<![CDATA[
+			select * from zlpg_value where areaid = #{areaid} and PState = 1
+			]]>
+	</select>
+	<select id="excel_NotFilled" parameterType="java.lang.String"
+			resultType="com.guide.pojo.SubmitHospital">
+			<![CDATA[
+			SELECT City,HName,Hlevel,LinkMan,JMTel,HUnitID FROM t_hunit b WHERE b.HUnitID NOT IN (SELECT a.HUnitID FROM zlpg_value a WHERE a.PState=1) 
+			]]>
+	</select>
+	<select id="excelColList" parameterType="java.lang.String"
+			resultType="com.guide.pojo.ZlpgVariable">
+			<![CDATA[
+		select pcode from zlpg_variable
+			]]>
+	</select>
+</mapper>

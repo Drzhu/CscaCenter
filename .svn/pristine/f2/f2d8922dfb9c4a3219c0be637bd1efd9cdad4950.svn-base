@@ -1,0 +1,7 @@
+$(function(){
+//	左侧有二级菜单情况
+	$(".nav-list li.has-sub").on("click",function(){
+		$(this).find(".sub-menu").toggle("100");
+		$(this).find(".right-icon").toggleClass("fa-angle-down");
+	});
+});

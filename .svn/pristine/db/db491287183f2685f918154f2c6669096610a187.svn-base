@@ -1,0 +1,9 @@
+package com.guide.service;
+
+import com.guide.pojo.TUser;
+
+public interface TUserService {
+	int Valicate_user(TUser tuser);
+	int Validate_right(TUser tuser);
+	TUser user_info(TUser tuser);
+}

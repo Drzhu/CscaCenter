@@ -1,0 +1,35 @@
+package com.guide.init;
+
+class AB {
+	{
+		System.err.println("AB block");
+	}
+	static {
+		System.err.println("AB static");
+	}
+
+	public AB() {
+		System.err.println("AB constract");
+	}
+}
+
+class B extends AB {
+	{
+		System.err.println("B block");
+	}
+	static {
+		System.err.println("B static");
+	}
+
+	public B() {
+		System.err.println("B constract");
+	}
+}
+
+public class Rui {
+
+	public static void main(String[] args) {
+		AB ab = new B();
+		ab = new B();
+	}
+}

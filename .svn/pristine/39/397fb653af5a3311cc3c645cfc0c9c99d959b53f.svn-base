@@ -1,0 +1,74 @@
+package com.guide.controller;
+
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.guide.pojo.TUser;
+import com.guide.service.DoctorService;
+import com.guide.service.THunitService;
+import com.guide.util.JsonUtil;
+import com.guide.util.MD5Util;
+
+/**
+ * @author zhutong
+ */
+@Controller
+@RequestMapping("/")
+public class UserController {
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat fmr = new SimpleDateFormat("MM-dd");
+	DecimalFormat df = new DecimalFormat();
+	private Logger logger;
+
+	@Resource(name = "doctorService")
+	private DoctorService doctorService;
+
+	@Resource(name = "tHunitService")
+	private THunitService tHunitService;
+
+	public UserController() {
+		this.logger = Logger.getLogger(UserController.class);
+	}
+
+	// 退出登录
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request, HttpSession session) {
+		// 删除session登录信息
+		session.setAttribute("isLogin", false);
+		return "login";
+	}
+
+	@RequestMapping(value = "loginForm", method = RequestMethod.POST)
+	public String loginForm(HttpServletRequest request, @RequestParam("username") String username,
+			@RequestParam("password") String password) {
+
+		return "main";
+	}
+
+	// 登录验证
+	@ResponseBody
+	@RequestMapping(value = "Validate_b", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public String Validate_b(@RequestParam("username") String username, @RequestParam("password") String password,
+			 HttpServletRequest request, HttpSession session,
+			HttpServletResponse response) throws Exception {
+		HashMap<String, String> map = new HashMap<String, String>();
+		TUser tuser = new TUser();
+		tuser.setUpwd(MD5Util.md5(password));
+		
+		return JsonUtil.map2json(map);
+	}
+
+}

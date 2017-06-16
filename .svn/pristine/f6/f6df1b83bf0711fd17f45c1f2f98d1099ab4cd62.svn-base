@@ -1,0 +1,197 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%--引入JSTL核心标签库 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,user-scalable=no">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css"
+	href="../font-awesome-4.6.3/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css"
+	href="../css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../css/bootstrap/bootstrapValidator.css" />
+<link rel="stylesheet" type="text/css" href="../css/chcss.css" />
+<title>医院基本信息</title>
+</head>
+<body style="background-color: #f9f9f9; padding: 0;">
+	<div class="row form-box">
+		<div class="col-sm-12">
+			<div class="cont-header">
+				<h3  style="color:#FF0000">中国卒中中心联盟数据管理平台 - 医院基本信息</h3>
+			</div>
+			<form id="hospitalInfoForm" class="form-horizontal" >
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 医院名称（全称） <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="phoneNumber" />
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 医院英文名称 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="password" />
+					</div>
+					<!--  -->
+				</div>
+				<!-- 所在省份/直辖市/自治区 -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 所在省份/直辖市/自治区 <span
+						class="must-tips">*</span>
+					</label>
+					<div id="bankArea">
+						<div class="col-sm-4">
+							<select class="form-control prov" name="bankPro">
+							</select>
+						</div>
+						<!-- <div class="col-sm-4">
+							<select class="form-control city" name="bankCity"
+								disabled="disabled">
+							</select>
+						</div> -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 医院级别 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankBranch"/>
+							 <!-- placeholder="只需填写支行信息，比如：中关村支行" -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 卒中中心/综合卒中中心 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 授牌时间 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 姓名（主任） <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input id="hospitalName" type="text" class="form-control" name="hospitalName" autocomplete="off" data-provide="typeahead"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 移动电话 <span
+						class="must-tips">*</span>
+					</label>
+					<!-- <div class="col-sm-4" style="padding-right: 0;">
+						<select class="form-control" name="jobTitle">
+							<option value="">-请选择-</option>
+							<option value="主任医师">主任医师</option>
+							<option value="副主任医师">副主任医师</option>
+							<option value="主治医师">主治医师</option>
+							<option value="住院医师">住院医师</option>
+							<option value="qita">其它</option>
+						</select>
+					</div>
+					<div class="col-sm-4 other-jobtitle" style="display: none;">
+						<input type="text" class="form-control" name="otherJobTitle"
+							placeholder="请输入职称" />
+					</div> -->
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 微信号 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 技术职称 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 职务 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 姓名（协调员） <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 邮箱 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 联系电话 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> 通讯地址及邮编 <span
+						class="must-tips">*</span>
+					</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="bankAccount" />
+					</div>
+				</div>
+				<div class="form-group cont-footer no-margin">
+					<div class="col-sm-offset-5 col-sm-10">
+						<button id="registerBtn" type="submit" class="btn btn-success">保存</button>
+						<button type="reset" class="btn btn-default">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- Modal -->
+	<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="../js/pro-city/jquery.cityselect.js"></script>
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap/bootstrap3-typeahead.js"></script>
+	<script type="text/javascript">
+	$(function() {
+		$("#bankArea").citySelect();
+	});
+	</script>
+</body>
+</html>

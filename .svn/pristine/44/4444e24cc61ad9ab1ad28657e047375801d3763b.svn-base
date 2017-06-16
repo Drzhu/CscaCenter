@@ -1,0 +1,82 @@
+package com.guide.pojo;
+
+import java.io.Serializable;
+
+public class ZkUser implements Serializable {
+    /**
+     * zk_user.id
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private Integer id;
+
+    /**
+     * zk_user.UName (账号)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private String uname;
+
+    /**
+     * zk_user.UPwd (密码)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private String upwd;
+
+    /**
+     * zk_user.Areaname (省份名称)
+     * @ibatorgenerated 2016-12-16 14:26:03
+     */
+    private String areaname;
+    
+    private String level;
+    
+    private Integer areaid;
+    
+
+    public Integer getAreaid() {
+		return areaid;
+	}
+
+	public void setAreaid(Integer areaid) {
+		this.areaid = areaid;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getUpwd() {
+        return upwd;
+    }
+
+    public void setUpwd(String upwd) {
+        this.upwd = upwd;
+    }
+
+    public String getAreaname() {
+        return areaname;
+    }
+
+    public void setAreaname(String areaname) {
+        this.areaname = areaname;
+    }
+}

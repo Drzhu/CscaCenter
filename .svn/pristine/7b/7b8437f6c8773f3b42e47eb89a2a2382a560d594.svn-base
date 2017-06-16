@@ -1,0 +1,22 @@
+package com.guide.mapper;
+
+import com.guide.pojo.TDoctor;
+
+public interface TDoctorMapper {
+	
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TDoctor record);
+
+    int insertSelective(TDoctor record);
+
+    TDoctor selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(TDoctor record);
+
+    int updateByPrimaryKey(TDoctor record);
+    
+    int validate_user(String username);
+
+	int validate_right(TDoctor record);
+}

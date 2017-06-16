@@ -1,0 +1,29 @@
+package com.guide.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.guide.pojo.ProvinceEntity;
+
+public interface ProvinceMapper {
+
+	List<ProvinceEntity> selectAllHospital();
+
+	List<ProvinceEntity> selectAllBingLi();
+
+	List<ProvinceEntity> selectStateAll(@Param("begin_time") String begin_time, @Param("end_time") String end_time);
+
+	List<ProvinceEntity> selectStateLevel(@Param("level") String level, @Param("begin_time") String begin_time,
+			@Param("end_time") String end_time);
+
+	List<ProvinceEntity> datatable_query(@Param("start_time") String start_time, @Param("end_time") String end_time,
+			 @Param("areaname") String areaname,@Param("start") Integer start,@Param("order_t") String order_t, @Param("order_Column") String order_Column);
+
+	List<ProvinceEntity> selectCount(@Param("start_time") String start_time, @Param("end_time") String end_time,@Param("areaname")  String areaname);
+
+	List<ProvinceEntity> selectProvinceAll(@Param("areaname") String areaname,@Param("begin_time") String begin_time, @Param("end_time") String end_time);
+
+	List<ProvinceEntity> selectProvinceLevel(@Param("areaname") String areaname, @Param("level") String level, @Param("begin_time") String begin_time, @Param("end_time") String end_time);
+
+}

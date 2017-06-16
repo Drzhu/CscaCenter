@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.THunitMapper" >
+  <cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+  <resultMap id="BaseResultMap" type="com.guide.pojo.THunit" >
+    <result column="HUnitID" property="hunitid" jdbcType="INTEGER" />
+    <result column="HName" property="hname" jdbcType="VARCHAR" />
+    <result column="Code" property="code" jdbcType="VARCHAR" />
+    <result column="lid" property="lid" jdbcType="INTEGER" />
+    <result column="Hlevel" property="hlevel" jdbcType="VARCHAR" />
+    <result column="Owner" property="owner" jdbcType="INTEGER" />
+    <result column="Oname" property="oname" jdbcType="VARCHAR" />
+    <result column="AreaID" property="areaid" jdbcType="INTEGER" />
+    <result column="AreaName" property="areaname" jdbcType="VARCHAR" />
+    <result column="City" property="city" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="Corporation" property="corporation" jdbcType="VARCHAR" />
+    <result column="Bed" property="bed" jdbcType="VARCHAR" />
+    <result column="Employee" property="employee" jdbcType="VARCHAR" />
+    <result column="SQTime" property="sqtime" jdbcType="VARCHAR" />
+    <result column="Runtime" property="runtime" jdbcType="VARCHAR" />
+    <result column="JudgeMan" property="judgeman" jdbcType="VARCHAR" />
+    <result column="JMJob" property="jmjob" jdbcType="VARCHAR" />
+    <result column="JMTel" property="jmtel" jdbcType="VARCHAR" />
+    <result column="JMMail" property="jmmail" jdbcType="VARCHAR" />
+    <result column="LinkMan" property="linkman" jdbcType="VARCHAR" />
+    <result column="LMJob" property="lmjob" jdbcType="VARCHAR" />
+    <result column="Ctime" property="ctime" jdbcType="TIMESTAMP" />
+    <result column="Utype" property="utype" jdbcType="VARCHAR" />
+    <result column="Latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="Longitude" property="longitude" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.guide.pojo.THunit" extends="BaseResultMap" >
+    <result column="FormInfo" property="forminfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    HUnitID, HName, Code, lid, Hlevel, `Owner`, Oname, AreaID, AreaName, City, Address, 
+    Telephone, Corporation, Bed, Employee, SQTime, Runtime, JudgeMan, JMJob, JMTel, JMMail, 
+    LinkMan, LMJob, Ctime, Utype, Latitude, Longitude
+  </sql>
+  
+  <sql id="Blob_Column_List" >
+    FormInfo
+  </sql>
+  
+  <sql id="Example_Where_Clause" >
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+ <select id="selectByTHunitWithHospital" resultMap="BaseResultMap" parameterType="com.guide.pojo.THunit">
+ 
+  select HName from t_hunit where HName like "%${hname}%" limit 10
+    
+ </select>
+  
+   <select id="selectByTHunit" resultMap="BaseResultMap" parameterType="com.guide.pojo.THunit" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_hunit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+    <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.guide.pojo.THunit" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_hunit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <delete id="deleteByExample" parameterType="com.guide.pojo.THunit" flushCache="true" >
+    delete from t_hunit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  
+  <select id="countByExample" parameterType="com.guide.pojo.THunit" resultType="java.lang.Integer" >
+    select count(*) from t_hunit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" flushCache="true" >
+    update t_hunit
+    <set >
+      <if test="record.hunitid != null" >
+        HUnitID = #{record.hunitid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hname != null" >
+        HName = #{record.hname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        Code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lid != null" >
+        lid = #{record.lid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hlevel != null" >
+        Hlevel = #{record.hlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owner != null" >
+        `Owner` = #{record.owner,jdbcType=INTEGER},
+      </if>
+      <if test="record.oname != null" >
+        Oname = #{record.oname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaid != null" >
+        AreaID = #{record.areaid,jdbcType=INTEGER},
+      </if>
+      <if test="record.areaname != null" >
+        AreaName = #{record.areaname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        City = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        Telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.corporation != null" >
+        Corporation = #{record.corporation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bed != null" >
+        Bed = #{record.bed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employee != null" >
+        Employee = #{record.employee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sqtime != null" >
+        SQTime = #{record.sqtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.runtime != null" >
+        Runtime = #{record.runtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.judgeman != null" >
+        JudgeMan = #{record.judgeman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jmjob != null" >
+        JMJob = #{record.jmjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jmtel != null" >
+        JMTel = #{record.jmtel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jmmail != null" >
+        JMMail = #{record.jmmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkman != null" >
+        LinkMan = #{record.linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lmjob != null" >
+        LMJob = #{record.lmjob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        Ctime = #{record.ctime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.utype != null" >
+        Utype = #{record.utype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null" >
+        Latitude = #{record.latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.longitude != null" >
+        Longitude = #{record.longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="record.forminfo != null" >
+        FormInfo = #{record.forminfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" flushCache="true" >
+    update t_hunit
+    set HUnitID = #{record.hunitid,jdbcType=INTEGER},
+      HName = #{record.hname,jdbcType=VARCHAR},
+      Code = #{record.code,jdbcType=VARCHAR},
+      lid = #{record.lid,jdbcType=INTEGER},
+      Hlevel = #{record.hlevel,jdbcType=VARCHAR},
+      `Owner` = #{record.owner,jdbcType=INTEGER},
+      Oname = #{record.oname,jdbcType=VARCHAR},
+      AreaID = #{record.areaid,jdbcType=INTEGER},
+      AreaName = #{record.areaname,jdbcType=VARCHAR},
+      City = #{record.city,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Telephone = #{record.telephone,jdbcType=VARCHAR},
+      Corporation = #{record.corporation,jdbcType=VARCHAR},
+      Bed = #{record.bed,jdbcType=VARCHAR},
+      Employee = #{record.employee,jdbcType=VARCHAR},
+      SQTime = #{record.sqtime,jdbcType=VARCHAR},
+      Runtime = #{record.runtime,jdbcType=VARCHAR},
+      JudgeMan = #{record.judgeman,jdbcType=VARCHAR},
+      JMJob = #{record.jmjob,jdbcType=VARCHAR},
+      JMTel = #{record.jmtel,jdbcType=VARCHAR},
+      JMMail = #{record.jmmail,jdbcType=VARCHAR},
+      LinkMan = #{record.linkman,jdbcType=VARCHAR},
+      LMJob = #{record.lmjob,jdbcType=VARCHAR},
+      Ctime = #{record.ctime,jdbcType=TIMESTAMP},
+      Utype = #{record.utype,jdbcType=VARCHAR},
+      Latitude = #{record.latitude,jdbcType=VARCHAR},
+      Longitude = #{record.longitude,jdbcType=VARCHAR},
+      FormInfo = #{record.forminfo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" flushCache="true" >
+    update t_hunit
+    set HUnitID = #{record.hunitid,jdbcType=INTEGER},
+      HName = #{record.hname,jdbcType=VARCHAR},
+      Code = #{record.code,jdbcType=VARCHAR},
+      lid = #{record.lid,jdbcType=INTEGER},
+      Hlevel = #{record.hlevel,jdbcType=VARCHAR},
+      `Owner` = #{record.owner,jdbcType=INTEGER},
+      Oname = #{record.oname,jdbcType=VARCHAR},
+      AreaID = #{record.areaid,jdbcType=INTEGER},
+      AreaName = #{record.areaname,jdbcType=VARCHAR},
+      City = #{record.city,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Telephone = #{record.telephone,jdbcType=VARCHAR},
+      Corporation = #{record.corporation,jdbcType=VARCHAR},
+      Bed = #{record.bed,jdbcType=VARCHAR},
+      Employee = #{record.employee,jdbcType=VARCHAR},
+      SQTime = #{record.sqtime,jdbcType=VARCHAR},
+      Runtime = #{record.runtime,jdbcType=VARCHAR},
+      JudgeMan = #{record.judgeman,jdbcType=VARCHAR},
+      JMJob = #{record.jmjob,jdbcType=VARCHAR},
+      JMTel = #{record.jmtel,jdbcType=VARCHAR},
+      JMMail = #{record.jmmail,jdbcType=VARCHAR},
+      LinkMan = #{record.linkman,jdbcType=VARCHAR},
+      LMJob = #{record.lmjob,jdbcType=VARCHAR},
+      Ctime = #{record.ctime,jdbcType=TIMESTAMP},
+      Utype = #{record.utype,jdbcType=VARCHAR},
+      Latitude = #{record.latitude,jdbcType=VARCHAR},
+      Longitude = #{record.longitude,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <insert id="insert" parameterType="com.guide.pojo.THunit" flushCache="true" >
+    insert into t_hunit (HUnitID, HName, Code, 
+      lid, Hlevel, `Owner`, 
+      Oname, AreaID, AreaName, 
+      City, Address, Telephone, 
+      Corporation, Bed, Employee, 
+      SQTime, Runtime, JudgeMan, 
+      JMJob, JMTel, JMMail, 
+      LinkMan, LMJob, Ctime, 
+      Utype, Latitude, Longitude, 
+      FormInfo)
+    values (#{hunitid,jdbcType=INTEGER}, #{hname,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{lid,jdbcType=INTEGER}, #{hlevel,jdbcType=VARCHAR}, #{owner,jdbcType=INTEGER}, 
+      #{oname,jdbcType=VARCHAR}, #{areaid,jdbcType=INTEGER}, #{areaname,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{corporation,jdbcType=VARCHAR}, #{bed,jdbcType=VARCHAR}, #{employee,jdbcType=VARCHAR}, 
+      #{sqtime,jdbcType=VARCHAR}, #{runtime,jdbcType=VARCHAR}, #{judgeman,jdbcType=VARCHAR}, 
+      #{jmjob,jdbcType=VARCHAR}, #{jmtel,jdbcType=VARCHAR}, #{jmmail,jdbcType=VARCHAR}, 
+      #{linkman,jdbcType=VARCHAR}, #{lmjob,jdbcType=VARCHAR}, #{ctime,jdbcType=TIMESTAMP}, 
+      #{utype,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
+      #{forminfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guide.pojo.THunit" flushCache="true" >
+    insert into t_hunit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      HUnitID,
+      HName,
+      Code,
+      lid,
+      Hlevel,
+      `Owner`,
+      Oname,
+      AreaID,
+      AreaName,
+      City,
+      Address,
+      Telephone,
+      Corporation,
+      Bed,
+      Employee,
+      SQTime,
+      Runtime,
+      JudgeMan,
+      JMJob,
+      JMTel,
+      JMMail,
+      LinkMan,
+      LMJob,
+      Ctime,
+      Utype,
+      Latitude,
+      Longitude,
+      FormInfo,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{hunitid,jdbcType=INTEGER},
+      #{hname,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{lid,jdbcType=INTEGER},
+      #{hlevel,jdbcType=VARCHAR},
+      #{owner,jdbcType=INTEGER},
+      #{oname,jdbcType=VARCHAR},
+      #{areaid,jdbcType=INTEGER},
+      #{areaname,jdbcType=VARCHAR},
+      #{city,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR},
+      #{telephone,jdbcType=VARCHAR},
+      #{corporation,jdbcType=VARCHAR},
+      #{bed,jdbcType=VARCHAR},
+      #{employee,jdbcType=VARCHAR},
+      #{sqtime,jdbcType=VARCHAR},
+      #{runtime,jdbcType=VARCHAR},
+      #{judgeman,jdbcType=VARCHAR},
+      #{jmjob,jdbcType=VARCHAR},
+      #{jmtel,jdbcType=VARCHAR},
+      #{jmmail,jdbcType=VARCHAR},
+      #{linkman,jdbcType=VARCHAR},
+      #{lmjob,jdbcType=VARCHAR},
+      #{ctime,jdbcType=TIMESTAMP},
+      #{utype,jdbcType=VARCHAR},
+      #{latitude,jdbcType=VARCHAR},
+      #{longitude,jdbcType=VARCHAR},
+      #{forminfo,jdbcType=LONGVARCHAR},
+    </trim>
+  </insert>
+  <select id="select_Pcode" resultType="com.guide.pojo.ZlpgVariable">
+		<![CDATA[
+		select id,pcode,cname,mvid from zlpg_variable 
+		]]>
+	</select>
+<!-- select_hospital -->
+	<select id="select_hospital" parameterType="java.lang.Integer" resultType="java.lang.Integer" flushCache="true">
+	<![CDATA[
+	select count(*) from zlpg_value where hunitid=#{hunitid}
+	]]>
+</select>
+	<update id="update_Pcode" parameterType="com.guide.pojo.ZVAndZlpgVariable" flushCache="true">
+   		update zlpg_value set ${pcode}=#{pcode_value} where hunitid=#{hunitid}
+ 	</update>
+ 	<!-- update_PState -->
+ 	<update id="update_PState" parameterType="java.lang.String" flushCache="true">
+   		update zlpg_value set pstate=1 where hunitid=#{hunitid}
+ 	</update>
+<insert id="insert_hospital" parameterType="com.guide.pojo.ZlpgValue" flushCache="true" >
+	insert into zlpg_value(hunitid,areaid) values(#{hunitid},#{areaid})
+</insert>
+</mapper>

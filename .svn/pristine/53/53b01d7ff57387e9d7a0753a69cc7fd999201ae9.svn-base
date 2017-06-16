@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.ProvinceMapper">
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+
+	<select id="selectAllHospital" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select AreaName,count(*) as AreaName_Count from t_hunit group by AreaName order by AreaName_Count desc
+		]]>
+	</select>
+
+	<select id="selectAllBingLi" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select AreaName,count(*) as AreaName_Count from v_kpi_baseinfo a group by a.AreaName order by AreaName_Count desc
+		]]>
+	</select>
+
+	<select id="selectStateAll" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select A_DIAG as A_Diag_Name,COUNT(*) as A_DIAG_Count from v_kpi_baseinfo where PUTime between #{begin_time} and #{end_time} group By A_Diag_Name order By A_Diag_Name asc; 
+		]]>
+	</select>
+	<select id="selectStateLevel" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select A_DIAG as A_Diag_Name,COUNT(*) as A_DIAG_Count from v_kpi_baseinfo where HLEVEL=#{level} and PUTime between #{begin_time} and #{end_time} group By A_Diag_Name order By A_Diag_Name asc; 
+		]]>
+	</select>
+	<select id="datatable_query" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select a.HName,a.AreaName,a.City,a.Hlevel,a.JMTel,a.JMMail,a.LinkMan,a.Ctime,a.LinkMail,a.czlevel,a.LinkTel,count(*) as bingli_count
+		from t_hunit a,t_patients b 
+		where a.HUnitID=b.HunitID 
+		and b.PUTime> #{start_time} 
+		and b.PUTime <= #{end_time} 
+		and a.AreaName = #{areaname}
+		group by a.HName,a.AreaName,a.City,a.Hlevel,a.JMTel,a.JMMail,a.LinkMan,a.Ctime,a.LinkMail,a.czlevel,a.LinkTel ORDER BY a.${order_Column} ${order_t} limit #{start},10
+		]]>
+	</select>
+
+	<select id="selectCount" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select a.HName,a.AreaName,a.City,a.Hlevel,a.JMTel,a.JMMail,a.LinkMan,a.Ctime,a.LinkMail,a.czlevel,a.LinkTel,count(*) as bingli_count
+		from t_hunit a,t_patients b 
+		where a.HUnitID=b.HunitID 
+		and b.PUTime> #{start_time} 
+		and b.PUTime <= #{end_time} 
+		and a.AreaName = #{areaname}
+		group by a.HName,a.AreaName,a.City,a.Hlevel,a.JMTel,a.JMMail,a.LinkMan,a.Ctime,a.LinkMail,a.czlevel,a.LinkTel
+		]]>
+	</select>
+	<select id="selectProvinceAll" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select A_DIAG as A_Diag_Name,COUNT(*) as A_DIAG_Count from v_kpi_baseinfo where AreaName=#{areaname} and PUTime between #{begin_time} and #{end_time} group By A_Diag_Name order By A_Diag_Name asc; 
+		]]>
+	</select>
+	<select id="selectProvinceLevel" resultType="com.guide.pojo.ProvinceEntity">
+		<![CDATA[
+		select A_DIAG as A_Diag_Name,COUNT(*) as A_DIAG_Count from v_kpi_baseinfo where AreaName=#{areaname} and HLEVEL=#{level} and PUTime between #{begin_time} and #{end_time} group By A_Diag_Name order By A_Diag_Name asc; 
+		]]>
+	</select>
+	
+	<select id="ConSelectPro" resultType="com.guide.pojo.ProvinceEntity">
+		   SELECT flag as kpi_name,ROUND(SUM(fz)/(SUM(fm)-SUM(jjz))*100,1) as con_score FROM kpi_con_test_zhu
+			<where>
+				<if test = "areaname == ''">
+				dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc;
+				</if>
+				<if test = "areaname !=null and areaname != ''">
+				areaname= #{areaname} AND dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc;
+				</if>
+			</where>	
+		
+	</select>
+	<select id="ConSelectProByLevel" resultType="com.guide.pojo.ProvinceEntity">
+		  SELECT flag as kpi_name,ROUND(SUM(fz)/(SUM(fm)-SUM(jjz))*100,1) as con_score FROM kpi_con_test_zhu
+			<where>
+				<if test = "areaname == ''">
+				hlevel= #{level} AND dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc ;
+				</if>
+				<if test = "areaname !=null and areaname != ''">
+				areaname= #{areaname} AND hlevel= #{level} AND dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc ;
+				</if>
+			</where>
+	</select>
+	<select id="selectPro" resultType="com.guide.pojo.ProvinceEntity">
+		  SELECT flag as kpi_name,ROUND(SUM(fz)/SUM(fm)*100,1) as score FROM kpi_test_zhu
+		  	<where>
+				<if test = "areaname == ''">
+				dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc;
+				</if>
+				<if test = "areaname !=null and areaname != ''">
+				areaname= #{areaname} AND dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc;
+				</if>
+			</where>
+	</select>
+	<select id="selectProByLevel" resultType="com.guide.pojo.ProvinceEntity">
+		 SELECT flag as kpi_name,ROUND(SUM(fz)/SUM(fm)*100,1) as score FROM kpi_test_zhu
+		 	<where>
+				<if test = "areaname == ''">
+				hlevel= #{level} AND dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc;
+				</if>
+				<if test = "areaname !=null and areaname != ''">
+				areaname= #{areaname} AND hlevel= #{level} AND dt BETWEEN #{start_time} AND #{end_time} GROUP BY flag ORDER BY flag*1 desc;
+				</if>
+			</where>
+	</select>
+</mapper>

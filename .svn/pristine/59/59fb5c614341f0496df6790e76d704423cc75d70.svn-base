@@ -1,0 +1,14 @@
+package com.guide.service;
+
+import com.guide.pojo.BlackList;
+import com.guide.pojo.ZkUser;
+
+public interface ZkUserService {
+	int Validate_right(ZkUser zkuser);
+
+	int getAreaid(ZkUser zkuser);
+
+	ZkUser getZkUser(ZkUser zkuser);
+
+	int Validate_bk(BlackList bker);
+}

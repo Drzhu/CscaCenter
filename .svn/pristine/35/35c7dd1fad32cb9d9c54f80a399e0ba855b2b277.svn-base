@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.ZlpgValueMapper">
+
+	<select id="submit_txt" parameterType="java.lang.String"
+		resultType="com.guide.pojo.ZlpgValue">
+		<![CDATA[
+		select * from zlpg_value where areaid = #{areaid} and PState = 0
+		]]>
+	</select>
+
+	<select id="nosubmit_txt" parameterType="java.lang.String"
+		resultType="com.guide.pojo.THunit">
+		<![CDATA[
+		SELECT b.* FROM t_hunit b WHERE b.HUnitID NOT IN (SELECT a.HUnitID FROM zlpg_value a WHERE a.PState=1) 
+		]]>
+	</select>
+
+</mapper>

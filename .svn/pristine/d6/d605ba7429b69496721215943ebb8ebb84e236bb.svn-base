@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.guide.mapper.ZkUserMapper">
+
+	<select id="Validate_right" resultType="java.lang.Integer"
+		parameterType="com.guide.pojo.ZkUser">
+
+		select count(*) from zk_user where UName = #{uname} and UPwd = #{upwd} ;
+
+	</select>
+
+	<select id="getAreaid" resultType="java.lang.Integer"
+		parameterType="com.guide.pojo.ZkUser">
+
+		select areaid from zk_user where UName = #{uname} and UPwd = #{upwd} ;
+
+	</select>
+
+	<select id="Validate_bk" resultType="java.lang.Integer"
+		parameterType="com.guide.pojo.BlackList">
+
+		select count(*) from black_list where black_name = #{black_name}
+
+	</select>
+	<select id="getZkUser" resultType="com.guide.pojo.ZkUser"
+		parameterType="com.guide.pojo.ZkUser">
+
+		select * from zk_user where UName = #{uname} and UPwd = #{upwd} ;
+
+	</select>
+</mapper>

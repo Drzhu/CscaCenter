@@ -1,0 +1,11 @@
+package com.guide.service;
+
+import java.util.List;
+
+import com.guide.pojo.SubmitHospital;
+
+public interface SubmitHospitalService {
+	List<SubmitHospital> datatable_query(int start, String HName,int areaid);
+
+	int query_count(String str,int areaid);
+}

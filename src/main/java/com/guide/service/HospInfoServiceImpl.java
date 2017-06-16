@@ -1,0 +1,52 @@
+package com.guide.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.guide.mapper.HospInfoMapper;
+import com.guide.pojo.HospitalEdit;
+
+@Service("hospInfoService")
+public class HospInfoServiceImpl implements HospInfoService {
+
+	@Autowired
+	private HospInfoMapper hospInfoMapper;
+
+	public void hospitalInfoInsert(HospitalEdit hospitalEdit) {
+		// TODO Auto-generated method stub
+		hospInfoMapper.hospitalInfoInsert(hospitalEdit);
+	}
+
+	public int existsHospital(String uname) {
+		// TODO Auto-generated method stub
+		return hospInfoMapper.existsHospital(uname);
+	}
+
+	public HospitalEdit select_hInfo(String hunitid) {
+		// TODO Auto-generated method stub
+		return hospInfoMapper.select_hInfo(hunitid);
+	}
+
+	public String selectOldHosp(String hunitid) {
+		// TODO Auto-generated method stub
+		return hospInfoMapper.selectOldHosp(hunitid);
+	}
+
+	public void hospitalInfoUpdate(HospitalEdit hospitalEdit) {
+		// TODO Auto-generated method stub
+		hospInfoMapper.hospitalInfoUpdate(hospitalEdit);
+	}
+
+	public void applyEditInfo(String hunitid) {
+		// TODO Auto-generated method stub
+		hospInfoMapper.applyEditInfo(hunitid);
+	}
+
+	public int checkHospRepeat(HospitalEdit hospitalEdit) {
+		// TODO Auto-generated method stub
+		return hospInfoMapper.checkHospRepeat(hospitalEdit);
+	}
+
+	
+
+}
